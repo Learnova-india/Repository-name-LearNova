@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Learnova — Learn Anything. Your Way.</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial, sans-serif;
+    background:#f6f7fb;
+    color:#171923;
+}
+
+/* HEADER */
+
+header{
+    height:70px;
+    background:white;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:0 7%;
+
+    border-bottom:1px solid #eee;
+}
+
+.logo{
+    font-size:24px;
+    font-weight:800;
+}
+
+.logo span{
+    margin-right:6px;
+}
+
+/* HERO */
+
+.hero{
+    max-width:1000px;
+    margin:auto;
+
+    padding:70px 20px;
+
+    text-align:center;
+}
+
+.hero h1{
+    font-size:clamp(42px,8vw,72px);
+    line-height:1.05;
+
+    margin-bottom:20px;
+}
+
+.hero h1 span{
+    color:#635bff;
+}
+
+.hero p{
+    max-width:650px;
+
+    margin:0 auto 35px;
+
+    color:#666;
+
+    font-size:18px;
+    line-height:1.6;
+}
+
+/* CARD */
+
+.card{
+
+    background:white;
+
+    max-width:650px;
+
+    margin:auto;
+
+    padding:25px;
+
+    border-radius:22px;
+
+    box-shadow:
+    0 15px 45px rgba(0,0,0,.08);
+
+    text-align:left;
+}
+
+label{
+    display:block;
+
+    margin:
+    16px 0 7px;
+
+    font-weight:600;
+}
+
+input,
+select{
+
+    width:100%;
+
+    padding:15px;
+
+    border:1px solid #ddd;
+
+    border-radius:12px;
+
+    font-size:16px;
+
+    outline:none;
+}
+
+input:focus,
+select:focus{
+
+    border-color:#635bff;
+}
+
+/* BUTTON */
+
+.primary{
+
+    width:100%;
+
+    margin-top:22px;
+
+    padding:16px;
+
+    border:0;
+
+    border-radius:12px;
+
+    background:#635bff;
+
+    color:white;
+
+    font-size:16px;
+
+    font-weight:700;
+
+    cursor:pointer;
+}
+
+.primary:hover{
+    opacity:.9;
+}
+
+/* FEATURES */
+
+.features{
+
+    max-width:1000px;
+
+    margin:auto;
+
+    padding:
+    20px
+    20px
+    70px;
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:20px;
+}
+
+.feature{
+
+    background:white;
+
+    padding:25px;
+
+    border-radius:18px;
+}
+
+.feature-icon{
+    font-size:30px;
+}
+
+.feature h3{
+    margin:10px 0;
+}
+
+.feature p{
+
+    color:#666;
+
+    line-height:1.5;
+}
+
+/* RESULT */
+
+#result{
+
+    max-width:1000px;
+
+    margin:
+    0 auto 60px;
+
+    padding:20px;
+}
+
+.lesson{
+
+    background:white;
+
+    padding:25px;
+
+    border-radius:18px;
+
+    margin:15px 0;
+}
+
+.lesson h3{
+    margin-bottom:8px;
+}
+
+/* MOBILE */
+
+@media(max-width:700px){
+
+    header{
+        padding:0 20px;
+    }
+
+    .features{
+        grid-template-columns:1fr;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- HEADER -->
+
+<header>
+
+    <div class="logo">
+
+        <span>✦</span>
+
+        LEARNOVA
+
+    </div>
+
+</header>
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <h1>
+
+        Learn anything.<br>
+
+        <span>Your way.</span>
+
+    </h1>
+
+
+    <p>
+
+        Tell Learnova what you want to learn.
+
+        We'll create a personalized learning
+
+        path for you.
+
+    </p>
+
+
+    <!-- INPUT CARD -->
+
+    <div class="card">
+
+
+        <label>
+
+            What do you want to learn?
+
+        </label>
+
+
+        <input
+
+            id="goal"
+
+            type="text"
+
+            placeholder="Example: Learn Python in 30 days"
+
+        >
+
+
+        <label>
+
+            Language
+
+        </label>
+
+
+        <select id="language">
+
+            <option>English</option>
+
+            <option>Kannada</option>
+
+            <option>Hindi</option>
+
+            <option>Tamil</option>
+
+            <option>Telugu</option>
+
+            <option>Malayalam</option>
+
+        </select>
+
+
+        <label>
+
+            Level
+
+        </label>
+
+
+        <select id="level">
+
+            <option>Beginner</option>
+
+            <option>Intermediate</option>
+
+            <option>Advanced</option>
+
+        </select>
+
+
+        <label>
+
+            Daily learning time
+
+        </label>
+
+
+        <select id="time">
+
+            <option>15 minutes</option>
+
+            <option>30 minutes</option>
+
+            <option>60 minutes</option>
+
+            <option>90 minutes</option>
+
+        </select>
+
+
+        <button
+
+            class="primary"
+
+            onclick="createPath()"
+
+        >
+
+            CREATE MY LEARNING PATH
+
+        </button>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- FEATURES -->
+
+<section class="features">
+
+
+    <div class="feature">
+
+        <div class="feature-icon">
+
+            🧠
+
+        </div>
+
+        <h3>
+
+            AI Tutor
+
+        </h3>
+
+        <p>
+
+            Get simple explanations
+
+            adapted to your level.
+
+        </p>
+
+    </div>
+
+
+    <div class="feature">
+
+        <div class="feature-icon">
+
+            🎯
+
+        </div>
+
+        <h3>
+
+            Personalized Path
+
+        </h3>
+
+        <p>
+
+            Turn your goal into
+
+            lessons and practice.
+
+        </p>
+
+    </div>
+
+
+    <div class="feature">
+
+        <div class="feature-icon">
+
+            📊
+
+        </div>
+
+        <h3>
+
+            Track Progress
+
+        </h3>
+
+        <p>
+
+            See your learning
+
+            progress and weak areas.
+
+        </p>
+
+    </div>
+
+
+</section>
+
+
+
+<!-- RESULT -->
+
+<div id="result"></div>
+
+
+
+<script>
+
+
+function createPath(){
+
+
+    const goal =
+
+        document
+        .getElementById("goal")
+        .value
+        .trim();
+
+
+    const language =
+
+        document
+        .getElementById("language")
+        .value;
+
+
+    const level =
+
+        document
+        .getElementById("level")
+        .value;
+
+
+    const time =
+
+        document
+        .getElementById("time")
+        .value;
+
+
+    if(!goal){
+
+        alert(
+
+            "Please enter what you want to learn."
+
+        );
+
+        return;
+
+    }
+
+
+    const result =
+
+        document
+        .getElementById("result");
+
+
+    result.innerHTML = `
+
+        <div class="lesson">
+
+            <h2>
+
+                Your Learning Path
+
+            </h2>
+
+            <br>
+
+            <p>
+
+                <strong>Goal:</strong>
+
+                ${escapeHTML(goal)}
+
+            </p>
+
+            <p>
+
+                <strong>Language:</strong>
+
+                ${language}
+
+            </p>
+
+            <p>
+
+                <strong>Level:</strong>
+
+                ${level}
+
+            </p>
+
+            <p>
+
+                <strong>Daily time:</strong>
+
+                ${time}
+
+            </p>
+
+        </div>
+
+
+        <div class="lesson">
+
+            <h3>
+
+                📖 Module 1 — Foundations
+
+            </h3>
+
+            <p>
+
+                Learn the fundamental concepts
+
+                of your chosen subject.
+
+            </p>
+
+        </div>
+
+
+        <div class="lesson">
+
+            <h3>
+
+                🧠 Module 2 — Practice
+
+            </h3>
+
+            <p>
+
+                Apply what you learned
+
+                through practical exercises.
+
+            </p>
+
+        </div>
+
+
+        <div class="lesson">
+
+            <h3>
+
+                📝 Module 3 — Test
+
+            </h3>
+
+            <p>
+
+                Test your understanding
+
+                with a quiz.
+
+            </p>
+
+        </div>
+
+
+        <div class="lesson">
+
+            <h3>
+
+                🔄 Module 4 — Revision
+
+            </h3>
+
+            <p>
+
+                Review difficult topics
+
+                and strengthen your knowledge.
+
+            </p>
+
+        </div>
+
+    `;
+
+
+    window.scrollTo({
+
+        top:
+        document.body.scrollHeight,
+
+        behavior:"smooth"
+
+    });
+
+}
+
+
+
+function escapeHTML(text){
+
+    return text
+
+        .replace(/&/g,"&amp;")
+
+        .replace(/</g,"&lt;")
+
+        .replace(/>/g,"&gt;")
+
+        .replace(/"/g,"&quot;")
+
+        .replace(/'/g,"&#039;");
+
+}
+
+</script>
+
+
+</body>
+
+  </html>
