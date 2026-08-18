@@ -1,675 +1,1007 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
-
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Learnova — Learn Anything. Your Way.</title>
 
 <style>
-
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
 }
 
+:root{
+    --primary:#635bff;
+    --primary-dark:#5048d8;
+    --bg:#f5f6fb;
+    --card:#ffffff;
+    --text:#171923;
+    --muted:#737784;
+    --border:#e8e9ef;
+    --success:#18a66a;
+}
+
 body{
-    font-family:Arial, sans-serif;
-    background:#f6f7fb;
-    color:#171923;
+    font-family:Arial,Helvetica,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    padding-bottom:80px;
 }
 
 /* HEADER */
 
-header{
+.header{
     height:70px;
     background:white;
+    border-bottom:1px solid var(--border);
 
     display:flex;
     align-items:center;
     justify-content:space-between;
 
-    padding:0 7%;
+    padding:0 6%;
 
-    border-bottom:1px solid #eee;
+    position:sticky;
+    top:0;
+    z-index:100;
 }
 
 .logo{
-    font-size:24px;
+    font-size:23px;
     font-weight:800;
+    letter-spacing:-.5px;
 }
 
-.logo span{
+.logo-icon{
+    color:var(--primary);
     margin-right:6px;
 }
 
-/* HERO */
-
-.hero{
-    max-width:1000px;
-    margin:auto;
-
-    padding:70px 20px;
-
-    text-align:center;
+.header-right{
+    display:flex;
+    align-items:center;
+    gap:12px;
 }
 
-.hero h1{
-    font-size:clamp(42px,8vw,72px);
-    line-height:1.05;
-
-    margin-bottom:20px;
-}
-
-.hero h1 span{
-    color:#635bff;
-}
-
-.hero p{
-    max-width:650px;
-
-    margin:0 auto 35px;
-
-    color:#666;
-
-    font-size:18px;
-    line-height:1.6;
-}
-
-/* CARD */
-
-.card{
-
-    background:white;
-
-    max-width:650px;
-
-    margin:auto;
-
-    padding:25px;
-
-    border-radius:22px;
-
-    box-shadow:
-    0 15px 45px rgba(0,0,0,.08);
-
-    text-align:left;
-}
-
-label{
-    display:block;
-
-    margin:
-    16px 0 7px;
-
-    font-weight:600;
-}
-
-input,
-select{
-
-    width:100%;
-
-    padding:15px;
-
-    border:1px solid #ddd;
-
-    border-radius:12px;
-
-    font-size:16px;
-
-    outline:none;
-}
-
-input:focus,
-select:focus{
-
-    border-color:#635bff;
-}
-
-/* BUTTON */
-
-.primary{
-
-    width:100%;
-
-    margin-top:22px;
-
-    padding:16px;
-
-    border:0;
-
-    border-radius:12px;
-
-    background:#635bff;
-
+.avatar{
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    background:var(--primary);
     color:white;
 
-    font-size:16px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 
-    font-weight:700;
-
-    cursor:pointer;
+    font-weight:bold;
 }
 
-.primary:hover{
-    opacity:.9;
+/* MAIN */
+
+.container{
+    max-width:1100px;
+    margin:auto;
+    padding:30px 20px;
+}
+
+/* WELCOME */
+
+.welcome{
+    margin-bottom:25px;
+}
+
+.welcome h1{
+    font-size:32px;
+    margin-bottom:7px;
+}
+
+.welcome p{
+    color:var(--muted);
+}
+
+/* STATS */
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+    margin-bottom:25px;
+}
+
+.stat{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:18px;
+    padding:20px;
+}
+
+.stat-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.stat-icon{
+    font-size:25px;
+}
+
+.stat-number{
+    font-size:28px;
+    font-weight:800;
+    margin-top:10px;
+}
+
+.stat-label{
+    color:var(--muted);
+    font-size:14px;
+    margin-top:4px;
+}
+
+/* CURRENT COURSE */
+
+.section-title{
+    font-size:21px;
+    margin:25px 0 14px;
+}
+
+.course-card{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:22px;
+    padding:24px;
+}
+
+.course-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:15px;
+}
+
+.course-title{
+    font-size:23px;
+    font-weight:800;
+}
+
+.course-info{
+    color:var(--muted);
+    margin-top:7px;
+}
+
+.badge{
+    background:#eeedff;
+    color:var(--primary);
+    padding:7px 11px;
+    border-radius:20px;
+    font-size:12px;
+    font-weight:bold;
+    white-space:nowrap;
+}
+
+.progress-area{
+    margin-top:25px;
+}
+
+.progress-top{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:8px;
+    font-size:14px;
+}
+
+.progress-bar{
+    width:100%;
+    height:10px;
+    background:#e9eaf0;
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.progress-fill{
+    width:32%;
+    height:100%;
+    background:var(--primary);
+    border-radius:20px;
+}
+
+.primary-button{
+    border:0;
+    background:var(--primary);
+    color:white;
+    padding:14px 20px;
+    border-radius:12px;
+    font-weight:bold;
+    cursor:pointer;
+    margin-top:20px;
+}
+
+.primary-button:hover{
+    background:var(--primary-dark);
+}
+
+/* TODAY */
+
+.today-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+}
+
+.action-card{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:18px;
+    padding:22px;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.action-card:hover{
+    transform:translateY(-3px);
+}
+
+.action-icon{
+    font-size:30px;
+    margin-bottom:13px;
+}
+
+.action-card h3{
+    margin-bottom:6px;
+}
+
+.action-card p{
+    color:var(--muted);
+    font-size:14px;
+    line-height:1.5;
+}
+
+/* AI TUTOR */
+
+.tutor{
+    background:#171923;
+    color:white;
+    border-radius:22px;
+    padding:25px;
+    margin-top:25px;
+}
+
+.tutor h2{
+    margin-bottom:8px;
+}
+
+.tutor p{
+    color:#c8c9d1;
+    line-height:1.5;
+}
+
+.tutor-button{
+    background:white;
+    color:#171923;
+    border:0;
+    padding:13px 18px;
+    border-radius:12px;
+    font-weight:bold;
+    margin-top:18px;
+    cursor:pointer;
 }
 
 /* FEATURES */
 
 .features{
-
-    max-width:1000px;
-
-    margin:auto;
-
-    padding:
-    20px
-    20px
-    70px;
-
     display:grid;
-
-    grid-template-columns:
-    repeat(3,1fr);
-
-    gap:20px;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+    margin-top:25px;
 }
 
 .feature{
-
     background:white;
-
-    padding:25px;
-
+    border:1px solid var(--border);
     border-radius:18px;
-}
-
-.feature-icon{
-    font-size:30px;
-}
-
-.feature h3{
-    margin:10px 0;
-}
-
-.feature p{
-
-    color:#666;
-
-    line-height:1.5;
-}
-
-/* RESULT */
-
-#result{
-
-    max-width:1000px;
-
-    margin:
-    0 auto 60px;
-
     padding:20px;
 }
 
-.lesson{
-
-    background:white;
-
-    padding:25px;
-
-    border-radius:18px;
-
-    margin:15px 0;
+.feature-icon{
+    font-size:28px;
+    margin-bottom:10px;
 }
 
-.lesson h3{
-    margin-bottom:8px;
+.feature p{
+    color:var(--muted);
+    line-height:1.5;
+    font-size:14px;
+}
+
+/* BOTTOM NAV */
+
+.bottom-nav{
+    position:fixed;
+    bottom:0;
+    left:0;
+    right:0;
+
+    height:70px;
+
+    background:white;
+    border-top:1px solid var(--border);
+
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+
+    z-index:200;
+}
+
+.nav-item{
+    border:0;
+    background:none;
+    color:#777;
+    cursor:pointer;
+    text-align:center;
+    font-size:12px;
+}
+
+.nav-item span{
+    display:block;
+    font-size:22px;
+    margin-bottom:3px;
+}
+
+.nav-item.active{
+    color:var(--primary);
+    font-weight:bold;
+}
+
+/* MODAL */
+
+.modal{
+    display:none;
+
+    position:fixed;
+    inset:0;
+
+    background:rgba(0,0,0,.5);
+
+    align-items:center;
+    justify-content:center;
+
+    padding:20px;
+
+    z-index:500;
+}
+
+.modal-box{
+    background:white;
+    max-width:500px;
+    width:100%;
+    border-radius:22px;
+    padding:25px;
+}
+
+.modal-box h2{
+    margin-bottom:12px;
+}
+
+.modal-box p{
+    color:var(--muted);
+    line-height:1.6;
+}
+
+.close-button{
+    float:right;
+    border:0;
+    background:#eee;
+    width:35px;
+    height:35px;
+    border-radius:50%;
+    cursor:pointer;
 }
 
 /* MOBILE */
 
 @media(max-width:700px){
 
-    header{
-        padding:0 20px;
+    .container{
+        padding:24px 15px;
+    }
+
+    .welcome h1{
+        font-size:27px;
+    }
+
+    .stats{
+        grid-template-columns:1fr;
+    }
+
+    .today-grid{
+        grid-template-columns:1fr;
     }
 
     .features{
         grid-template-columns:1fr;
     }
 
+    .course-header{
+        flex-direction:column;
+    }
+
+    .course-title{
+        font-size:20px;
+    }
+
+    .header{
+        padding:0 18px;
+    }
 }
-
 </style>
-
 </head>
-
 
 <body>
 
-
 <!-- HEADER -->
 
-<header>
+<header class="header">
 
     <div class="logo">
-
-        <span>✦</span>
-
+        <span class="logo-icon">✦</span>
         LEARNOVA
+    </div>
 
+    <div class="header-right">
+        <div class="avatar" id="avatar">
+            P
+        </div>
     </div>
 
 </header>
 
 
-<!-- HERO -->
+<!-- MAIN -->
 
-<section class="hero">
+<main class="container">
 
-    <h1>
+    <!-- WELCOME -->
 
-        Learn anything.<br>
+    <section class="welcome">
 
-        <span>Your way.</span>
+        <h1>
+            Welcome back 👋
+        </h1>
 
-    </h1>
+        <p>
+            Continue your learning journey today.
+        </p>
 
-
-    <p>
-
-        Tell Learnova what you want to learn.
-
-        We'll create a personalized learning
-
-        path for you.
-
-    </p>
+    </section>
 
 
-    <!-- INPUT CARD -->
+    <!-- STATS -->
 
-    <div class="card">
+    <section class="stats">
 
+        <div class="stat">
 
-        <label>
+            <div class="stat-top">
 
-            What do you want to learn?
+                <div>
+                    <div class="stat-label">
+                        Current Streak
+                    </div>
 
-        </label>
+                    <div class="stat-number">
+                        🔥 7
+                    </div>
+                </div>
 
+                <div class="stat-icon">
+                    🔥
+                </div>
 
-        <input
+            </div>
 
-            id="goal"
+            <div class="stat-label">
+                days
+            </div>
 
-            type="text"
-
-            placeholder="Example: Learn Python in 30 days"
-
-        >
-
-
-        <label>
-
-            Language
-
-        </label>
-
-
-        <select id="language">
-
-            <option>English</option>
-
-            <option>Kannada</option>
-
-            <option>Hindi</option>
-
-            <option>Tamil</option>
-
-            <option>Telugu</option>
-
-            <option>Malayalam</option>
-
-        </select>
+        </div>
 
 
-        <label>
+        <div class="stat">
 
-            Level
+            <div class="stat-label">
+                Lessons Completed
+            </div>
 
-        </label>
+            <div class="stat-number">
+                18
+            </div>
 
+            <div class="stat-label">
+                this month
+            </div>
 
-        <select id="level">
-
-            <option>Beginner</option>
-
-            <option>Intermediate</option>
-
-            <option>Advanced</option>
-
-        </select>
-
-
-        <label>
-
-            Daily learning time
-
-        </label>
+        </div>
 
 
-        <select id="time">
+        <div class="stat">
 
-            <option>15 minutes</option>
+            <div class="stat-label">
+                Quiz Average
+            </div>
 
-            <option>30 minutes</option>
+            <div class="stat-number">
+                82%
+            </div>
 
-            <option>60 minutes</option>
+            <div class="stat-label">
+                great progress
+            </div>
 
-            <option>90 minutes</option>
+        </div>
 
-        </select>
+    </section>
+
+
+    <!-- CURRENT LEARNING -->
+
+    <h2 class="section-title">
+        🎯 Continue Learning
+    </h2>
+
+
+    <section class="course-card">
+
+        <div class="course-header">
+
+            <div>
+
+                <div class="course-title" id="courseTitle">
+                    Geography
+                </div>
+
+                <div class="course-info">
+                    Beginner • 60 day goal
+                </div>
+
+            </div>
+
+            <div class="badge">
+                IN PROGRESS
+            </div>
+
+        </div>
+
+
+        <div class="progress-area">
+
+            <div class="progress-top">
+
+                <span>
+                    Your progress
+                </span>
+
+                <strong>
+                    32%
+                </strong>
+
+            </div>
+
+
+            <div class="progress-bar">
+
+                <div class="progress-fill"></div>
+
+            </div>
+
+        </div>
 
 
         <button
+            class="primary-button"
+            onclick="openLesson()">
 
-            class="primary"
-
-            onclick="createPath()"
-
-        >
-
-            CREATE MY LEARNING PATH
+            ▶ Continue Lesson
 
         </button>
 
-
-    </div>
-
-</section>
+    </section>
 
 
+    <!-- TODAY -->
 
-<!-- FEATURES -->
-
-<section class="features">
-
-
-    <div class="feature">
-
-        <div class="feature-icon">
-
-            🧠
-
-        </div>
-
-        <h3>
-
-            AI Tutor
-
-        </h3>
-
-        <p>
-
-            Get simple explanations
-
-            adapted to your level.
-
-        </p>
-
-    </div>
+    <h2 class="section-title">
+        📅 Today's Learning
+    </h2>
 
 
-    <div class="feature">
+    <section class="today-grid">
 
-        <div class="feature-icon">
 
-            🎯
+        <div
+            class="action-card"
+            onclick="openLesson()">
+
+            <div class="action-icon">
+                📖
+            </div>
+
+            <h3>
+                Today's Lesson
+            </h3>
+
+            <p>
+                Learn today's topic in
+                simple steps.
+            </p>
 
         </div>
 
-        <h3>
 
-            Personalized Path
+        <div
+            class="action-card"
+            onclick="openQuiz()">
 
-        </h3>
+            <div class="action-icon">
+                📝
+            </div>
 
-        <p>
+            <h3>
+                Quick Quiz
+            </h3>
 
-            Turn your goal into
-
-            lessons and practice.
-
-        </p>
-
-    </div>
-
-
-    <div class="feature">
-
-        <div class="feature-icon">
-
-            📊
+            <p>
+                Test what you learned
+                today.
+            </p>
 
         </div>
 
-        <h3>
 
-            Track Progress
+        <div
+            class="action-card"
+            onclick="openRevision()">
 
-        </h3>
+            <div class="action-icon">
+                🔄
+            </div>
+
+            <h3>
+                Revision
+            </h3>
+
+            <p>
+                Review topics that need
+                more practice.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- AI TUTOR -->
+
+    <section class="tutor">
+
+        <h2>
+            🧠 Learnova AI Tutor
+        </h2>
 
         <p>
-
-            See your learning
-
-            progress and weak areas.
-
+            Ask questions, get explanations,
+            practice concepts and learn
+            according to your level.
         </p>
+
+        <button
+            class="tutor-button"
+            onclick="openTutor()">
+
+            Ask AI Tutor →
+
+        </button>
+
+    </section>
+
+
+    <!-- FEATURES -->
+
+    <h2 class="section-title">
+        ✨ Your Learning Tools
+    </h2>
+
+
+    <section class="features">
+
+
+        <div class="feature">
+
+            <div class="feature-icon">
+                🎯
+            </div>
+
+            <h3>
+                Personalized Path
+            </h3>
+
+            <p>
+                Your learning path adapts
+                to your goals and level.
+            </p>
+
+        </div>
+
+
+        <div class="feature">
+
+            <div class="feature-icon">
+                📊
+            </div>
+
+            <h3>
+                Progress Tracking
+            </h3>
+
+            <p>
+                Track lessons, quizzes,
+                streaks and improvement.
+            </p>
+
+        </div>
+
+
+        <div class="feature">
+
+            <div class="feature-icon">
+                🌎
+            </div>
+
+            <h3>
+                Learn Your Way
+            </h3>
+
+            <p>
+                Learn in the language
+                and style that works for you.
+            </p>
+
+        </div>
+
+
+    </section>
+
+</main>
+
+
+<!-- BOTTOM NAV -->
+
+<nav class="bottom-nav">
+
+    <button
+        class="nav-item active"
+        onclick="goHome()">
+
+        <span>🏠</span>
+        Home
+
+    </button>
+
+
+    <button
+        class="nav-item"
+        onclick="openCourses()">
+
+        <span>📚</span>
+        Courses
+
+    </button>
+
+
+    <button
+        class="nav-item"
+        onclick="openTutor()">
+
+        <span>🧠</span>
+        AI Tutor
+
+    </button>
+
+
+    <button
+        class="nav-item"
+        onclick="openProfile()">
+
+        <span>👤</span>
+        Profile
+
+    </button>
+
+</nav>
+
+
+<!-- MODAL -->
+
+<div
+    class="modal"
+    id="modal">
+
+    <div class="modal-box">
+
+        <button
+            class="close-button"
+            onclick="closeModal()">
+
+            ✕
+
+        </button>
+
+        <div id="modalContent"></div>
 
     </div>
 
-
-</section>
-
-
-
-<!-- RESULT -->
-
-<div id="result"></div>
-
+</div>
 
 
 <script>
 
+/* =========================
+   LOAD USER DATA
+========================= */
 
-function createPath(){
+const savedGoal =
+    localStorage.getItem("learnovaGoal");
 
+if(savedGoal){
 
-    const goal =
+    document.getElementById("courseTitle")
+        .textContent = savedGoal;
 
-        document
-        .getElementById("goal")
-        .value
-        .trim();
+}
 
 
-    const language =
+/* =========================
+   MODAL
+========================= */
 
-        document
-        .getElementById("language")
-        .value;
+function showModal(title, text){
 
+    document.getElementById("modalContent").innerHTML = `
 
-    const level =
+        <h2>${title}</h2>
 
-        document
-        .getElementById("level")
-        .value;
-
-
-    const time =
-
-        document
-        .getElementById("time")
-        .value;
-
-
-    if(!goal){
-
-        alert(
-
-            "Please enter what you want to learn."
-
-        );
-
-        return;
-
-    }
-
-
-    const result =
-
-        document
-        .getElementById("result");
-
-
-    result.innerHTML = `
-
-        <div class="lesson">
-
-            <h2>
-
-                Your Learning Path
-
-            </h2>
-
-            <br>
-
-            <p>
-
-                <strong>Goal:</strong>
-
-                ${escapeHTML(goal)}
-
-            </p>
-
-            <p>
-
-                <strong>Language:</strong>
-
-                ${language}
-
-            </p>
-
-            <p>
-
-                <strong>Level:</strong>
-
-                ${level}
-
-            </p>
-
-            <p>
-
-                <strong>Daily time:</strong>
-
-                ${time}
-
-            </p>
-
-        </div>
-
-
-        <div class="lesson">
-
-            <h3>
-
-                📖 Module 1 — Foundations
-
-            </h3>
-
-            <p>
-
-                Learn the fundamental concepts
-
-                of your chosen subject.
-
-            </p>
-
-        </div>
-
-
-        <div class="lesson">
-
-            <h3>
-
-                🧠 Module 2 — Practice
-
-            </h3>
-
-            <p>
-
-                Apply what you learned
-
-                through practical exercises.
-
-            </p>
-
-        </div>
-
-
-        <div class="lesson">
-
-            <h3>
-
-                📝 Module 3 — Test
-
-            </h3>
-
-            <p>
-
-                Test your understanding
-
-                with a quiz.
-
-            </p>
-
-        </div>
-
-
-        <div class="lesson">
-
-            <h3>
-
-                🔄 Module 4 — Revision
-
-            </h3>
-
-            <p>
-
-                Review difficult topics
-
-                and strengthen your knowledge.
-
-            </p>
-
-        </div>
+        <p>${text}</p>
 
     `;
 
+    document.getElementById("modal")
+        .style.display = "flex";
+
+}
+
+
+function closeModal(){
+
+    document.getElementById("modal")
+        .style.display = "none";
+
+}
+
+
+/* =========================
+   LESSON
+========================= */
+
+function openLesson(){
+
+    showModal(
+
+        "📖 Today's Lesson",
+
+        "Your AI-generated lesson will appear here. In the next stage, Gemini AI will create the actual lesson based on your learning goal."
+
+    );
+
+}
+
+
+/* =========================
+   QUIZ
+========================= */
+
+function openQuiz(){
+
+    showModal(
+
+        "📝 Quick Quiz",
+
+        "Your personalized quiz will appear here. Later, Learnova AI will generate questions based on the topics you have studied."
+
+    );
+
+}
+
+
+/* =========================
+   REVISION
+========================= */
+
+function openRevision(){
+
+    showModal(
+
+        "🔄 Revision",
+
+        "Learnova will identify your weak topics and automatically create a revision session."
+
+    );
+
+}
+
+
+/* =========================
+   AI TUTOR
+========================= */
+
+function openTutor(){
+
+    showModal(
+
+        "🧠 Learnova AI Tutor",
+
+        "AI Tutor is coming next. We will connect Gemini through a secure backend so your API key is not exposed in the website."
+
+    );
+
+}
+
+
+/* =========================
+   COURSES
+========================= */
+
+function openCourses(){
+
+    showModal(
+
+        "📚 My Courses",
+
+        "Your saved learning courses will appear here. Firebase will be connected in the next stage."
+
+    );
+
+}
+
+
+/* =========================
+   PROFILE
+========================= */
+
+function openProfile(){
+
+    showModal(
+
+        "👤 Profile",
+
+        "Your profile, preferred language, learning level and account settings will be managed here."
+
+    );
+
+}
+
+
+/* =========================
+   HOME
+========================= */
+
+function goHome(){
 
     window.scrollTo({
 
-        top:
-        document.body.scrollHeight,
+        top:0,
 
         behavior:"smooth"
 
@@ -678,26 +1010,24 @@ function createPath(){
 }
 
 
+/* =========================
+   CLOSE MODAL WHEN
+   CLICKING OUTSIDE
+========================= */
 
-function escapeHTML(text){
+document
+.getElementById("modal")
+.addEventListener("click",function(event){
 
-    return text
+    if(event.target === this){
 
-        .replace(/&/g,"&amp;")
+        closeModal();
 
-        .replace(/</g,"&lt;")
+    }
 
-        .replace(/>/g,"&gt;")
-
-        .replace(/"/g,"&quot;")
-
-        .replace(/'/g,"&#039;");
-
-}
+});
 
 </script>
 
-
 </body>
-
-  </html>
+</html>
