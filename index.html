@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Learnova</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Learnova — Learn Anything</title>
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
@@ -15,6 +15,8 @@ color:#171923;
 padding-bottom:80px
 }
 
+button{cursor:pointer}
+
 .header{
 height:65px;
 background:#fff;
@@ -25,7 +27,7 @@ justify-content:space-between;
 padding:0 20px;
 position:sticky;
 top:0;
-z-index:10
+z-index:20
 }
 
 .logo{
@@ -40,7 +42,7 @@ width:40px;
 height:40px;
 border-radius:50%;
 background:#635bff;
-color:white;
+color:#fff;
 display:flex;
 align-items:center;
 justify-content:center;
@@ -67,8 +69,8 @@ gap:15px;
 margin:25px 0
 }
 
-.stat,.card{
-background:white;
+.card,.stat{
+background:#fff;
 border:1px solid #e5e6ed;
 border-radius:20px;
 padding:22px
@@ -84,6 +86,24 @@ margin-top:8px
 margin:25px 0 15px
 }
 
+.primary{
+border:0;
+background:#635bff;
+color:#fff;
+padding:13px 18px;
+border-radius:12px;
+font-weight:bold;
+margin-top:15px
+}
+
+.secondary{
+border:1px solid #ddd;
+background:white;
+padding:12px 16px;
+border-radius:10px;
+font-weight:bold
+}
+
 .progress{
 height:10px;
 background:#e7e8ee;
@@ -94,23 +114,9 @@ margin-top:10px
 
 .progress-fill{
 height:100%;
-width:0;
 background:#635bff;
-transition:.3s
-}
-
-button{
-cursor:pointer
-}
-
-.primary{
-border:0;
-background:#635bff;
-color:white;
-padding:14px 20px;
-border-radius:12px;
-font-weight:bold;
-margin-top:18px
+width:0%;
+transition:.4s
 }
 
 .actions{
@@ -120,7 +126,7 @@ gap:15px
 }
 
 .action{
-background:white;
+background:#fff;
 border:1px solid #e5e6ed;
 border-radius:20px;
 padding:22px;
@@ -157,7 +163,7 @@ border-top:1px solid #ddd;
 display:flex;
 justify-content:space-around;
 align-items:center;
-z-index:20
+z-index:30
 }
 
 .nav-item{
@@ -188,11 +194,10 @@ z-index:100
 .login-box{
 width:100%;
 max-width:420px;
-background:white;
+background:#fff;
 padding:30px;
 border-radius:24px;
-border:1px solid #ddd;
-box-shadow:0 10px 40px rgba(0,0,0,.08)
+border:1px solid #ddd
 }
 
 .login-logo{
@@ -212,16 +217,12 @@ margin-bottom:25px
 
 .input{
 width:100%;
-padding:15px;
+padding:14px;
 border:1px solid #ddd;
-border-radius:12px;
+border-radius:11px;
 font-size:16px;
 margin-bottom:13px;
 outline:none
-}
-
-.input:focus{
-border-color:#635bff
 }
 
 .login-button{
@@ -230,13 +231,9 @@ padding:15px;
 border:0;
 border-radius:12px;
 background:#635bff;
-color:white;
+color:#fff;
 font-size:16px;
 font-weight:bold
-}
-
-.login-button:disabled{
-opacity:.6
 }
 
 .switch{
@@ -254,7 +251,7 @@ font-weight:bold
 
 .message{
 text-align:center;
-margin-top:15px;
+margin-top:14px;
 font-size:14px;
 min-height:20px
 }
@@ -262,7 +259,90 @@ min-height:20px
 .error{color:#d93636}
 .success{color:#159669}
 
-.hidden{display:none!important}
+/* MODAL */
+
+.modal{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.55);
+display:none;
+align-items:center;
+justify-content:center;
+padding:18px;
+z-index:200
+}
+
+.modal-box{
+width:100%;
+max-width:650px;
+max-height:90vh;
+overflow:auto;
+background:white;
+border-radius:22px;
+padding:25px
+}
+
+.close{
+float:right;
+border:0;
+background:#eee;
+width:35px;
+height:35px;
+border-radius:50%
+}
+
+.lesson{
+padding:15px;
+border:1px solid #ddd;
+border-radius:14px;
+margin:10px 0
+}
+
+.option{
+display:block;
+width:100%;
+text-align:left;
+padding:14px;
+margin:10px 0;
+border:1px solid #ddd;
+background:white;
+border-radius:10px
+}
+
+.option:hover{
+border-color:#635bff
+}
+
+.profile-row{
+padding:13px 0;
+border-bottom:1px solid #eee
+}
+
+.logout{
+width:100%;
+padding:14px;
+border:0;
+background:#171923;
+color:white;
+border-radius:12px;
+margin-top:20px
+}
+
+.chat-box{
+height:300px;
+overflow:auto;
+border:1px solid #ddd;
+border-radius:12px;
+padding:12px;
+margin-bottom:12px
+}
+
+.chat-input{
+width:100%;
+padding:13px;
+border:1px solid #ddd;
+border-radius:10px
+}
 
 @media(max-width:700px){
 .stats,.actions{
@@ -288,26 +368,19 @@ grid-template-columns:1fr
 Create your account and start learning.
 </p>
 
-<input
-id="nameInput"
+<input id="nameInput"
 class="input"
-type="text"
-placeholder="Your name"
->
+placeholder="Your name">
 
-<input
-id="emailInput"
+<input id="emailInput"
 class="input"
 type="email"
-placeholder="Email address"
->
+placeholder="Email address">
 
-<input
-id="passwordInput"
+<input id="passwordInput"
 class="input"
 type="password"
-placeholder="Password (6+ characters)"
->
+placeholder="Password">
 
 <button id="authButton" class="login-button">
 Create Account
@@ -316,15 +389,8 @@ Create Account
 <div id="message" class="message"></div>
 
 <div class="switch">
-
-<span id="switchText">
-Already have an account?
-</span>
-
-<button id="switchButton">
-Login
-</button>
-
+<span id="switchText">Already have an account?</span>
+<button id="switchButton">Login</button>
 </div>
 
 </div>
@@ -351,11 +417,11 @@ Login
 <section class="welcome">
 
 <h1>
-Welcome back, <span id="userName">Learner</span> 👋
+Welcome, <span id="userName">Learner</span> 👋
 </h1>
 
 <p class="muted">
-Continue your learning journey today.
+Your personalized learning dashboard.
 </p>
 
 </section>
@@ -364,121 +430,78 @@ Continue your learning journey today.
 <section class="stats">
 
 <div class="stat">
-
-<div class="muted">🔥 Current Streak</div>
-
+<div class="muted">🔥 Streak</div>
 <div id="streak" class="stat-number">0</div>
-
 <div class="muted">days</div>
-
 </div>
 
-
 <div class="stat">
-
-<div class="muted">📚 Lessons Completed</div>
-
+<div class="muted">📚 Lessons</div>
 <div id="lessons" class="stat-number">0</div>
-
 <div class="muted">completed</div>
-
 </div>
 
-
 <div class="stat">
-
-<div class="muted">📝 Quiz Average</div>
-
+<div class="muted">📝 Quiz</div>
 <div id="quiz" class="stat-number">0%</div>
-
 <div class="muted">average</div>
-
 </div>
 
 </section>
 
 
-<h2 class="section-title">
-🎯 Continue Learning
-</h2>
+<h2 class="section-title">🎯 Continue Learning</h2>
 
 <section class="card">
 
 <h2 id="courseTitle">
-Your first goal
+Indian History
 </h2>
 
 <p id="courseInfo" class="muted" style="margin-top:8px">
-Set your learning goal to begin.
+Learn Indian history step by step.
 </p>
 
-<div style="margin-top:25px">
+<div style="margin-top:22px">
 
 <div style="display:flex;justify-content:space-between">
-
-<span>Your progress</span>
-
+<span>Progress</span>
 <strong id="progressText">0%</strong>
-
 </div>
 
 <div class="progress">
-
 <div id="progressFill" class="progress-fill"></div>
-
 </div>
 
 </div>
 
 <button class="primary" onclick="openLesson()">
-▶ Continue Lesson
+▶ Start Lesson
 </button>
 
 </section>
 
 
-<h2 class="section-title">
-📅 Today's Learning
-</h2>
+<h2 class="section-title">📚 Learn</h2>
 
 <section class="actions">
 
-<div class="action" onclick="openLesson()">
-
-<div class="action-icon">📖</div>
-
-<h3>Today's Lesson</h3>
-
-<p class="muted" style="margin-top:7px">
-Learn today's topic.
-</p>
-
+<div class="action" onclick="openCourses()">
+<div class="action-icon">📚</div>
+<h3>Courses</h3>
+<p class="muted">Explore learning topics.</p>
 </div>
-
 
 <div class="action" onclick="openQuiz()">
-
 <div class="action-icon">📝</div>
-
-<h3>Quick Quiz</h3>
-
-<p class="muted" style="margin-top:7px">
-Test what you learned.
-</p>
-
+<h3>Quiz</h3>
+<p class="muted">Test your knowledge.</p>
 </div>
 
-
-<div class="action" onclick="openProfile()">
-
-<div class="action-icon">👤</div>
-
-<h3>My Profile</h3>
-
-<p class="muted" style="margin-top:7px">
-View your account.
-</p>
-
+<div class="action" onclick="openRevision()">
+<div class="action-icon">🔄</div>
+<h3>Revision</h3>
+<p class="muted">Review what you learned.</p>
 </div>
 
 </section>
@@ -489,14 +512,13 @@ View your account.
 <h2>🧠 Learnova AI Tutor</h2>
 
 <p>
-Ask questions and understand difficult topics.
+Ask questions and get help understanding your lessons.
 </p>
 
 <button
 class="primary"
 style="background:white;color:#171923"
-onclick="openTutor()"
->
+onclick="openTutor()">
 Ask AI Tutor →
 </button>
 
@@ -510,37 +532,48 @@ Ask AI Tutor →
 <nav class="bottom-nav">
 
 <button class="nav-item" onclick="window.scrollTo(0,0)">
-<span>🏠</span>
-Home
+<span>🏠</span>Home
 </button>
 
-<button class="nav-item" onclick="openLesson()">
-<span>📚</span>
-Courses
+<button class="nav-item" onclick="openCourses()">
+<span>📚</span>Courses
 </button>
 
 <button class="nav-item" onclick="openTutor()">
-<span>🧠</span>
-AI Tutor
+<span>🧠</span>AI Tutor
 </button>
 
 <button class="nav-item" onclick="openProfile()">
-<span>👤</span>
-Profile
+<span>👤</span>Profile
 </button>
 
 </nav>
 
 
+<!-- MODAL -->
+
+<div id="modal" class="modal">
+
+<div class="modal-box">
+
+<button class="close" onclick="closeModal()">✕</button>
+
+<div id="modalContent"></div>
+
+</div>
+</div>
+
+
 <script type="module">
 
-/* ================================
-   FIREBASE
-================================ */
+/* =========================
+FIREBASE
+========================= */
 
 import {
 initializeApp
-} from "https://www.gstatic.com/firebasejs/12.17.0/firebase-app.js";
+} from
+"https://www.gstatic.com/firebasejs/12.17.0/firebase-app.js";
 
 import {
 getAuth,
@@ -549,21 +582,20 @@ signInWithEmailAndPassword,
 updateProfile,
 onAuthStateChanged,
 signOut
-} from "https://www.gstatic.com/firebasejs/12.17.0/firebase-auth.js";
+} from
+"https://www.gstatic.com/firebasejs/12.17.0/firebase-auth.js";
 
 import {
 getFirestore,
 doc,
 setDoc,
-getDoc
-} from "https://www.gstatic.com/firebasejs/12.17.0/firebase-firestore.js";
+getDoc,
+updateDoc
+} from
+"https://www.gstatic.com/firebasejs/12.17.0/firebase-firestore.js";
 
 
-/* ================================
-   FIREBASE CONFIG
-================================ */
-
-const firebaseConfig = {
+const firebaseConfig={
 
 apiKey:
 "AIzaSyC5Mn2Sxh_k3AG1WCGJyBNvEGuhGLgwE2M",
@@ -586,109 +618,90 @@ appId:
 };
 
 
-/* ================================
-   INITIALIZE
-================================ */
+const app=initializeApp(firebaseConfig);
 
-const app =
-initializeApp(firebaseConfig);
+const auth=getAuth(app);
 
-const auth =
-getAuth(app);
+const db=getFirestore(app);
 
-const db =
-getFirestore(app);
+let isSignup=true;
+let currentUser=null;
+let userData=null;
 
 
-/* ================================
-   ELEMENTS
-================================ */
+/* =========================
+ELEMENTS
+========================= */
 
-const loginScreen =
+const loginScreen=
 document.getElementById("loginScreen");
 
-const nameInput =
+const nameInput=
 document.getElementById("nameInput");
 
-const emailInput =
+const emailInput=
 document.getElementById("emailInput");
 
-const passwordInput =
+const passwordInput=
 document.getElementById("passwordInput");
 
-const authButton =
+const authButton=
 document.getElementById("authButton");
 
-const message =
+const message=
 document.getElementById("message");
 
-const loginSubtitle =
-document.getElementById("loginSubtitle");
 
-const switchText =
-document.getElementById("switchText");
-
-const switchButton =
-document.getElementById("switchButton");
-
-
-let isSignup = true;
-
-
-/* ================================
-   MESSAGE
-================================ */
-
-function showMessage(text,type=""){
-
-message.textContent = text;
-
-message.className =
-"message " + type;
-
+function msg(text,type=""){
+message.textContent=text;
+message.className="message "+type;
 }
 
 
-/* ================================
-   LOGIN / SIGNUP SWITCH
-================================ */
+/* =========================
+LOGIN SWITCH
+========================= */
 
-switchButton.addEventListener("click",function(){
+document.getElementById("switchButton")
+.addEventListener("click",()=>{
 
-isSignup = !isSignup;
+isSignup=!isSignup;
 
-showMessage("");
+msg("");
 
 if(isSignup){
 
-nameInput.style.display = "block";
+nameInput.style.display="block";
 
-authButton.textContent =
-"Create Account";
+authButton.textContent="Create Account";
 
-loginSubtitle.textContent =
+document.getElementById("loginSubtitle")
+.textContent=
 "Create your account and start learning.";
 
-switchText.textContent =
+document.getElementById("switchText")
+.textContent=
 "Already have an account?";
 
-switchButton.textContent =
-"Login";
+document.getElementById("switchButton")
+.textContent="Login";
 
 }else{
 
-nameInput.style.display = "none";
+nameInput.style.display="none";
 
-authButton.textContent =
-"Login";
+authButton.textContent="Login";
 
-loginSubtitle.textContent =
+document.getElementById("loginSubtitle")
+.textContent=
 "Welcome back to Learnova.";
 
-switchText.textContent =
+document.getElementById("switchText")
+.textContent=
 "Don't have an account?";
 
-switchButton.textContent =
+document.getElementById("switchButton")
+.textContent=
 "Create Account";
 
 }
@@ -696,118 +709,59 @@ switchButton.textContent =
 });
 
 
-/* ================================
-   AUTH BUTTON
-================================ */
+/* =========================
+AUTH
+========================= */
 
-authButton.addEventListener("click",async function(){
+authButton.addEventListener("click",async()=>{
 
-console.log("AUTH BUTTON CLICKED");
+const email=emailInput.value.trim();
 
-const email =
-emailInput.value.trim();
+const password=passwordInput.value;
 
-const password =
-passwordInput.value;
+const name=nameInput.value.trim();
 
-const name =
-nameInput.value.trim();
+if(!email||!password){
 
-
-if(!email){
-
-showMessage(
-"Please enter your email.",
-"error"
-);
-
+msg("Enter email and password.","error");
 return;
 
 }
 
-if(!password){
+if(isSignup&&!name){
 
-showMessage(
-"Please enter your password.",
-"error"
-);
-
+msg("Enter your name.","error");
 return;
 
 }
 
-if(isSignup && !name){
+if(password.length<6){
 
-showMessage(
-"Please enter your name.",
-"error"
-);
-
+msg("Password must be at least 6 characters.","error");
 return;
 
 }
 
-if(password.length < 6){
+authButton.disabled=true;
 
-showMessage(
-"Password must contain at least 6 characters.",
-"error"
-);
-
-return;
-
-}
-
-
-authButton.disabled = true;
-
-authButton.textContent =
-"Please wait...";
+authButton.textContent="Please wait...";
 
 
 try{
-
-/* ============================
-   SIGN UP
-============================ */
 
 if(isSignup){
 
-const result =
+const result=
 await createUserWithEmailAndPassword(
-auth,
-email,
-password
+auth,email,password
 );
 
-const user =
-result.user;
+const user=result.user;
 
-
-/* SAVE DISPLAY NAME */
-
-try{
-
-await updateProfile(
-user,
-{
+await updateProfile(user,{
 displayName:name
-}
-);
+});
 
-}catch(profileError){
-
-console.log(
-"Profile update skipped:",
-profileError
-);
-
-}
-
-
-/* SAVE FIRESTORE DATA */
-
-try{
 
 await setDoc(
 doc(db,"users",user.uid),
@@ -819,7 +773,7 @@ name:name,
 
 email:email,
 
-goal:"",
+goal:"Indian History",
 
 language:"English",
 
@@ -835,194 +789,109 @@ lessonsCompleted:0,
 
 quizAverage:0,
 
-createdAt:
-new Date().toISOString()
-
-}
-);
-
-}catch(firestoreError){
-
-console.error(
-"Firestore error:",
-firestoreError
-);
-
-}
-
-
-/* IMPORTANT:
-   AUTH ACCOUNT WAS CREATED
-*/
-
-showMessage(
-"Account created successfully!",
-"success"
-);
-
-}
-
-
-/* ============================
-   LOGIN
-============================ */
-
-else{
-
-await signInWithEmailAndPassword(
-auth,
-email,
-password
-);
-
-showMessage(
-"Login successful!",
-"success"
-);
-
-}
-
-
-}catch(error){
-
-console.error(
-"AUTH ERROR:",
-error
-);
-
-let text =
-"Something went wrong.";
-
-switch(error.code){
-
-case "auth/email-already-in-use":
-text =
-"This email is already registered. Please Login.";
-break;
-
-case "auth/invalid-email":
-text =
-"Invalid email address.";
-break;
-
-case "auth/invalid-credential":
-text =
-"Email or password is incorrect.";
-break;
-
-case "auth/user-not-found":
-text =
-"No account found with this email.";
-break;
-
-case "auth/wrong-password":
-text =
-"Incorrect password.";
-break;
-
-case "auth/weak-password":
-text =
-"Password must contain at least 6 characters.";
-break;
-
-case "auth/operation-not-allowed":
-text =
-"Email/Password authentication is disabled in Firebase.";
-break;
-
-case "auth/network-request-failed":
-text =
-"Internet connection problem.";
-break;
-
-default:
-text =
-error.message || "Firebase authentication failed.";
-
-}
-
-showMessage(
-text,
-"error"
-);
-
-}
-
-
-authButton.disabled = false;
-
-authButton.textContent =
-isSignup
-? "Create Account"
-: "Login";
+createdAt:new Date().toISOString()
 
 });
 
 
-/* ================================
-   AUTH STATE
-================================ */
+msg("Account created successfully!","success");
 
-onAuthStateChanged(
-auth,
-async function(user){
+}else{
 
-console.log(
-"AUTH STATE:",
-user
+await signInWithEmailAndPassword(
+auth,email,password
 );
+
+}
+
+}catch(error){
+
+console.error(error);
+
+let text="Something went wrong.";
+
+if(error.code==="auth/email-already-in-use")
+text="Email already registered. Login instead.";
+
+else if(error.code==="auth/invalid-credential")
+text="Email or password is incorrect.";
+
+else if(error.code==="auth/invalid-email")
+text="Invalid email address.";
+
+else if(error.code==="auth/weak-password")
+text="Password must contain at least 6 characters.";
+
+else if(error.code==="auth/network-request-failed")
+text="Check your internet connection.";
+
+else
+text=error.message||text;
+
+msg(text,"error");
+
+}
+
+authButton.disabled=false;
+
+authButton.textContent=
+isSignup?"Create Account":"Login";
+
+});
+
+
+/* =========================
+AUTH STATE
+========================= */
+
+onAuthStateChanged(auth,async(user)=>{
 
 if(user){
 
-loginScreen.style.display =
-"none";
+currentUser=user;
+
+loginScreen.style.display="none";
 
 await loadUser(user);
 
 }else{
 
-loginScreen.style.display =
-"flex";
+currentUser=null;
+
+loginScreen.style.display="flex";
 
 }
 
 });
 
 
-/* ================================
-   LOAD USER
-================================ */
+/* =========================
+LOAD USER
+========================= */
 
 async function loadUser(user){
 
-let data = null;
-
 try{
 
-const ref =
-doc(db,"users",user.uid);
+const ref=doc(db,"users",user.uid);
 
-const snapshot =
-await getDoc(ref);
+const snap=await getDoc(ref);
 
-if(snapshot.exists()){
+if(snap.exists()){
 
-data =
-snapshot.data();
+userData=snap.data();
 
 }else{
 
-data = {
+userData={
 
 uid:user.uid,
 
-name:
-user.displayName || "Learner",
+name:user.displayName||"Learner",
 
-email:
-user.email || "",
+email:user.email||"",
 
-goal:"",
+goal:"Indian History",
 
 progress:0,
 
@@ -1034,24 +903,23 @@ quizAverage:0
 
 };
 
+await setDoc(ref,userData);
+
 }
+
+render();
 
 }catch(error){
 
-console.error(
-"LOAD USER ERROR:",
-error
-);
+console.error(error);
 
-data = {
+userData={
 
-name:
-user.displayName || "Learner",
+name:user.displayName||"Learner",
 
-email:
-user.email || "",
+email:user.email||"",
 
-goal:"",
+goal:"Indian History",
 
 progress:0,
 
@@ -1063,139 +931,505 @@ quizAverage:0
 
 };
 
-}
-
-
-renderDashboard(data);
-
-}
-
-
-/* ================================
-   DASHBOARD
-================================ */
-
-function renderDashboard(data){
-
-const name =
-data.name ||
-" " ||
-".";
-
-document.getElementById(
-"userName"
-).textContent =
-name;
-
-document.getElementById(
-"avatar"
-).textContent =
-name.charAt(0).toUpperCase();
-
-document.getElementById(
-"streak"
-).textContent =
-data.streak || 0;
-
-document.getElementById(
-"lessons"
-).textContent =
-data.lessonsCompleted || 0;
-
-document.getElementById(
-"quiz"
-).textContent =
-(data.quizAverage || 0) + "%";
-
-const progress =
-Number(data.progress || 0);
-
-document.getElementById(
-"progressText"
-).textContent =
-progress + "%";
-
-document.getElementById(
-"progressFill"
-).style.width =
-progress + "%";
-
-if(data.goal){
-
-document.getElementById(
-"courseTitle"
-).textContent =
-data.goal;
-
-document.getElementById(
-"courseInfo"
-).textContent =
-"Continue learning your selected goal.";
+render();
 
 }
 
 }
 
 
-/* ================================
-   OTHER BUTTONS
-================================ */
+/* =========================
+RENDER
+========================= */
 
-window.openLesson = function(){
+function render(){
 
-alert(
-"📖 Lesson section is ready. You can add your lessons here."
-);
+const d=userData||{};
+
+const name=d.name||"Learner";
+
+document.getElementById("userName")
+.textContent=name;
+
+document.getElementById("avatar")
+.textContent=name.charAt(0).toUpperCase();
+
+document.getElementById("streak")
+.textContent=d.streak||0;
+
+document.getElementById("lessons")
+.textContent=d.lessonsCompleted||0;
+
+document.getElementById("quiz")
+.textContent=(d.quizAverage||0)+"%";
+
+const progress=Number(d.progress||0);
+
+document.getElementById("progressText")
+.textContent=progress+"%";
+
+document.getElementById("progressFill")
+.style.width=progress+"%";
+
+if(d.goal){
+
+document.getElementById("courseTitle")
+.textContent=d.goal;
+
+}
+
+}
+
+
+/* =========================
+MODAL
+========================= */
+
+window.closeModal=function(){
+
+document.getElementById("modal")
+.style.display="none";
+
+};
+
+function showModal(html){
+
+document.getElementById("modalContent")
+.innerHTML=html;
+
+document.getElementById("modal")
+.style.display="flex";
+
+}
+
+
+/* =========================
+COURSES
+========================= */
+
+window.openCourses=function(){
+
+showModal(`
+
+<h2>📚 Learnova Courses</h2>
+
+<div class="lesson">
+
+<h3>🇮🇳 Indian History</h3>
+
+<p class="muted">
+Ancient India → Medieval India → Modern India
+</p>
+
+<button class="primary"
+onclick="openLesson()">
+Start Course
+</button>
+
+</div>
+
+<div class="lesson">
+
+<h3>🏛️ Indian Constitution</h3>
+
+<p class="muted">
+Constitution, Fundamental Rights and Parliament.
+</p>
+
+<button class="secondary"
+onclick="alert('Coming soon')">
+Explore
+</button>
+
+</div>
+
+<div class="lesson">
+
+<h3>🌍 World History</h3>
+
+<p class="muted">
+Major events and civilizations of world history.
+</p>
+
+<button class="secondary"
+onclick="alert('Coming soon')">
+Explore
+</button>
+
+</div>
+
+`);
 
 };
 
 
-window.openQuiz = function(){
+/* =========================
+LESSON
+========================= */
 
-alert(
-"📝 Quiz section is ready."
-);
+window.openLesson=function(){
+
+showModal(`
+
+<h2>📖 Indian History — Lesson 1</h2>
+
+<h3 style="margin-top:20px">
+The Indus Valley Civilization
+</h3>
+
+<p style="line-height:1.7;margin-top:12px">
+
+The Indus Valley Civilization was one of the earliest
+urban civilizations of South Asia. Major sites include
+Harappa, Mohenjo-daro, Dholavira and Lothal.
+
+</p>
+
+<h3 style="margin-top:20px">
+Quick Facts
+</h3>
+
+<ul style="line-height:2;margin:10px 0 0 20px">
+
+<li>Major cities had planned streets.</li>
+
+<li>Drainage systems were highly developed.</li>
+
+<li>Trade existed with neighboring regions.</li>
+
+<li>Harappa and Mohenjo-daro are important archaeological sites.</li>
+
+</ul>
+
+<button class="primary"
+onclick="completeLesson()">
+✓ Mark Lesson Complete
+</button>
+
+`);
 
 };
 
 
-window.openTutor = function(){
+/* =========================
+COMPLETE LESSON
+========================= */
 
-alert(
-"🧠 AI Tutor section is ready."
+window.completeLesson=async function(){
+
+if(!currentUser)return;
+
+try{
+
+const newLessons=
+Number(userData.lessonsCompleted||0)+1;
+
+const newProgress=
+Math.min(100,
+Number(userData.progress||0)+10
 );
+
+userData.lessonsCompleted=newLessons;
+
+userData.progress=newProgress;
+
+await updateDoc(
+doc(db,"users",currentUser.uid),
+{
+
+lessonsCompleted:newLessons,
+
+progress:newProgress
+
+});
+
+render();
+
+closeModal();
+
+alert("🎉 Lesson completed!");
+
+}catch(error){
+
+console.error(error);
+
+alert("Could not save progress.");
+
+}
 
 };
 
 
-window.openProfile = function(){
+/* =========================
+QUIZ
+========================= */
 
-const user =
-auth.currentUser;
+window.openQuiz=function(){
 
-if(!user)return;
+showModal(`
 
-alert(
-"Name: " +
-(user.displayName || "Learner") +
-"\nEmail: " +
-(user.email || "")
-);
+<h2>📝 Quick Quiz</h2>
+
+<p style="margin-top:15px">
+<strong>Question:</strong>
+Which of these is an important site of the
+Indus Valley Civilization?
+</p>
+
+<button class="option"
+onclick="quizAnswer(true)">
+A. Mohenjo-daro
+</button>
+
+<button class="option"
+onclick="quizAnswer(false)">
+B. Rome
+</button>
+
+<button class="option"
+onclick="quizAnswer(false)">
+C. Athens
+</button>
+
+<button class="option"
+onclick="quizAnswer(false)">
+D. London
+</button>
+
+<div id="quizResult"></div>
+
+`);
 
 };
 
 
-/* ================================
-   LOGOUT
-================================ */
+/* =========================
+QUIZ ANSWER
+========================= */
 
-window.logout = async function(){
+window.quizAnswer=async function(correct){
+
+const result=
+document.getElementById("quizResult");
+
+if(correct){
+
+result.innerHTML=
+"<p style='color:#159669;margin-top:15px'><strong>✅ Correct!</strong></p>";
+
+const old=
+Number(userData.quizAverage||0);
+
+const newScore=
+old===0?100:Math.round((old+100)/2);
+
+userData.quizAverage=newScore;
+
+try{
+
+await updateDoc(
+doc(db,"users",currentUser.uid),
+{
+quizAverage:newScore
+}
+);
+
+render();
+
+}catch(error){
+
+console.error(error);
+
+}
+
+}else{
+
+result.innerHTML=
+"<p style='color:#d93636;margin-top:15px'><strong>❌ Try again.</strong></p>";
+
+}
+
+};
+
+
+/* =========================
+REVISION
+========================= */
+
+window.openRevision=function(){
+
+showModal(`
+
+<h2>🔄 Revision</h2>
+
+<p style="line-height:1.7;margin-top:15px">
+
+Review these important points:
+
+</p>
+
+<ul style="line-height:2;margin:15px 0 0 20px">
+
+<li>Indus Valley Civilization was urban.</li>
+
+<li>Harappa and Mohenjo-daro were major sites.</li>
+
+<li>Drainage systems were well developed.</li>
+
+<li>Trade connected the civilization with other regions.</li>
+
+</ul>
+
+`);
+
+};
+
+
+/* =========================
+PROFILE
+========================= */
+
+window.openProfile=function(){
+
+const d=userData||{};
+
+showModal(`
+
+<h2>👤 My Profile</h2>
+
+<div class="profile-row">
+<strong>Name</strong>
+<br>${d.name||"Learner"}
+</div>
+
+<div class="profile-row">
+<strong>Email</strong>
+<br>${d.email||""}
+</div>
+
+<div class="profile-row">
+<strong>Level</strong>
+<br>${d.level||"Beginner"}
+</div>
+
+<div class="profile-row">
+<strong>Lessons completed</strong>
+<br>${d.lessonsCompleted||0}
+</div>
+
+<div class="profile-row">
+<strong>Progress</strong>
+<br>${d.progress||0}%
+</div>
+
+<button class="logout"
+onclick="logoutUser()">
+Logout
+</button>
+
+`);
+
+};
+
+
+/* =========================
+LOGOUT
+========================= */
+
+window.logoutUser=async function(){
+
+try{
 
 await signOut(auth);
 
+closeModal();
+
+}catch(error){
+
+console.error(error);
+
+}
+
 };
 
-</script>
 
-</body>
-  </html>
+/* =========================
+AI TUTOR
+========================= */
+
+window.openTutor=function(){
+
+showModal(`
+
+<h2>🧠 Learnova AI Tutor</h2>
+
+<div id="chatBox" class="chat-box">
+
+<p>
+<strong>Learnova Tutor:</strong><br>
+Hi! Ask me a question about your lesson.
+</p>
+
+</div>
+
+<input
+id="aiQuestion"
+class="chat-input"
+placeholder="Ask a question..."
+>
+
+<button class="primary"
+onclick="askTutor()">
+Ask
+</button>
+
+`);
+
+};
+
+
+/* =========================
+BASIC TUTOR
+========================= */
+
+window.askTutor=function(){
+
+const input=
+document.getElementById("aiQuestion");
+
+const box=
+document.getElementById("chatBox");
+
+const question=input.value.trim();
+
+if(!question)return;
+
+box.innerHTML+=`
+
+<p style="margin-top:15px">
+<strong>You:</strong><br>
+${escapeHtml(question)}
+</p>
+
+`;
+
+let answer=
+"I can help you understand the topic. Try asking about the Indus Valley Civilization, Indian history or the Constitution.";
+
+const q=question.toLowerCase();
+
+if(q.includes("indus")||q.includes("harappa")){
+
+answer=
+"The Indus Valley Civilization was an ancient urban civilization of South Asia. Harappa, Mohenjo-daro, Dholavira and Lothal are important sites.";
+
+}
+
+if(q.includes("constitution")){
+
+answer=
+"The Constitution of India is the supreme law of India. It establishes the structure of government and guarantees important rights to citizens.";
+
+}
+
+   
