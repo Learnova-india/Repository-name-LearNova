@@ -7,6 +7,7 @@
 <title>Learnova — Learn Anything</title>
 
 <style>
+
 *{
   box-sizing:border-box;
   margin:0;
@@ -32,7 +33,7 @@ body{
   padding-bottom:80px;
 }
 
-/* HEADER */
+/* ================= HEADER ================= */
 
 .header{
   height:70px;
@@ -69,7 +70,7 @@ body{
   font-weight:bold;
 }
 
-/* MAIN */
+/* ================= MAIN ================= */
 
 .container{
   max-width:1100px;
@@ -90,7 +91,7 @@ body{
   color:var(--muted);
 }
 
-/* STATS */
+/* ================= STATS ================= */
 
 .stats{
   display:grid;
@@ -117,14 +118,14 @@ body{
   margin-top:10px;
 }
 
-/* SECTIONS */
+/* ================= SECTIONS ================= */
 
 .section-title{
   font-size:22px;
   margin:28px 0 15px;
 }
 
-/* COURSE */
+/* ================= COURSE ================= */
 
 .course{
   background:white;
@@ -156,6 +157,7 @@ body{
   padding:7px 12px;
   font-size:12px;
   font-weight:bold;
+  height:max-content;
 }
 
 .progress-area{
@@ -198,7 +200,7 @@ body{
   background:var(--primary-dark);
 }
 
-/* ACTIONS */
+/* ================= ACTIONS ================= */
 
 .actions{
   display:grid;
@@ -230,7 +232,7 @@ body{
   line-height:1.5;
 }
 
-/* AI */
+/* ================= AI ================= */
 
 .ai{
   background:#171923;
@@ -257,7 +259,7 @@ body{
   cursor:pointer;
 }
 
-/* NAV */
+/* ================= NAV ================= */
 
 .bottom-nav{
   position:fixed;
@@ -292,7 +294,7 @@ body{
   color:var(--primary);
 }
 
-/* LOGIN */
+/* ================= LOGIN ================= */
 
 .login-screen{
   position:fixed;
@@ -381,6 +383,7 @@ body{
   margin-top:15px;
   text-align:center;
   font-size:14px;
+  line-height:1.5;
 }
 
 .error{
@@ -391,7 +394,7 @@ body{
   color:var(--success);
 }
 
-/* MODAL */
+/* ================= MODAL ================= */
 
 .modal{
   position:fixed;
@@ -433,7 +436,11 @@ body{
   margin-bottom:12px;
 }
 
-/* PROFILE */
+.modal-box button{
+  cursor:pointer;
+}
+
+/* ================= PROFILE ================= */
 
 .profile-row{
   padding:14px 0;
@@ -451,7 +458,24 @@ body{
   cursor:pointer;
 }
 
-/* MOBILE */
+/* ================= QUIZ ================= */
+
+.quiz-option{
+  width:100%;
+  text-align:left;
+  border:1px solid var(--border);
+  background:white;
+  padding:14px;
+  border-radius:12px;
+  margin:7px 0;
+  font-size:15px;
+}
+
+.quiz-option:hover{
+  border-color:var(--primary);
+}
+
+/* ================= MOBILE ================= */
 
 @media(max-width:700px){
 
@@ -476,12 +500,16 @@ body{
   }
 
 }
+
 </style>
 </head>
 
 <body>
 
-<!-- LOGIN -->
+
+<!-- =====================================================
+     LOGIN / SIGNUP
+===================================================== -->
 
 <div id="loginScreen" class="login-screen">
 
@@ -507,6 +535,7 @@ body{
       class="input"
       type="email"
       placeholder="Email address"
+      autocomplete="email"
     >
 
     <input
@@ -514,6 +543,7 @@ body{
       class="input"
       type="password"
       placeholder="Password (6+ characters)"
+      autocomplete="current-password"
     >
 
     <button id="authButton" class="login-button">
@@ -542,7 +572,9 @@ body{
 </div>
 
 
-<!-- HEADER -->
+<!-- =====================================================
+     HEADER
+===================================================== -->
 
 <header class="header">
 
@@ -551,20 +583,22 @@ body{
   </div>
 
   <div class="avatar" id="avatar">
-    P
+    L
   </div>
 
 </header>
 
 
-<!-- MAIN -->
+<!-- =====================================================
+     MAIN
+===================================================== -->
 
 <main class="container">
 
   <section class="welcome">
 
     <h1>
-      Welcome back <span id="userName">👋</span>
+      Welcome back <span id="userName">Learner</span> 👋
     </h1>
 
     <p>
@@ -584,10 +618,7 @@ body{
         🔥 Current Streak
       </div>
 
-      <div
-        class="stat-number"
-        id="streak"
-      >
+      <div class="stat-number" id="streak">
         0
       </div>
 
@@ -604,10 +635,7 @@ body{
         📚 Lessons Completed
       </div>
 
-      <div
-        class="stat-number"
-        id="lessons"
-      >
+      <div class="stat-number" id="lessons">
         0
       </div>
 
@@ -624,10 +652,7 @@ body{
         📝 Quiz Average
       </div>
 
-      <div
-        class="stat-number"
-        id="quiz"
-      >
+      <div class="stat-number" id="quiz">
         0%
       </div>
 
@@ -804,7 +829,9 @@ body{
 </main>
 
 
-<!-- BOTTOM NAV -->
+<!-- =====================================================
+     BOTTOM NAV
+===================================================== -->
 
 <nav class="bottom-nav">
 
@@ -816,7 +843,6 @@ body{
     Home
   </button>
 
-
   <button
     class="nav-item"
     onclick="openCourses()"
@@ -825,7 +851,6 @@ body{
     Courses
   </button>
 
-
   <button
     class="nav-item"
     onclick="openTutor()"
@@ -833,7 +858,6 @@ body{
     <span>🧠</span>
     AI Tutor
   </button>
-
 
   <button
     class="nav-item"
@@ -846,7 +870,9 @@ body{
 </nav>
 
 
-<!-- MODAL -->
+<!-- =====================================================
+     MODAL
+===================================================== -->
 
 <div id="modal" class="modal">
 
@@ -866,9 +892,15 @@ body{
 </div>
 
 
-<!-- FIREBASE -->
+<!-- =====================================================
+     FIREBASE
+===================================================== -->
 
 <script type="module">
+
+/* =====================================================
+   FIREBASE IMPORTS
+===================================================== */
 
 import {
   initializeApp
@@ -891,9 +923,9 @@ import {
 } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-firestore.js";
 
 
-/* =========================
-   YOUR FIREBASE CONFIG
-========================= */
+/* =====================================================
+   FIREBASE CONFIG
+===================================================== */
 
 const firebaseConfig = {
 
@@ -918,20 +950,23 @@ const firebaseConfig = {
 };
 
 
-/* =========================
-   FIREBASE INITIALIZE
-========================= */
+/* =====================================================
+   INITIALIZE FIREBASE
+===================================================== */
 
-const app = initializeApp(firebaseConfig);
+const app =
+  initializeApp(firebaseConfig);
 
-const auth = getAuth(app);
+const auth =
+  getAuth(app);
 
-const db = getFirestore(app);
+const db =
+  getFirestore(app);
 
 
-/* =========================
+/* =====================================================
    ELEMENTS
-========================= */
+===================================================== */
 
 const loginScreen =
   document.getElementById("loginScreen");
@@ -968,11 +1003,11 @@ let currentUser = null;
 let currentData = null;
 
 
-/* =========================
+/* =====================================================
    MESSAGE
-========================= */
+===================================================== */
 
-function showMessage(text,type){
+function showMessage(text,type=""){
 
   message.textContent = text;
 
@@ -982,19 +1017,20 @@ function showMessage(text,type){
 }
 
 
-/* =========================
-   LOGIN / SIGNUP TOGGLE
-========================= */
+/* =====================================================
+   TOGGLE LOGIN / SIGNUP
+===================================================== */
 
 window.toggleAuthMode = function(){
 
   isSignup = !isSignup;
 
-  message.textContent = "";
+  showMessage("");
 
   if(isSignup){
 
-    nameInput.style.display = "block";
+    nameInput.style.display =
+      "block";
 
     authButton.textContent =
       "Create Account";
@@ -1010,7 +1046,8 @@ window.toggleAuthMode = function(){
 
   }else{
 
-    nameInput.style.display = "none";
+    nameInput.style.display =
+      "none";
 
     authButton.textContent =
       "Login";
@@ -1029,9 +1066,9 @@ window.toggleAuthMode = function(){
 };
 
 
-/* =========================
+/* =====================================================
    AUTH BUTTON
-========================= */
+===================================================== */
 
 authButton.addEventListener(
   "click",
@@ -1047,10 +1084,24 @@ authButton.addEventListener(
       nameInput.value.trim();
 
 
-    if(!email || !password){
+    /* VALIDATION */
+
+    if(!email){
 
       showMessage(
-        "Please enter email and password.",
+        "Please enter your email.",
+        "error"
+      );
+
+      return;
+
+    }
+
+
+    if(!password){
+
+      showMessage(
+        "Please enter your password.",
         "error"
       );
 
@@ -1083,7 +1134,10 @@ authButton.addEventListener(
     }
 
 
-    authButton.disabled = true;
+    /* DISABLE BUTTON */
+
+    authButton.disabled =
+      true;
 
     authButton.textContent =
       "Please wait...";
@@ -1091,9 +1145,16 @@ authButton.addEventListener(
 
     try{
 
+      /* =================================================
+         SIGN UP
+      ================================================= */
+
       if(isSignup){
 
-        /* CREATE ACCOUNT */
+        console.log(
+          "Creating Firebase account..."
+        );
+
 
         const result =
           await createUserWithEmailAndPassword(
@@ -1107,63 +1168,133 @@ authButton.addEventListener(
           result.user;
 
 
-        /* SAVE NAME */
-
-        await updateProfile(
-          user,
-          {
-            displayName:name
-          }
+        console.log(
+          "Firebase Auth account created:",
+          user.uid
         );
 
 
-        /* SAVE USER DATA */
+        /* UPDATE NAME */
 
-        await setDoc(
-          doc(db,"users",user.uid),
-          {
+        try{
 
-            name:name,
+          await updateProfile(
+            user,
+            {
+              displayName:name
+            }
+          );
 
-            email:email,
+        }catch(profileError){
 
-            goal:"",
+          console.warn(
+            "Profile update failed:",
+            profileError
+          );
 
-            language:"English",
+        }
 
-            level:"Beginner",
 
-            dailyTime:15,
+        /* =================================================
+           FIRESTORE SAVE
 
-            progress:0,
+           IMPORTANT:
+           Firestore failure WILL NOT delete
+           the Firebase Authentication account.
+        ================================================= */
 
-            streak:0,
+        try{
 
-            lessonsCompleted:0,
+          await setDoc(
+            doc(
+              db,
+              "users",
+              user.uid
+            ),
+            {
 
-            quizAverage:0,
+              name:name,
 
-            createdAt:
-              new Date().toISOString()
+              email:email,
 
-          }
-        );
+              goal:"",
+
+              language:"English",
+
+              level:"Beginner",
+
+              dailyTime:15,
+
+              progress:0,
+
+              streak:0,
+
+              lessonsCompleted:0,
+
+              quizAverage:0,
+
+              createdAt:
+                new Date().toISOString()
+
+            }
+          );
+
+
+          console.log(
+            "User saved to Firestore."
+          );
+
+        }catch(firestoreError){
+
+          console.error(
+            "Firestore save failed:",
+            firestoreError
+          );
+
+          /*
+            Authentication account has already
+            been created successfully.
+          */
+
+        }
 
 
         showMessage(
-          "Account created successfully!",
+          "Account created successfully! Opening Learnova...",
           "success"
         );
 
 
-      }else{
+        /*
+          onAuthStateChanged() will automatically
+          open the dashboard.
+        */
 
-        /* LOGIN */
+      }
 
-        await signInWithEmailAndPassword(
-          auth,
-          email,
-          password
+
+      /* =================================================
+         LOGIN
+      ================================================= */
+
+      else{
+
+        console.log(
+          "Trying Firebase login..."
+        );
+
+
+        const result =
+          await signInWithEmailAndPassword(
+            auth,
+            email,
+            password
+          );
+
+
+        console.log(
+          "Login successful:",
+          result.user.uid
         );
 
 
@@ -1178,278 +1309,12 @@ authButton.addEventListener(
     }catch(error){
 
       console.error(
-        "Firebase error:",
-        error
+        "========== FIREBASE ERROR =========="
       );
 
-
-      let text =
-        "Something went wrong. Please try again.";
-
-
-      switch(error.code){
-
-        case "auth/email-already-in-use":
-
-          text =
-            "This email is already registered. Login instead.";
-
-          break;
-
-
-        case "auth/invalid-email":
-
-          text =
-            "Please enter a valid email address.";
-
-          break;
-
-
-        case "auth/invalid-credential":
-
-          text =
-            "Email or password is incorrect.";
-
-          break;
-
-
-        case "auth/user-not-found":
-
-          text =
-            "No account exists with this email.";
-
-          break;
-
-
-        case "auth/wrong-password":
-
-          text =
-            "Incorrect password.";
-
-          break;
-
-
-        case "auth/weak-password":
-
-          text =
-            "Password must contain at least 6 characters.";
-
-          break;
-
-
-        case "auth/operation-not-allowed":
-
-          text =
-            "Email/Password login is not enabled in Firebase.";
-
-          break;
-
-
-        case "auth/network-request-failed":
-
-          text =
-            "Internet connection problem. Try again.";
-
-          break;
-
-
-        case "permission-denied":
-
-          text =
-            "Firestore permission denied. Check Firestore Rules.";
-
-          break;
-
-      }
-
-
-      showMessage(
-        text,
-        "error"
+      console.error(
+        "Code:",
+        error.code
       );
 
-    }
-
-
-    authButton.disabled = false;
-
-    authButton.textContent =
-      isSignup
-        ? "Create Account"
-        : "Login";
-
-  }
-);
-
-
-/* =========================
-   AUTH STATE
-========================= */
-
-onAuthStateChanged(
-  auth,
-  async function(user){
-
-    if(user){
-
-      currentUser = user;
-
-      loginScreen.style.display =
-        "none";
-
-      await loadUserData(user);
-
-    }else{
-
-      currentUser = null;
-
-      loginScreen.style.display =
-        "flex";
-
-    }
-
-  }
-);
-
-
-/* =========================
-   LOAD USER
-========================= */
-
-async function loadUserData(user){
-
-  try{
-
-    const userRef =
-      doc(db,"users",user.uid);
-
-    const snapshot =
-      await getDoc(userRef);
-
-
-    if(!snapshot.exists()){
-
-      await setDoc(
-        userRef,
-        {
-
-          name:
-            user.displayName || "Learner",
-
-          email:
-            user.email || "",
-
-          goal:"",
-
-          language:"English",
-
-          level:"Beginner",
-
-          dailyTime:15,
-
-          progress:0,
-
-          streak:0,
-
-          lessonsCompleted:0,
-
-          quizAverage:0,
-
-          createdAt:
-            new Date().toISOString()
-
-        }
-      );
-
-
-      currentData = {
-        name:user.displayName || "Learner",
-        email:user.email || "",
-        goal:"",
-        language:"English",
-        level:"Beginner",
-        dailyTime:15,
-        progress:0,
-        streak:0,
-        lessonsCompleted:0,
-        quizAverage:0
-      };
-
-    }else{
-
-      currentData =
-        snapshot.data();
-
-    }
-
-
-    renderDashboard();
-
-  }catch(error){
-
-    console.error(
-      "Load user error:",
-      error
-    );
-
-    /* Still show Firebase user */
-
-    currentData = {
-
-      name:
-        user.displayName || "Learner",
-
-      email:
-        user.email || "",
-
-      goal:"",
-
-      progress:0,
-
-      streak:0,
-
-      lessonsCompleted:0,
-
-      quizAverage:0
-
-    };
-
-    renderDashboard();
-
-  }
-
-}
-
-
-/* =========================
-   RENDER DASHBOARD
-========================= */
-
-function renderDashboard(){
-
-  const data =
-    currentData || {};
-
-
-  document.getElementById(
-    "userName"
-  ).textContent =
-    data.name || "Learner";
-
-
-  document.getElementById(
-    "avatar"
-  ).textContent =
-    (data.name || "L")
-      .charAt(0)
-      .toUpperCase();
-
-
-  document.getElementById(
-    "streak"
-  ).textContent =
-    data.streak || 0;
-
-
-  document.getElementById(
-   
+ 
