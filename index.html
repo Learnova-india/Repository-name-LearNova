@@ -6,355 +6,440 @@
 <title>Learnova — Learn Anything</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-
-body{
-font-family:Arial,sans-serif;
-background:#f5f6fb;
-color:#171923;
-padding-bottom:80px
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0
 }
 
-button{cursor:pointer}
+body{
+  font-family:Arial,sans-serif;
+  background:#f5f6fb;
+  color:#171923;
+  padding-bottom:80px
+}
+
+button{
+  cursor:pointer
+}
 
 .header{
-height:65px;
-background:#fff;
-border-bottom:1px solid #e5e6ed;
-display:flex;
-align-items:center;
-justify-content:space-between;
-padding:0 20px;
-position:sticky;
-top:0;
-z-index:20
+  height:65px;
+  background:#fff;
+  border-bottom:1px solid #e5e6ed;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 20px;
+  position:sticky;
+  top:0;
+  z-index:20
 }
 
 .logo{
-font-size:22px;
-font-weight:800
+  font-size:22px;
+  font-weight:800
 }
 
-.logo span{color:#635bff}
+.logo span{
+  color:#635bff
+}
 
 .avatar{
-width:40px;
-height:40px;
-border-radius:50%;
-background:#635bff;
-color:#fff;
-display:flex;
-align-items:center;
-justify-content:center;
-font-weight:bold
+  width:40px;
+  height:40px;
+  border-radius:50%;
+  background:#635bff;
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:bold
 }
 
 .container{
-max-width:1000px;
-margin:auto;
-padding:25px 18px
+  max-width:1000px;
+  margin:auto;
+  padding:25px 18px
 }
 
 .welcome h1{
-font-size:30px;
-margin-bottom:8px
+  font-size:30px;
+  margin-bottom:8px
 }
 
-.muted{color:#777985}
+.muted{
+  color:#777985
+}
 
 .stats{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:15px;
-margin:25px 0
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
+  margin:25px 0
 }
 
 .card,.stat{
-background:#fff;
-border:1px solid #e5e6ed;
-border-radius:20px;
-padding:22px
+  background:#fff;
+  border:1px solid #e5e6ed;
+  border-radius:20px;
+  padding:22px
 }
 
 .stat-number{
-font-size:30px;
-font-weight:bold;
-margin-top:8px
+  font-size:30px;
+  font-weight:bold;
+  margin-top:8px
 }
 
 .section-title{
-margin:25px 0 15px
+  margin:25px 0 15px
 }
 
 .primary{
-border:0;
-background:#635bff;
-color:#fff;
-padding:13px 18px;
-border-radius:12px;
-font-weight:bold;
-margin-top:15px
+  border:0;
+  background:#635bff;
+  color:#fff;
+  padding:13px 18px;
+  border-radius:12px;
+  font-weight:bold;
+  margin-top:15px
 }
 
 .secondary{
-border:1px solid #ddd;
-background:white;
-padding:12px 16px;
-border-radius:10px;
-font-weight:bold
+  border:1px solid #ddd;
+  background:white;
+  padding:12px 16px;
+  border-radius:10px;
+  font-weight:bold;
+  margin-top:10px
 }
 
 .progress{
-height:10px;
-background:#e7e8ee;
-border-radius:20px;
-overflow:hidden;
-margin-top:10px
+  height:10px;
+  background:#e7e8ee;
+  border-radius:20px;
+  overflow:hidden;
+  margin-top:10px
 }
 
 .progress-fill{
-height:100%;
-background:#635bff;
-width:0%;
-transition:.4s
+  height:100%;
+  background:#635bff;
+  width:0%;
+  transition:.4s
 }
 
 .actions{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:15px
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px
 }
 
 .action{
-background:#fff;
-border:1px solid #e5e6ed;
-border-radius:20px;
-padding:22px;
-cursor:pointer
+  background:#fff;
+  border:1px solid #e5e6ed;
+  border-radius:20px;
+  padding:22px;
+  cursor:pointer
+}
+
+.action:hover{
+  transform:translateY(-2px);
+  box-shadow:0 8px 25px rgba(0,0,0,.06)
 }
 
 .action-icon{
-font-size:30px;
-margin-bottom:10px
+  font-size:30px;
+  margin-bottom:10px
 }
 
 .ai{
-background:#171923;
-color:white;
-border-radius:20px;
-padding:25px;
-margin-top:25px
+  background:#171923;
+  color:white;
+  border-radius:20px;
+  padding:25px;
+  margin-top:25px
 }
 
 .ai p{
-color:#ccc;
-margin-top:8px;
-line-height:1.5
+  color:#ccc;
+  margin-top:8px;
+  line-height:1.5
 }
 
 .bottom-nav{
-position:fixed;
-bottom:0;
-left:0;
-right:0;
-height:70px;
-background:white;
-border-top:1px solid #ddd;
-display:flex;
-justify-content:space-around;
-align-items:center;
-z-index:30
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  height:70px;
+  background:white;
+  border-top:1px solid #ddd;
+  display:flex;
+  justify-content:space-around;
+  align-items:center;
+  z-index:30
 }
 
 .nav-item{
-border:0;
-background:none;
-font-size:12px;
-color:#777
+  border:0;
+  background:none;
+  font-size:12px;
+  color:#777
 }
 
 .nav-item span{
-display:block;
-font-size:21px
+  display:block;
+  font-size:21px
 }
 
 /* LOGIN */
 
 #loginScreen{
-position:fixed;
-inset:0;
-background:#f5f6fb;
-display:flex;
-align-items:center;
-justify-content:center;
-padding:20px;
-z-index:100
+  position:fixed;
+  inset:0;
+  background:#f5f6fb;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  z-index:100
 }
 
 .login-box{
-width:100%;
-max-width:420px;
-background:#fff;
-padding:30px;
-border-radius:24px;
-border:1px solid #ddd
+  width:100%;
+  max-width:420px;
+  background:#fff;
+  padding:30px;
+  border-radius:24px;
+  border:1px solid #ddd;
+  box-shadow:0 15px 50px rgba(0,0,0,.08)
 }
 
 .login-logo{
-text-align:center;
-font-size:30px;
-font-weight:800;
-margin-bottom:10px
+  text-align:center;
+  font-size:30px;
+  font-weight:800;
+  margin-bottom:10px
 }
 
-.login-logo span{color:#635bff}
+.login-logo span{
+  color:#635bff
+}
 
 .login-subtitle{
-text-align:center;
-color:#777;
-margin-bottom:25px
+  text-align:center;
+  color:#777;
+  margin-bottom:25px
 }
 
 .input{
-width:100%;
-padding:14px;
-border:1px solid #ddd;
-border-radius:11px;
-font-size:16px;
-margin-bottom:13px;
-outline:none
+  width:100%;
+  padding:14px;
+  border:1px solid #ddd;
+  border-radius:11px;
+  font-size:16px;
+  margin-bottom:13px;
+  outline:none
+}
+
+.input:focus{
+  border-color:#635bff
 }
 
 .login-button{
-width:100%;
-padding:15px;
-border:0;
-border-radius:12px;
-background:#635bff;
-color:#fff;
-font-size:16px;
-font-weight:bold
+  width:100%;
+  padding:15px;
+  border:0;
+  border-radius:12px;
+  background:#635bff;
+  color:#fff;
+  font-size:16px;
+  font-weight:bold
+}
+
+.login-button:disabled{
+  opacity:.6;
+  cursor:not-allowed
 }
 
 .switch{
-text-align:center;
-margin-top:18px;
-color:#777
+  text-align:center;
+  margin-top:18px;
+  color:#777
 }
 
 .switch button{
-border:0;
-background:none;
-color:#635bff;
-font-weight:bold
+  border:0;
+  background:none;
+  color:#635bff;
+  font-weight:bold
+}
+
+.forgot{
+  width:100%;
+  border:0;
+  background:none;
+  color:#635bff;
+  font-weight:bold;
+  margin:0 0 15px;
+  text-align:right
 }
 
 .message{
-text-align:center;
-margin-top:14px;
-font-size:14px;
-min-height:20px
+  text-align:center;
+  margin-top:14px;
+  font-size:14px;
+  min-height:20px
 }
 
-.error{color:#d93636}
-.success{color:#159669}
+.error{
+  color:#d93636
+}
+
+.success{
+  color:#159669
+}
 
 /* MODAL */
 
 .modal{
-position:fixed;
-inset:0;
-background:rgba(0,0,0,.55);
-display:none;
-align-items:center;
-justify-content:center;
-padding:18px;
-z-index:200
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.55);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:18px;
+  z-index:200
 }
 
 .modal-box{
-width:100%;
-max-width:650px;
-max-height:90vh;
-overflow:auto;
-background:white;
-border-radius:22px;
-padding:25px
+  width:100%;
+  max-width:650px;
+  max-height:90vh;
+  overflow:auto;
+  background:white;
+  border-radius:22px;
+  padding:25px
 }
 
 .close{
-float:right;
-border:0;
-background:#eee;
-width:35px;
-height:35px;
-border-radius:50%
+  float:right;
+  border:0;
+  background:#eee;
+  width:35px;
+  height:35px;
+  border-radius:50%
 }
 
 .lesson{
-padding:15px;
-border:1px solid #ddd;
-border-radius:14px;
-margin:10px 0
+  padding:18px;
+  border:1px solid #ddd;
+  border-radius:14px;
+  margin:12px 0
 }
 
 .option{
-display:block;
-width:100%;
-text-align:left;
-padding:14px;
-margin:10px 0;
-border:1px solid #ddd;
-background:white;
-border-radius:10px
+  display:block;
+  width:100%;
+  text-align:left;
+  padding:14px;
+  margin:10px 0;
+  border:1px solid #ddd;
+  background:white;
+  border-radius:10px
 }
 
 .option:hover{
-border-color:#635bff
+  border-color:#635bff;
+  background:#f8f7ff
 }
 
 .profile-row{
-padding:13px 0;
-border-bottom:1px solid #eee
+  padding:13px 0;
+  border-bottom:1px solid #eee;
+  line-height:1.6
 }
 
 .logout{
-width:100%;
-padding:14px;
-border:0;
-background:#171923;
-color:white;
-border-radius:12px;
-margin-top:20px
+  width:100%;
+  padding:14px;
+  border:0;
+  background:#171923;
+  color:white;
+  border-radius:12px;
+  margin-top:20px
 }
 
 .chat-box{
-height:300px;
-overflow:auto;
-border:1px solid #ddd;
-border-radius:12px;
-padding:12px;
-margin-bottom:12px
+  height:300px;
+  overflow:auto;
+  border:1px solid #ddd;
+  border-radius:12px;
+  padding:12px;
+  margin-bottom:12px;
+  line-height:1.5
 }
 
 .chat-input{
-width:100%;
-padding:13px;
-border:1px solid #ddd;
-border-radius:10px
+  width:100%;
+  padding:13px;
+  border:1px solid #ddd;
+  border-radius:10px;
+  outline:none
+}
+
+.course-progress{
+  margin-top:12px;
+  font-size:13px;
+  color:#777
+}
+
+.language-button{
+  position:fixed;
+  right:15px;
+  bottom:82px;
+  border:0;
+  background:#635bff;
+  color:white;
+  padding:10px 14px;
+  border-radius:20px;
+  font-weight:bold;
+  z-index:25
+}
+
+.empty{
+  padding:25px;
+  text-align:center;
+  color:#777
 }
 
 @media(max-width:700px){
-.stats,.actions{
-grid-template-columns:1fr
-}
+
+  .stats,
+  .actions{
+    grid-template-columns:1fr
+  }
+
+  .welcome h1{
+    font-size:25px
+  }
+
+  .header{
+    padding:0 15px
+  }
+
 }
 </style>
 </head>
 
 <body>
 
-<!-- LOGIN -->
+<!-- =========================
+LOGIN
+========================= -->
 
 <div id="loginScreen">
 
@@ -368,36 +453,58 @@ grid-template-columns:1fr
 Create your account and start learning.
 </p>
 
-<input id="nameInput"
+<input
+id="nameInput"
 class="input"
-placeholder="Your name">
+placeholder="Your name"
+autocomplete="name">
 
-<input id="emailInput"
+<input
+id="emailInput"
 class="input"
 type="email"
-placeholder="Email address">
+placeholder="Email address"
+autocomplete="email">
 
-<input id="passwordInput"
+<input
+id="passwordInput"
 class="input"
 type="password"
-placeholder="Password">
+placeholder="Password"
+autocomplete="current-password">
 
-<button id="authButton" class="login-button">
+<button
+id="forgotButton"
+class="forgot">
+Forgot Password?
+</button>
+
+<button
+id="authButton"
+class="login-button">
 Create Account
 </button>
 
 <div id="message" class="message"></div>
 
 <div class="switch">
-<span id="switchText">Already have an account?</span>
-<button id="switchButton">Login</button>
+<span id="switchText">
+Already have an account?
+</span>
+
+<button id="switchButton">
+Login
+</button>
+
 </div>
 
 </div>
 </div>
 
 
-<!-- HEADER -->
+<!-- =========================
+HEADER
+========================= -->
 
 <header class="header">
 
@@ -405,12 +512,16 @@ Create Account
 <span>✦</span> LEARNOVA
 </div>
 
-<div id="avatar" class="avatar">L</div>
+<div id="avatar" class="avatar">
+L
+</div>
 
 </header>
 
 
-<!-- DASHBOARD -->
+<!-- =========================
+DASHBOARD
+========================= -->
 
 <main class="container">
 
@@ -420,7 +531,7 @@ Create Account
 Welcome, <span id="userName">Learner</span> 👋
 </h1>
 
-<p class="muted">
+<p class="muted" id="dashboardSubtitle">
 Your personalized learning dashboard.
 </p>
 
@@ -450,7 +561,9 @@ Your personalized learning dashboard.
 </section>
 
 
-<h2 class="section-title">🎯 Continue Learning</h2>
+<h2 class="section-title">
+🎯 Continue Learning
+</h2>
 
 <section class="card">
 
@@ -458,7 +571,9 @@ Your personalized learning dashboard.
 Indian History
 </h2>
 
-<p id="courseInfo" class="muted" style="margin-top:8px">
+<p id="courseInfo"
+class="muted"
+style="margin-top:8px">
 Learn Indian history step by step.
 </p>
 
@@ -470,38 +585,67 @@ Learn Indian history step by step.
 </div>
 
 <div class="progress">
-<div id="progressFill" class="progress-fill"></div>
+<div id="progressFill"
+class="progress-fill">
+</div>
 </div>
 
 </div>
 
-<button class="primary" onclick="openLesson()">
+<button
+class="primary"
+onclick="openLesson()">
 ▶ Start Lesson
 </button>
 
 </section>
 
 
-<h2 class="section-title">📚 Learn</h2>
+<h2 class="section-title">
+📚 Learn
+</h2>
 
 <section class="actions">
 
-<div class="action" onclick="openCourses()">
+<div class="action"
+onclick="openCourses()">
+
 <div class="action-icon">📚</div>
+
 <h3>Courses</h3>
-<p class="muted">Explore learning topics.</p>
+
+<p class="muted">
+Explore learning topics.
+</p>
+
 </div>
 
-<div class="action" onclick="openQuiz()">
+
+<div class="action"
+onclick="openQuiz()">
+
 <div class="action-icon">📝</div>
+
 <h3>Quiz</h3>
-<p class="muted">Test your knowledge.</p>
+
+<p class="muted">
+Test your knowledge.
+</p>
+
 </div>
 
-<div class="action" onclick="openRevision()">
+
+<div class="action"
+onclick="openRevision()">
+
 <div class="action-icon">🔄</div>
+
 <h3>Revision</h3>
-<p class="muted">Review what you learned.</p>
+
+<p class="muted">
+Review what you learned.
+</p>
+
 </div>
 
 </section>
@@ -527,36 +671,68 @@ Ask AI Tutor →
 </main>
 
 
-<!-- NAV -->
+<!-- =========================
+LANGUAGE
+========================= -->
+
+<button
+id="languageButton"
+class="language-button"
+onclick="toggleLanguage()">
+ಕನ್ನಡ
+</button>
+
+
+<!-- =========================
+BOTTOM NAV
+========================= -->
 
 <nav class="bottom-nav">
 
-<button class="nav-item" onclick="window.scrollTo(0,0)">
-<span>🏠</span>Home
+<button
+class="nav-item"
+onclick="window.scrollTo(0,0)">
+<span>🏠</span>
+Home
 </button>
 
-<button class="nav-item" onclick="openCourses()">
-<span>📚</span>Courses
+<button
+class="nav-item"
+onclick="openCourses()">
+<span>📚</span>
+Courses
 </button>
 
-<button class="nav-item" onclick="openTutor()">
-<span>🧠</span>AI Tutor
+<button
+class="nav-item"
+onclick="openTutor()">
+<span>🧠</span>
+AI Tutor
 </button>
 
-<button class="nav-item" onclick="openProfile()">
-<span>👤</span>Profile
+<button
+class="nav-item"
+onclick="openProfile()">
+<span>👤</span>
+Profile
 </button>
 
 </nav>
 
 
-<!-- MODAL -->
+<!-- =========================
+MODAL
+========================= -->
 
 <div id="modal" class="modal">
 
 <div class="modal-box">
 
-<button class="close" onclick="closeModal()">✕</button>
+<button
+class="close"
+onclick="closeModal()">
+✕
+</button>
 
 <div id="modalContent"></div>
 
@@ -566,14 +742,16 @@ Ask AI Tutor →
 
 <script type="module">
 
-/* =========================
-FIREBASE
-========================= */
+/* =====================================================
+FIREBASE IMPORTS
+===================================================== */
 
 import {
 initializeApp
-} from
+}
+from
 "https://www.gstatic.com/firebasejs/12.17.0/firebase-app.js";
+
 
 import {
 getAuth,
@@ -581,9 +759,12 @@ createUserWithEmailAndPassword,
 signInWithEmailAndPassword,
 updateProfile,
 onAuthStateChanged,
-signOut
-} from
+signOut,
+sendPasswordResetEmail
+}
+from
 "https://www.gstatic.com/firebasejs/12.17.0/firebase-auth.js";
+
 
 import {
 getFirestore,
@@ -591,9 +772,14 @@ doc,
 setDoc,
 getDoc,
 updateDoc
-} from
+}
+from
 "https://www.gstatic.com/firebasejs/12.17.0/firebase-firestore.js";
 
+
+/* =====================================================
+FIREBASE CONFIG
+===================================================== */
 
 const firebaseConfig={
 
@@ -618,20 +804,29 @@ appId:
 };
 
 
-const app=initializeApp(firebaseConfig);
+/* =====================================================
+INITIALIZE
+===================================================== */
 
-const auth=getAuth(app);
+const app=
+initializeApp(firebaseConfig);
 
-const db=getFirestore(app);
+const auth=
+getAuth(app);
+
+const db=
+getFirestore(app);
+
 
 let isSignup=true;
 let currentUser=null;
 let userData=null;
+let language="English";
 
 
-/* =========================
+/* =====================================================
 ELEMENTS
-========================= */
+===================================================== */
 
 const loginScreen=
 document.getElementById("loginScreen");
@@ -652,17 +847,26 @@ const message=
 document.getElementById("message");
 
 
+/* =====================================================
+MESSAGE
+===================================================== */
+
 function msg(text,type=""){
+
 message.textContent=text;
-message.className="message "+type;
+
+message.className=
+"message "+type;
+
 }
 
 
-/* =========================
-LOGIN SWITCH
-========================= */
+/* =====================================================
+LOGIN / SIGNUP SWITCH
+===================================================== */
 
-document.getElementById("switchButton")
+document
+.getElementById("switchButton")
 .addEventListener("click",()=>{
 
 isSignup=!isSignup;
@@ -673,34 +877,43 @@ if(isSignup){
 
 nameInput.style.display="block";
 
-authButton.textContent="Create Account";
+authButton.textContent=
+"Create Account";
 
-document.getElementById("loginSubtitle")
+document
+.getElementById("loginSubtitle")
 .textContent=
 "Create your account and start learning.";
 
-document.getElementById("switchText")
+document
+.getElementById("switchText")
 .textContent=
 "Already have an account?";
 
-document.getElementById("switchButton")
-.textContent="Login";
+document
+.getElementById("switchButton")
+.textContent=
+"Login";
 
 }else{
 
 nameInput.style.display="none";
 
-authButton.textContent="Login";
+authButton.textContent=
+"Login";
 
-document.getElementById("loginSubtitle")
+document
+.getElementById("loginSubtitle")
 .textContent=
 "Welcome back to Learnova.";
 
-document.getElementById("switchText")
+document
+.getElementById("switchText")
 .textContent=
 "Don't have an account?";
 
-document.getElementById("switchButton")
+document
+.getElementById("switchButton")
 .textContent=
 "Create Account";
 
@@ -709,42 +922,134 @@ document.getElementById("switchButton")
 });
 
 
-/* =========================
+/* =====================================================
+FORGOT PASSWORD
+===================================================== */
+
+document
+.getElementById("forgotButton")
+.addEventListener("click",async()=>{
+
+const email=
+emailInput.value.trim();
+
+if(!email){
+
+msg(
+"Enter your email address first.",
+"error"
+);
+
+return;
+
+}
+
+try{
+
+await sendPasswordResetEmail(
+auth,
+email
+);
+
+msg(
+"Password reset email sent. Check your inbox.",
+"success"
+);
+
+}catch(error){
+
+console.error(error);
+
+if(
+error.code==="auth/user-not-found"
+){
+
+msg(
+"No account found with this email.",
+"error"
+);
+
+}else if(
+error.code==="auth/invalid-email"
+){
+
+msg(
+"Enter a valid email address.",
+"error"
+);
+
+}else{
+
+msg(
+"Could not send reset email.",
+"error"
+);
+
+}
+
+}
+
+});
+
+
+/* =====================================================
 AUTH
-========================= */
+===================================================== */
 
-authButton.addEventListener("click",async()=>{
+authButton.addEventListener(
+"click",
+async()=>{
 
-const email=emailInput.value.trim();
+const email=
+emailInput.value.trim();
 
-const password=passwordInput.value;
+const password=
+passwordInput.value;
 
-const name=nameInput.value.trim();
+const name=
+nameInput.value.trim();
+
 
 if(!email||!password){
 
-msg("Enter email and password.","error");
+msg(
+"Enter email and password.",
+"error"
+);
+
 return;
 
 }
+
 
 if(isSignup&&!name){
 
-msg("Enter your name.","error");
+msg(
+"Enter your name.",
+"error"
+);
+
 return;
 
 }
+
 
 if(password.length<6){
 
-msg("Password must be at least 6 characters.","error");
+msg(
+"Password must be at least 6 characters.",
+"error"
+);
+
 return;
 
 }
 
+
 authButton.disabled=true;
 
-authButton.textContent="Please wait...";
+authButton.textContent=
+"Please wait...";
 
 
 try{
@@ -753,18 +1058,29 @@ if(isSignup){
 
 const result=
 await createUserWithEmailAndPassword(
-auth,email,password
+auth,
+email,
+password
 );
 
-const user=result.user;
+const user=
+result.user;
 
-await updateProfile(user,{
+
+await updateProfile(
+user,
+{
 displayName:name
-});
+}
+);
 
 
 await setDoc(
-doc(db,"users",user.uid),
+doc(
+db,
+"users",
+user.uid
+),
 {
 
 uid:user.uid,
@@ -789,17 +1105,24 @@ lessonsCompleted:0,
 
 quizAverage:0,
 
-createdAt:new Date().toISOString()
+createdAt:
+new Date().toISOString()
 
-});
+}
+);
 
 
-msg("Account created successfully!","success");
+msg(
+"Account created successfully!",
+"success"
+);
 
 }else{
 
 await signInWithEmailAndPassword(
-auth,email,password
+auth,
+email,
+password
 );
 
 }
@@ -808,49 +1131,84 @@ auth,email,password
 
 console.error(error);
 
-let text="Something went wrong.";
+let text=
+"Something went wrong.";
 
-if(error.code==="auth/email-already-in-use")
-text="Email already registered. Login instead.";
 
-else if(error.code==="auth/invalid-credential")
-text="Email or password is incorrect.";
+if(
+error.code==="auth/email-already-in-use"
+){
 
-else if(error.code==="auth/invalid-email")
-text="Invalid email address.";
+text=
+"Email already registered. Login instead.";
 
-else if(error.code==="auth/weak-password")
-text="Password must contain at least 6 characters.";
+}else if(
+error.code==="auth/invalid-credential"
+){
 
-else if(error.code==="auth/network-request-failed")
-text="Check your internet connection.";
+text=
+"Email or password is incorrect.";
 
-else
-text=error.message||text;
+}else if(
+error.code==="auth/invalid-email"
+){
+
+text=
+"Invalid email address.";
+
+}else if(
+error.code==="auth/weak-password"
+){
+
+text=
+"Password must contain at least 6 characters.";
+
+}else if(
+error.code==="auth/network-request-failed"
+){
+
+text=
+"Check your internet connection.";
+
+}else{
+
+text=
+error.message||text;
+
+}
+
 
 msg(text,"error");
 
 }
 
+
 authButton.disabled=false;
 
 authButton.textContent=
-isSignup?"Create Account":"Login";
+isSignup
+?
+"Create Account"
+:
+"Login";
 
 });
 
 
-/* =========================
+/* =====================================================
 AUTH STATE
-========================= */
+===================================================== */
 
-onAuthStateChanged(auth,async(user)=>{
+onAuthStateChanged(
+auth,
+async(user)=>{
 
 if(user){
 
 currentUser=user;
 
-loginScreen.style.display="none";
+loginScreen.style.display=
+"none";
 
 await loadUser(user);
 
@@ -858,24 +1216,32 @@ await loadUser(user);
 
 currentUser=null;
 
-loginScreen.style.display="flex";
+loginScreen.style.display=
+"flex";
 
 }
 
 });
 
 
-/* =========================
+/* =====================================================
 LOAD USER
-========================= */
+===================================================== */
 
 async function loadUser(user){
 
 try{
 
-const ref=doc(db,"users",user.uid);
+const ref=
+doc(
+db,
+"users",
+user.uid
+);
 
-const snap=await getDoc(ref);
+const snap=
+await getDoc(ref);
+
 
 if(snap.exists()){
 
@@ -887,11 +1253,17 @@ userData={
 
 uid:user.uid,
 
-name:user.displayName||"Learner",
+name:
+user.displayName||"Learner",
 
-email:user.email||"",
+email:
+user.email||"",
 
 goal:"Indian History",
+
+language:"English",
+
+level:"Beginner",
 
 progress:0,
 
@@ -903,9 +1275,17 @@ quizAverage:0
 
 };
 
-await setDoc(ref,userData);
+
+await setDoc(
+ref,
+userData
+);
 
 }
+
+
+language=
+userData.language||"English";
 
 render();
 
@@ -915,11 +1295,17 @@ console.error(error);
 
 userData={
 
-name:user.displayName||"Learner",
+uid:user.uid,
 
-email:user.email||"",
+name:
+user.displayName||"Learner",
+
+email:
+user.email||"",
 
 goal:"Indian History",
+
+language:"English",
 
 progress:0,
 
@@ -938,121 +1324,258 @@ render();
 }
 
 
-/* =========================
+/* =====================================================
 RENDER
-========================= */
+===================================================== */
 
 function render(){
 
-const d=userData||{};
+const d=
+userData||{};
 
-const name=d.name||"Learner";
+const name=
+d.name||"Learner";
 
-document.getElementById("userName")
+
+document
+.getElementById("userName")
 .textContent=name;
 
-document.getElementById("avatar")
-.textContent=name.charAt(0).toUpperCase();
 
-document.getElementById("streak")
-.textContent=d.streak||0;
+document
+.getElementById("avatar")
+.textContent=
+name
+.charAt(0)
+.toUpperCase();
 
-document.getElementById("lessons")
-.textContent=d.lessonsCompleted||0;
 
-document.getElementById("quiz")
-.textContent=(d.quizAverage||0)+"%";
+document
+.getElementById("streak")
+.textContent=
+d.streak||0;
 
-const progress=Number(d.progress||0);
 
-document.getElementById("progressText")
-.textContent=progress+"%";
+document
+.getElementById("lessons")
+.textContent=
+d.lessonsCompleted||0;
 
-document.getElementById("progressFill")
-.style.width=progress+"%";
+
+document
+.getElementById("quiz")
+.textContent=
+(d.quizAverage||0)+"%";
+
+
+const progress=
+Math.max(
+0,
+Math.min(
+100,
+Number(d.progress||0)
+)
+);
+
+
+document
+.getElementById("progressText")
+.textContent=
+progress+"%";
+
+
+document
+.getElementById("progressFill")
+.style.width=
+progress+"%";
+
 
 if(d.goal){
 
-document.getElementById("courseTitle")
-.textContent=d.goal;
+document
+.getElementById("courseTitle")
+.textContent=
+d.goal;
+
+}
+
+
+if(language==="Kannada"){
+
+document
+.getElementById("dashboardSubtitle")
+.textContent=
+"ನಿಮ್ಮ ವೈಯಕ್ತಿಕ ಕಲಿಕಾ ಡ್ಯಾಶ್‌ಬೋರ್ಡ್.";
+
+document
+.getElementById("languageButton")
+.textContent=
+"English";
+
+}else{
+
+document
+.getElementById("dashboardSubtitle")
+.textContent=
+"Your personalized learning dashboard.";
+
+document
+.getElementById("languageButton")
+.textContent=
+"ಕನ್ನಡ";
 
 }
 
 }
 
 
-/* =========================
-MODAL
-========================= */
+/* =====================================================
+LANGUAGE
+===================================================== */
 
-window.closeModal=function(){
+window.toggleLanguage=
+async function(){
 
-document.getElementById("modal")
-.style.display="none";
+language=
+language==="English"
+?
+"Kannada"
+:
+"English";
+
+
+if(userData){
+
+userData.language=
+language;
+
+try{
+
+await updateDoc(
+doc(
+db,
+"users",
+currentUser.uid
+),
+{
+language:language
+}
+);
+
+}catch(error){
+
+console.error(error);
+
+}
+
+}
+
+
+render();
 
 };
 
+
+/* =====================================================
+MODAL
+===================================================== */
+
+window.closeModal=
+function(){
+
+document
+.getElementById("modal")
+.style.display=
+"none";
+
+};
+
+
 function showModal(html){
 
-document.getElementById("modalContent")
-.innerHTML=html;
+document
+.getElementById("modalContent")
+.innerHTML=
+html;
 
-document.getElementById("modal")
-.style.display="flex";
+document
+.getElementById("modal")
+.style.display=
+"flex";
 
 }
 
 
-/* =========================
+/* =====================================================
 COURSES
-========================= */
+===================================================== */
 
-window.openCourses=function(){
+window.openCourses=
+function(){
 
 showModal(`
 
 <h2>📚 Learnova Courses</h2>
 
+<p class="muted"
+style="margin-top:8px">
+Choose a subject and start learning.
+</p>
+
+
 <div class="lesson">
 
 <h3>🇮🇳 Indian History</h3>
 
-<p class="muted">
+<p class="muted"
+style="margin-top:7px">
 Ancient India → Medieval India → Modern India
 </p>
 
-<button class="primary"
+<div class="course-progress">
+Current progress:
+${userData?.progress||0}%
+</div>
+
+<button
+class="primary"
 onclick="openLesson()">
 Start Course
 </button>
 
 </div>
 
+
 <div class="lesson">
 
 <h3>🏛️ Indian Constitution</h3>
 
-<p class="muted">
+<p class="muted"
+style="margin-top:7px">
 Constitution, Fundamental Rights and Parliament.
 </p>
 
-<button class="secondary"
-onclick="alert('Coming soon')">
+<button
+class="secondary"
+onclick="openConstitutionLesson()">
 Explore
 </button>
 
 </div>
+
 
 <div class="lesson">
 
 <h3>🌍 World History</h3>
 
-<p class="muted">
-Major events and civilizations of world history.
+<p class="muted"
+style="margin-top:7px">
+Major civilizations and world events.
 </p>
 
-<button class="secondary"
-onclick="alert('Coming soon')">
+<button
+class="secondary"
+onclick="openWorldHistory()">
 Explore
 </button>
 
@@ -1063,373 +1586,26 @@ Explore
 };
 
 
-/* =========================
-LESSON
-========================= */
+/* =====================================================
+INDIAN HISTORY LESSON
+===================================================== */
 
-window.openLesson=function(){
+window.openLesson=
+function(){
 
 showModal(`
 
-<h2>📖 Indian History — Lesson 1</h2>
+<h2>📖 Indian History</h2>
 
-<h3 style="margin-top:20px">
-The Indus Valley Civilization
+<div class="lesson">
+
+<h3>
+Lesson 1: Indus Valley Civilization
 </h3>
 
-<p style="line-height:1.7;margin-top:12px">
-
-The Indus Valley Civilization was one of the earliest
-urban civilizations of South Asia. Major sites include
-Harappa, Mohenjo-daro, Dholavira and Lothal.
-
-</p>
-
-<h3 style="margin-top:20px">
-Quick Facts
-</h3>
-
-<ul style="line-height:2;margin:10px 0 0 20px">
-
-<li>Major cities had planned streets.</li>
-
-<li>Drainage systems were highly developed.</li>
-
-<li>Trade existed with neighboring regions.</li>
-
-<li>Harappa and Mohenjo-daro are important archaeological sites.</li>
-
-</ul>
-
-<button class="primary"
-onclick="completeLesson()">
-✓ Mark Lesson Complete
-</button>
-
-`);
-
-};
-
-
-/* =========================
-COMPLETE LESSON
-========================= */
-
-window.completeLesson=async function(){
-
-if(!currentUser)return;
-
-try{
-
-const newLessons=
-Number(userData.lessonsCompleted||0)+1;
-
-const newProgress=
-Math.min(100,
-Number(userData.progress||0)+10
-);
-
-userData.lessonsCompleted=newLessons;
-
-userData.progress=newProgress;
-
-await updateDoc(
-doc(db,"users",currentUser.uid),
-{
-
-lessonsCompleted:newLessons,
-
-progress:newProgress
-
-});
-
-render();
-
-closeModal();
-
-alert("🎉 Lesson completed!");
-
-}catch(error){
-
-console.error(error);
-
-alert("Could not save progress.");
-
-}
-
-};
-
-
-/* =========================
-QUIZ
-========================= */
-
-window.openQuiz=function(){
-
-showModal(`
-
-<h2>📝 Quick Quiz</h2>
-
-<p style="margin-top:15px">
-<strong>Question:</strong>
-Which of these is an important site of the
-Indus Valley Civilization?
-</p>
-
-<button class="option"
-onclick="quizAnswer(true)">
-A. Mohenjo-daro
-</button>
-
-<button class="option"
-onclick="quizAnswer(false)">
-B. Rome
-</button>
-
-<button class="option"
-onclick="quizAnswer(false)">
-C. Athens
-</button>
-
-<button class="option"
-onclick="quizAnswer(false)">
-D. London
-</button>
-
-<div id="quizResult"></div>
-
-`);
-
-};
-
-
-/* =========================
-QUIZ ANSWER
-========================= */
-
-window.quizAnswer=async function(correct){
-
-const result=
-document.getElementById("quizResult");
-
-if(correct){
-
-result.innerHTML=
-"<p style='color:#159669;margin-top:15px'><strong>✅ Correct!</strong></p>";
-
-const old=
-Number(userData.quizAverage||0);
-
-const newScore=
-old===0?100:Math.round((old+100)/2);
-
-userData.quizAverage=newScore;
-
-try{
-
-await updateDoc(
-doc(db,"users",currentUser.uid),
-{
-quizAverage:newScore
-}
-);
-
-render();
-
-}catch(error){
-
-console.error(error);
-
-}
-
-}else{
-
-result.innerHTML=
-"<p style='color:#d93636;margin-top:15px'><strong>❌ Try again.</strong></p>";
-
-}
-
-};
-
-
-/* =========================
-REVISION
-========================= */
-
-window.openRevision=function(){
-
-showModal(`
-
-<h2>🔄 Revision</h2>
-
-<p style="line-height:1.7;margin-top:15px">
-
-Review these important points:
-
-</p>
-
-<ul style="line-height:2;margin:15px 0 0 20px">
-
-<li>Indus Valley Civilization was urban.</li>
-
-<li>Harappa and Mohenjo-daro were major sites.</li>
-
-<li>Drainage systems were well developed.</li>
-
-<li>Trade connected the civilization with other regions.</li>
-
-</ul>
-
-`);
-
-};
-
-
-/* =========================
-PROFILE
-========================= */
-
-window.openProfile=function(){
-
-const d=userData||{};
-
-showModal(`
-
-<h2>👤 My Profile</h2>
-
-<div class="profile-row">
-<strong>Name</strong>
-<br>${d.name||"Learner"}
-</div>
-
-<div class="profile-row">
-<strong>Email</strong>
-<br>${d.email||""}
-</div>
-
-<div class="profile-row">
-<strong>Level</strong>
-<br>${d.level||"Beginner"}
-</div>
-
-<div class="profile-row">
-<strong>Lessons completed</strong>
-<br>${d.lessonsCompleted||0}
-</div>
-
-<div class="profile-row">
-<strong>Progress</strong>
-<br>${d.progress||0}%
-</div>
-
-<button class="logout"
-onclick="logoutUser()">
-Logout
-</button>
-
-`);
-
-};
-
-
-/* =========================
-LOGOUT
-========================= */
-
-window.logoutUser=async function(){
-
-try{
-
-await signOut(auth);
-
-closeModal();
-
-}catch(error){
-
-console.error(error);
-
-}
-
-};
-
-
-/* =========================
-AI TUTOR
-========================= */
-
-window.openTutor=function(){
-
-showModal(`
-
-<h2>🧠 Learnova AI Tutor</h2>
-
-<div id="chatBox" class="chat-box">
-
-<p>
-<strong>Learnova Tutor:</strong><br>
-Hi! Ask me a question about your lesson.
-</p>
-
-</div>
-
-<input
-id="aiQuestion"
-class="chat-input"
-placeholder="Ask a question..."
->
-
-<button class="primary"
-onclick="askTutor()">
-Ask
-</button>
-
-`);
-
-};
-
-
-/* =========================
-BASIC TUTOR
-========================= */
-
-window.askTutor=function(){
-
-const input=
-document.getElementById("aiQuestion");
-
-const box=
-document.getElementById("chatBox");
-
-const question=input.value.trim();
-
-if(!question)return;
-
-box.innerHTML+=`
-
-<p style="margin-top:15px">
-<strong>You:</strong><br>
-${escapeHtml(question)}
-</p>
-
-`;
-
-let answer=
-"I can help you understand the topic. Try asking about the Indus Valley Civilization, Indian history or the Constitution.";
-
-const q=question.toLowerCase();
-
-if(q.includes("indus")||q.includes("harappa")){
-
-answer=
-"The Indus Valley Civilization was an ancient urban civilization of South Asia. Harappa, Mohenjo-daro, Dholavira and Lothal are important sites.";
-
-}
-
-if(q.includes("constitution")){
-
-answer=
-"The Constitution of India is the supreme law of India. It establishes the structure of government and guarantees important rights to citizens.";
-
-}
-
-   
+<p
+style="line-height:1.7;margin-top:12px">
+
+The Indus Valley Civilization was one of the
+earliest urban civilizations of South Asia.
+Imp
