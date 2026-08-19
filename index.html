@@ -2,1319 +2,1200 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Learnova — Learn Anything</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Learnova</title>
 
 <style>
-
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
-
-:root{
-  --primary:#635bff;
-  --primary-dark:#5149d8;
-  --bg:#f5f6fb;
-  --card:#fff;
-  --text:#171923;
-  --muted:#777985;
-  --border:#e5e6ed;
-  --danger:#d93636;
-  --success:#159669;
-}
+*{box-sizing:border-box;margin:0;padding:0}
 
 body{
-  font-family:Arial,Helvetica,sans-serif;
-  background:var(--bg);
-  color:var(--text);
-  padding-bottom:80px;
+font-family:Arial,sans-serif;
+background:#f5f6fb;
+color:#171923;
+padding-bottom:80px
 }
 
-/* ================= HEADER ================= */
-
 .header{
-  height:70px;
-  background:white;
-  border-bottom:1px solid var(--border);
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:0 6%;
-  position:sticky;
-  top:0;
-  z-index:100;
+height:65px;
+background:#fff;
+border-bottom:1px solid #e5e6ed;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:0 20px;
+position:sticky;
+top:0;
+z-index:10
 }
 
 .logo{
-  font-size:23px;
-  font-weight:800;
+font-size:22px;
+font-weight:800
 }
 
-.logo span{
-  color:var(--primary);
-  margin-right:6px;
-}
+.logo span{color:#635bff}
 
 .avatar{
-  width:42px;
-  height:42px;
-  border-radius:50%;
-  background:var(--primary);
-  color:white;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  font-weight:bold;
+width:40px;
+height:40px;
+border-radius:50%;
+background:#635bff;
+color:white;
+display:flex;
+align-items:center;
+justify-content:center;
+font-weight:bold
 }
-
-/* ================= MAIN ================= */
 
 .container{
-  max-width:1100px;
-  margin:auto;
-  padding:30px 20px;
-}
-
-.welcome{
-  margin-bottom:25px;
+max-width:1000px;
+margin:auto;
+padding:25px 18px
 }
 
 .welcome h1{
-  font-size:32px;
-  margin-bottom:8px;
+font-size:30px;
+margin-bottom:8px
 }
 
-.welcome p{
-  color:var(--muted);
-}
-
-/* ================= STATS ================= */
+.muted{color:#777985}
 
 .stats{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:15px;
-  margin-bottom:25px;
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:15px;
+margin:25px 0
 }
 
-.stat{
-  background:white;
-  border:1px solid var(--border);
-  border-radius:20px;
-  padding:22px;
-}
-
-.stat-label{
-  color:var(--muted);
-  font-size:14px;
+.stat,.card{
+background:white;
+border:1px solid #e5e6ed;
+border-radius:20px;
+padding:22px
 }
 
 .stat-number{
-  font-size:30px;
-  font-weight:800;
-  margin-top:10px;
+font-size:30px;
+font-weight:bold;
+margin-top:8px
 }
-
-/* ================= SECTIONS ================= */
 
 .section-title{
-  font-size:22px;
-  margin:28px 0 15px;
-}
-
-/* ================= COURSE ================= */
-
-.course{
-  background:white;
-  border:1px solid var(--border);
-  border-radius:22px;
-  padding:25px;
-}
-
-.course-header{
-  display:flex;
-  justify-content:space-between;
-  gap:15px;
-}
-
-.course-title{
-  font-size:24px;
-  font-weight:800;
-}
-
-.course-info{
-  color:var(--muted);
-  margin-top:7px;
-}
-
-.badge{
-  background:#eeedff;
-  color:var(--primary);
-  border-radius:20px;
-  padding:7px 12px;
-  font-size:12px;
-  font-weight:bold;
-  height:max-content;
-}
-
-.progress-area{
-  margin-top:25px;
-}
-
-.progress-top{
-  display:flex;
-  justify-content:space-between;
-  margin-bottom:8px;
+margin:25px 0 15px
 }
 
 .progress{
-  width:100%;
-  height:10px;
-  background:#e7e8ee;
-  border-radius:20px;
-  overflow:hidden;
+height:10px;
+background:#e7e8ee;
+border-radius:20px;
+overflow:hidden;
+margin-top:10px
 }
 
 .progress-fill{
-  width:0%;
-  height:100%;
-  background:var(--primary);
-  transition:.5s;
+height:100%;
+width:0;
+background:#635bff;
+transition:.3s
 }
 
-.button{
-  border:0;
-  background:var(--primary);
-  color:white;
-  padding:14px 20px;
-  border-radius:12px;
-  font-weight:bold;
-  cursor:pointer;
-  margin-top:20px;
+button{
+cursor:pointer
 }
 
-.button:hover{
-  background:var(--primary-dark);
+.primary{
+border:0;
+background:#635bff;
+color:white;
+padding:14px 20px;
+border-radius:12px;
+font-weight:bold;
+margin-top:18px
 }
-
-/* ================= ACTIONS ================= */
 
 .actions{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:15px;
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:15px
 }
 
 .action{
-  background:white;
-  border:1px solid var(--border);
-  border-radius:20px;
-  padding:22px;
-  cursor:pointer;
-  transition:.2s;
-}
-
-.action:hover{
-  transform:translateY(-2px);
+background:white;
+border:1px solid #e5e6ed;
+border-radius:20px;
+padding:22px;
+cursor:pointer
 }
 
 .action-icon{
-  font-size:30px;
-  margin-bottom:14px;
+font-size:30px;
+margin-bottom:10px
 }
-
-.action p{
-  color:var(--muted);
-  margin-top:7px;
-  line-height:1.5;
-}
-
-/* ================= AI ================= */
 
 .ai{
-  background:#171923;
-  color:white;
-  padding:25px;
-  border-radius:22px;
-  margin-top:25px;
+background:#171923;
+color:white;
+border-radius:20px;
+padding:25px;
+margin-top:25px
 }
 
 .ai p{
-  color:#c9cad2;
-  margin-top:8px;
-  line-height:1.5;
+color:#ccc;
+margin-top:8px;
+line-height:1.5
 }
-
-.ai button{
-  border:0;
-  background:white;
-  color:#171923;
-  padding:13px 18px;
-  border-radius:12px;
-  margin-top:18px;
-  font-weight:bold;
-  cursor:pointer;
-}
-
-/* ================= NAV ================= */
 
 .bottom-nav{
-  position:fixed;
-  bottom:0;
-  left:0;
-  right:0;
-  height:70px;
-  background:white;
-  border-top:1px solid var(--border);
-  display:flex;
-  justify-content:space-around;
-  align-items:center;
-  z-index:200;
+position:fixed;
+bottom:0;
+left:0;
+right:0;
+height:70px;
+background:white;
+border-top:1px solid #ddd;
+display:flex;
+justify-content:space-around;
+align-items:center;
+z-index:20
 }
 
 .nav-item{
-  border:0;
-  background:none;
-  color:#777;
-  text-align:center;
-  cursor:pointer;
-  font-size:12px;
+border:0;
+background:none;
+font-size:12px;
+color:#777
 }
 
 .nav-item span{
-  display:block;
-  font-size:22px;
-  margin-bottom:3px;
+display:block;
+font-size:21px
 }
 
-.nav-item.active{
-  color:var(--primary);
-}
+/* LOGIN */
 
-/* ================= LOGIN ================= */
-
-.login-screen{
-  position:fixed;
-  inset:0;
-  background:var(--bg);
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  padding:20px;
-  z-index:1000;
-  overflow:auto;
+#loginScreen{
+position:fixed;
+inset:0;
+background:#f5f6fb;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:20px;
+z-index:100
 }
 
 .login-box{
-  width:100%;
-  max-width:430px;
-  background:white;
-  border:1px solid var(--border);
-  border-radius:25px;
-  padding:30px;
-  box-shadow:0 15px 50px rgba(0,0,0,.08);
+width:100%;
+max-width:420px;
+background:white;
+padding:30px;
+border-radius:24px;
+border:1px solid #ddd;
+box-shadow:0 10px 40px rgba(0,0,0,.08)
 }
 
 .login-logo{
-  text-align:center;
-  font-size:30px;
-  font-weight:800;
-  margin-bottom:10px;
+text-align:center;
+font-size:30px;
+font-weight:800;
+margin-bottom:10px
 }
 
-.login-logo span{
-  color:var(--primary);
-}
+.login-logo span{color:#635bff}
 
 .login-subtitle{
-  text-align:center;
-  color:var(--muted);
-  margin-bottom:25px;
+text-align:center;
+color:#777;
+margin-bottom:25px
 }
 
 .input{
-  width:100%;
-  padding:15px;
-  border:1px solid var(--border);
-  border-radius:12px;
-  margin-bottom:13px;
-  font-size:16px;
-  outline:none;
+width:100%;
+padding:15px;
+border:1px solid #ddd;
+border-radius:12px;
+font-size:16px;
+margin-bottom:13px;
+outline:none
 }
 
 .input:focus{
-  border-color:var(--primary);
+border-color:#635bff
 }
 
 .login-button{
-  width:100%;
-  border:0;
-  background:var(--primary);
-  color:white;
-  padding:15px;
-  border-radius:12px;
-  font-weight:bold;
-  cursor:pointer;
-  font-size:16px;
+width:100%;
+padding:15px;
+border:0;
+border-radius:12px;
+background:#635bff;
+color:white;
+font-size:16px;
+font-weight:bold
 }
 
 .login-button:disabled{
-  opacity:.6;
+opacity:.6
 }
 
 .switch{
-  text-align:center;
-  margin-top:18px;
-  color:var(--muted);
+text-align:center;
+margin-top:18px;
+color:#777
 }
 
 .switch button{
-  border:0;
-  background:none;
-  color:var(--primary);
-  font-weight:bold;
-  cursor:pointer;
+border:0;
+background:none;
+color:#635bff;
+font-weight:bold
 }
 
 .message{
-  margin-top:15px;
-  text-align:center;
-  font-size:14px;
-  line-height:1.5;
+text-align:center;
+margin-top:15px;
+font-size:14px;
+min-height:20px
 }
 
-.error{
-  color:var(--danger);
-}
+.error{color:#d93636}
+.success{color:#159669}
 
-.success{
-  color:var(--success);
-}
-
-/* ================= MODAL ================= */
-
-.modal{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.5);
-  display:none;
-  align-items:center;
-  justify-content:center;
-  padding:20px;
-  z-index:500;
-}
-
-.modal-box{
-  width:100%;
-  max-width:500px;
-  max-height:85vh;
-  overflow:auto;
-  background:white;
-  border-radius:22px;
-  padding:25px;
-}
-
-.close{
-  float:right;
-  width:35px;
-  height:35px;
-  border:0;
-  border-radius:50%;
-  cursor:pointer;
-}
-
-.modal-box h2{
-  margin-bottom:15px;
-}
-
-.modal-box p{
-  color:var(--muted);
-  line-height:1.6;
-  margin-bottom:12px;
-}
-
-.modal-box button{
-  cursor:pointer;
-}
-
-/* ================= PROFILE ================= */
-
-.profile-row{
-  padding:14px 0;
-  border-bottom:1px solid var(--border);
-}
-
-.logout-btn{
-  width:100%;
-  border:0;
-  background:#171923;
-  color:white;
-  padding:14px;
-  border-radius:12px;
-  margin-top:20px;
-  cursor:pointer;
-}
-
-/* ================= QUIZ ================= */
-
-.quiz-option{
-  width:100%;
-  text-align:left;
-  border:1px solid var(--border);
-  background:white;
-  padding:14px;
-  border-radius:12px;
-  margin:7px 0;
-  font-size:15px;
-}
-
-.quiz-option:hover{
-  border-color:var(--primary);
-}
-
-/* ================= MOBILE ================= */
+.hidden{display:none!important}
 
 @media(max-width:700px){
-
-  .container{
-    padding:25px 15px;
-  }
-
-  .welcome h1{
-    font-size:28px;
-  }
-
-  .stats{
-    grid-template-columns:1fr;
-  }
-
-  .actions{
-    grid-template-columns:1fr;
-  }
-
-  .course-header{
-    flex-direction:column;
-  }
-
+.stats,.actions{
+grid-template-columns:1fr
 }
-
+}
 </style>
 </head>
 
 <body>
 
+<!-- LOGIN -->
 
-<!-- =====================================================
-     LOGIN / SIGNUP
-===================================================== -->
+<div id="loginScreen">
 
-<div id="loginScreen" class="login-screen">
+<div class="login-box">
 
-  <div class="login-box">
+<div class="login-logo">
+<span>✦</span> LEARNOVA
+</div>
 
-    <div class="login-logo">
-      <span>✦</span> LEARNOVA
-    </div>
+<p id="loginSubtitle" class="login-subtitle">
+Create your account and start learning.
+</p>
 
-    <p id="loginSubtitle" class="login-subtitle">
-      Create your account and start learning.
-    </p>
+<input
+id="nameInput"
+class="input"
+type="text"
+placeholder="Your name"
+>
 
-    <input
-      id="nameInput"
-      class="input"
-      type="text"
-      placeholder="Your name"
-    >
+<input
+id="emailInput"
+class="input"
+type="email"
+placeholder="Email address"
+>
 
-    <input
-      id="emailInput"
-      class="input"
-      type="email"
-      placeholder="Email address"
-      autocomplete="email"
-    >
+<input
+id="passwordInput"
+class="input"
+type="password"
+placeholder="Password (6+ characters)"
+>
 
-    <input
-      id="passwordInput"
-      class="input"
-      type="password"
-      placeholder="Password (6+ characters)"
-      autocomplete="current-password"
-    >
+<button id="authButton" class="login-button">
+Create Account
+</button>
 
-    <button id="authButton" class="login-button">
-      Create Account
-    </button>
+<div id="message" class="message"></div>
 
-    <div id="message" class="message"></div>
+<div class="switch">
 
-    <div class="switch">
+<span id="switchText">
+Already have an account?
+</span>
 
-      <span id="switchText">
-        Already have an account?
-      </span>
-
-      <button
-        onclick="toggleAuthMode()"
-        id="switchButton"
-      >
-        Login
-      </button>
-
-    </div>
-
-  </div>
+<button id="switchButton">
+Login
+</button>
 
 </div>
 
+</div>
+</div>
 
-<!-- =====================================================
-     HEADER
-===================================================== -->
+
+<!-- HEADER -->
 
 <header class="header">
 
-  <div class="logo">
-    <span>✦</span> LEARNOVA
-  </div>
+<div class="logo">
+<span>✦</span> LEARNOVA
+</div>
 
-  <div class="avatar" id="avatar">
-    L
-  </div>
+<div id="avatar" class="avatar">L</div>
 
 </header>
 
 
-<!-- =====================================================
-     MAIN
-===================================================== -->
+<!-- DASHBOARD -->
 
 <main class="container">
 
-  <section class="welcome">
+<section class="welcome">
 
-    <h1>
-      Welcome back <span id="userName">Learner</span> 👋
-    </h1>
+<h1>
+Welcome back, <span id="userName">Learner</span> 👋
+</h1>
 
-    <p>
-      Continue your learning journey today.
-    </p>
+<p class="muted">
+Continue your learning journey today.
+</p>
 
-  </section>
+</section>
 
 
-  <!-- STATS -->
+<section class="stats">
 
-  <section class="stats">
+<div class="stat">
 
-    <div class="stat">
+<div class="muted">🔥 Current Streak</div>
 
-      <div class="stat-label">
-        🔥 Current Streak
-      </div>
+<div id="streak" class="stat-number">0</div>
 
-      <div class="stat-number" id="streak">
-        0
-      </div>
-
-      <div class="stat-label">
-        days
-      </div>
-
-    </div>
-
-
-    <div class="stat">
-
-      <div class="stat-label">
-        📚 Lessons Completed
-      </div>
-
-      <div class="stat-number" id="lessons">
-        0
-      </div>
-
-      <div class="stat-label">
-        completed
-      </div>
-
-    </div>
-
-
-    <div class="stat">
-
-      <div class="stat-label">
-        📝 Quiz Average
-      </div>
-
-      <div class="stat-number" id="quiz">
-        0%
-      </div>
-
-      <div class="stat-label">
-        average
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- COURSE -->
-
-  <h2 class="section-title">
-    🎯 Continue Learning
-  </h2>
-
-  <section class="course">
-
-    <div class="course-header">
-
-      <div>
-
-        <div
-          id="courseTitle"
-          class="course-title"
-        >
-          Your first goal
-        </div>
-
-        <div
-          id="courseInfo"
-          class="course-info"
-        >
-          Set your learning goal to begin.
-        </div>
-
-      </div>
-
-      <div class="badge">
-        IN PROGRESS
-      </div>
-
-    </div>
-
-
-    <div class="progress-area">
-
-      <div class="progress-top">
-
-        <span>
-          Your progress
-        </span>
-
-        <strong id="progressText">
-          0%
-        </strong>
-
-      </div>
-
-      <div class="progress">
-
-        <div
-          id="progressFill"
-          class="progress-fill"
-        ></div>
-
-      </div>
-
-    </div>
-
-
-    <button
-      class="button"
-      onclick="openLesson()"
-    >
-      ▶ Continue Lesson
-    </button>
-
-  </section>
-
-
-  <!-- TODAY -->
-
-  <h2 class="section-title">
-    📅 Today's Learning
-  </h2>
-
-
-  <section class="actions">
-
-    <div
-      class="action"
-      onclick="openLesson()"
-    >
-
-      <div class="action-icon">
-        📖
-      </div>
-
-      <h3>
-        Today's Lesson
-      </h3>
-
-      <p>
-        Learn today's topic in simple steps.
-      </p>
-
-    </div>
-
-
-    <div
-      class="action"
-      onclick="openQuiz()"
-    >
-
-      <div class="action-icon">
-        📝
-      </div>
-
-      <h3>
-        Quick Quiz
-      </h3>
-
-      <p>
-        Test what you learned today.
-      </p>
-
-    </div>
-
-
-    <div
-      class="action"
-      onclick="openRevision()"
-    >
-
-      <div class="action-icon">
-        🔄
-      </div>
-
-      <h3>
-        Revision
-      </h3>
-
-      <p>
-        Review topics that need practice.
-      </p>
-
-    </div>
-
-  </section>
-
-
-  <!-- AI -->
-
-  <section class="ai">
-
-    <h2>
-      🧠 Learnova AI Tutor
-    </h2>
-
-    <p>
-      Ask questions, understand difficult topics
-      and learn at your own level.
-    </p>
-
-    <button onclick="openTutor()">
-      Ask AI Tutor →
-    </button>
-
-  </section>
-
-</main>
-
-
-<!-- =====================================================
-     BOTTOM NAV
-===================================================== -->
-
-<nav class="bottom-nav">
-
-  <button
-    class="nav-item active"
-    onclick="window.scrollTo({top:0,behavior:'smooth'})"
-  >
-    <span>🏠</span>
-    Home
-  </button>
-
-  <button
-    class="nav-item"
-    onclick="openCourses()"
-  >
-    <span>📚</span>
-    Courses
-  </button>
-
-  <button
-    class="nav-item"
-    onclick="openTutor()"
-  >
-    <span>🧠</span>
-    AI Tutor
-  </button>
-
-  <button
-    class="nav-item"
-    onclick="openProfile()"
-  >
-    <span>👤</span>
-    Profile
-  </button>
-
-</nav>
-
-
-<!-- =====================================================
-     MODAL
-===================================================== -->
-
-<div id="modal" class="modal">
-
-  <div class="modal-box">
-
-    <button
-      class="close"
-      onclick="closeModal()"
-    >
-      ✕
-    </button>
-
-    <div id="modalContent"></div>
-
-  </div>
+<div class="muted">days</div>
 
 </div>
 
 
-<!-- =====================================================
-     FIREBASE
-===================================================== -->
+<div class="stat">
+
+<div class="muted">📚 Lessons Completed</div>
+
+<div id="lessons" class="stat-number">0</div>
+
+<div class="muted">completed</div>
+
+</div>
+
+
+<div class="stat">
+
+<div class="muted">📝 Quiz Average</div>
+
+<div id="quiz" class="stat-number">0%</div>
+
+<div class="muted">average</div>
+
+</div>
+
+</section>
+
+
+<h2 class="section-title">
+🎯 Continue Learning
+</h2>
+
+<section class="card">
+
+<h2 id="courseTitle">
+Your first goal
+</h2>
+
+<p id="courseInfo" class="muted" style="margin-top:8px">
+Set your learning goal to begin.
+</p>
+
+<div style="margin-top:25px">
+
+<div style="display:flex;justify-content:space-between">
+
+<span>Your progress</span>
+
+<strong id="progressText">0%</strong>
+
+</div>
+
+<div class="progress">
+
+<div id="progressFill" class="progress-fill"></div>
+
+</div>
+
+</div>
+
+<button class="primary" onclick="openLesson()">
+▶ Continue Lesson
+</button>
+
+</section>
+
+
+<h2 class="section-title">
+📅 Today's Learning
+</h2>
+
+<section class="actions">
+
+<div class="action" onclick="openLesson()">
+
+<div class="action-icon">📖</div>
+
+<h3>Today's Lesson</h3>
+
+<p class="muted" style="margin-top:7px">
+Learn today's topic.
+</p>
+
+</div>
+
+
+<div class="action" onclick="openQuiz()">
+
+<div class="action-icon">📝</div>
+
+<h3>Quick Quiz</h3>
+
+<p class="muted" style="margin-top:7px">
+Test what you learned.
+</p>
+
+</div>
+
+
+<div class="action" onclick="openProfile()">
+
+<div class="action-icon">👤</div>
+
+<h3>My Profile</h3>
+
+<p class="muted" style="margin-top:7px">
+View your account.
+</p>
+
+</div>
+
+</section>
+
+
+<section class="ai">
+
+<h2>🧠 Learnova AI Tutor</h2>
+
+<p>
+Ask questions and understand difficult topics.
+</p>
+
+<button
+class="primary"
+style="background:white;color:#171923"
+onclick="openTutor()"
+>
+Ask AI Tutor →
+</button>
+
+</section>
+
+</main>
+
+
+<!-- NAV -->
+
+<nav class="bottom-nav">
+
+<button class="nav-item" onclick="window.scrollTo(0,0)">
+<span>🏠</span>
+Home
+</button>
+
+<button class="nav-item" onclick="openLesson()">
+<span>📚</span>
+Courses
+</button>
+
+<button class="nav-item" onclick="openTutor()">
+<span>🧠</span>
+AI Tutor
+</button>
+
+<button class="nav-item" onclick="openProfile()">
+<span>👤</span>
+Profile
+</button>
+
+</nav>
+
 
 <script type="module">
 
-/* =====================================================
-   FIREBASE IMPORTS
-===================================================== */
+/* ================================
+   FIREBASE
+================================ */
 
 import {
-  initializeApp
+initializeApp
 } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-app.js";
 
 import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  updateProfile,
-  onAuthStateChanged,
-  signOut
+getAuth,
+createUserWithEmailAndPassword,
+signInWithEmailAndPassword,
+updateProfile,
+onAuthStateChanged,
+signOut
 } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-auth.js";
 
 import {
-  getFirestore,
-  doc,
-  setDoc,
-  getDoc
+getFirestore,
+doc,
+setDoc,
+getDoc
 } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-firestore.js";
 
 
-/* =====================================================
+/* ================================
    FIREBASE CONFIG
-===================================================== */
+================================ */
 
 const firebaseConfig = {
 
-  apiKey:
-    "AIzaSyC5Mn2Sxh_k3AG1WCGJyBNvEGuhGLgwE2M",
+apiKey:
+"AIzaSyC5Mn2Sxh_k3AG1WCGJyBNvEGuhGLgwE2M",
 
-  authDomain:
-    "learnova-5ea26.firebaseapp.com",
+authDomain:
+"learnova-5ea26.firebaseapp.com",
 
-  projectId:
-    "learnova-5ea26",
+projectId:
+"learnova-5ea26",
 
-  storageBucket:
-    "learnova-5ea26.firebasestorage.app",
+storageBucket:
+"learnova-5ea26.firebasestorage.app",
 
-  messagingSenderId:
-    "1065475515760",
+messagingSenderId:
+"1065475515760",
 
-  appId:
-    "1:1065475515760:web:0f756addc73eedea215bb5"
+appId:
+"1:1065475515760:web:0f756addc73eedea215bb5"
 
 };
 
 
-/* =====================================================
-   INITIALIZE FIREBASE
-===================================================== */
+/* ================================
+   INITIALIZE
+================================ */
 
 const app =
-  initializeApp(firebaseConfig);
+initializeApp(firebaseConfig);
 
 const auth =
-  getAuth(app);
+getAuth(app);
 
 const db =
-  getFirestore(app);
+getFirestore(app);
 
 
-/* =====================================================
+/* ================================
    ELEMENTS
-===================================================== */
+================================ */
 
 const loginScreen =
-  document.getElementById("loginScreen");
+document.getElementById("loginScreen");
 
 const nameInput =
-  document.getElementById("nameInput");
+document.getElementById("nameInput");
 
 const emailInput =
-  document.getElementById("emailInput");
+document.getElementById("emailInput");
 
 const passwordInput =
-  document.getElementById("passwordInput");
+document.getElementById("passwordInput");
 
 const authButton =
-  document.getElementById("authButton");
+document.getElementById("authButton");
 
 const message =
-  document.getElementById("message");
+document.getElementById("message");
 
 const loginSubtitle =
-  document.getElementById("loginSubtitle");
+document.getElementById("loginSubtitle");
 
 const switchText =
-  document.getElementById("switchText");
+document.getElementById("switchText");
 
 const switchButton =
-  document.getElementById("switchButton");
+document.getElementById("switchButton");
 
 
 let isSignup = true;
 
-let currentUser = null;
 
-let currentData = null;
-
-
-/* =====================================================
+/* ================================
    MESSAGE
-===================================================== */
+================================ */
 
 function showMessage(text,type=""){
 
-  message.textContent = text;
+message.textContent = text;
 
-  message.className =
-    "message " + type;
+message.className =
+"message " + type;
 
 }
 
 
-/* =====================================================
-   TOGGLE LOGIN / SIGNUP
-===================================================== */
+/* ================================
+   LOGIN / SIGNUP SWITCH
+================================ */
 
-window.toggleAuthMode = function(){
+switchButton.addEventListener("click",function(){
 
-  isSignup = !isSignup;
+isSignup = !isSignup;
 
-  showMessage("");
+showMessage("");
 
-  if(isSignup){
+if(isSignup){
 
-    nameInput.style.display =
-      "block";
+nameInput.style.display = "block";
 
-    authButton.textContent =
-      "Create Account";
+authButton.textContent =
+"Create Account";
 
-    loginSubtitle.textContent =
-      "Create your account and start learning.";
+loginSubtitle.textContent =
+"Create your account and start learning.";
 
-    switchText.textContent =
-      "Already have an account?";
+switchText.textContent =
+"Already have an account?";
 
-    switchButton.textContent =
-      "Login";
+switchButton.textContent =
+"Login";
 
-  }else{
+}else{
 
-    nameInput.style.display =
-      "none";
+nameInput.style.display = "none";
 
-    authButton.textContent =
-      "Login";
+authButton.textContent =
+"Login";
 
-    loginSubtitle.textContent =
-      "Welcome back to Learnova.";
+loginSubtitle.textContent =
+"Welcome back to Learnova.";
 
-    switchText.textContent =
-      "Don't have an account?";
+switchText.textContent =
+"Don't have an account?";
 
-    switchButton.textContent =
-      "Create Account";
+switchButton.textContent =
+"Create Account";
 
-  }
+}
+
+});
+
+
+/* ================================
+   AUTH BUTTON
+================================ */
+
+authButton.addEventListener("click",async function(){
+
+console.log("AUTH BUTTON CLICKED");
+
+const email =
+emailInput.value.trim();
+
+const password =
+passwordInput.value;
+
+const name =
+nameInput.value.trim();
+
+
+if(!email){
+
+showMessage(
+"Please enter your email.",
+"error"
+);
+
+return;
+
+}
+
+if(!password){
+
+showMessage(
+"Please enter your password.",
+"error"
+);
+
+return;
+
+}
+
+if(isSignup && !name){
+
+showMessage(
+"Please enter your name.",
+"error"
+);
+
+return;
+
+}
+
+if(password.length < 6){
+
+showMessage(
+"Password must contain at least 6 characters.",
+"error"
+);
+
+return;
+
+}
+
+
+authButton.disabled = true;
+
+authButton.textContent =
+"Please wait...";
+
+
+try{
+
+/* ============================
+   SIGN UP
+============================ */
+
+if(isSignup){
+
+const result =
+await createUserWithEmailAndPassword(
+auth,
+email,
+password
+);
+
+const user =
+result.user;
+
+
+/* SAVE DISPLAY NAME */
+
+try{
+
+await updateProfile(
+user,
+{
+displayName:name
+}
+);
+
+}catch(profileError){
+
+console.log(
+"Profile update skipped:",
+profileError
+);
+
+}
+
+
+/* SAVE FIRESTORE DATA */
+
+try{
+
+await setDoc(
+doc(db,"users",user.uid),
+{
+
+uid:user.uid,
+
+name:name,
+
+email:email,
+
+goal:"",
+
+language:"English",
+
+level:"Beginner",
+
+dailyTime:15,
+
+progress:0,
+
+streak:0,
+
+lessonsCompleted:0,
+
+quizAverage:0,
+
+createdAt:
+new Date().toISOString()
+
+}
+);
+
+}catch(firestoreError){
+
+console.error(
+"Firestore error:",
+firestoreError
+);
+
+}
+
+
+/* IMPORTANT:
+   AUTH ACCOUNT WAS CREATED
+*/
+
+showMessage(
+"Account created successfully!",
+"success"
+);
+
+}
+
+
+/* ============================
+   LOGIN
+============================ */
+
+else{
+
+await signInWithEmailAndPassword(
+auth,
+email,
+password
+);
+
+showMessage(
+"Login successful!",
+"success"
+);
+
+}
+
+
+}catch(error){
+
+console.error(
+"AUTH ERROR:",
+error
+);
+
+let text =
+"Something went wrong.";
+
+switch(error.code){
+
+case "auth/email-already-in-use":
+text =
+"This email is already registered. Please Login.";
+break;
+
+case "auth/invalid-email":
+text =
+"Invalid email address.";
+break;
+
+case "auth/invalid-credential":
+text =
+"Email or password is incorrect.";
+break;
+
+case "auth/user-not-found":
+text =
+"No account found with this email.";
+break;
+
+case "auth/wrong-password":
+text =
+"Incorrect password.";
+break;
+
+case "auth/weak-password":
+text =
+"Password must contain at least 6 characters.";
+break;
+
+case "auth/operation-not-allowed":
+text =
+"Email/Password authentication is disabled in Firebase.";
+break;
+
+case "auth/network-request-failed":
+text =
+"Internet connection problem.";
+break;
+
+default:
+text =
+error.message || "Firebase authentication failed.";
+
+}
+
+showMessage(
+text,
+"error"
+);
+
+}
+
+
+authButton.disabled = false;
+
+authButton.textContent =
+isSignup
+? "Create Account"
+: "Login";
+
+});
+
+
+/* ================================
+   AUTH STATE
+================================ */
+
+onAuthStateChanged(
+auth,
+async function(user){
+
+console.log(
+"AUTH STATE:",
+user
+);
+
+if(user){
+
+loginScreen.style.display =
+"none";
+
+await loadUser(user);
+
+}else{
+
+loginScreen.style.display =
+"flex";
+
+}
+
+});
+
+
+/* ================================
+   LOAD USER
+================================ */
+
+async function loadUser(user){
+
+let data = null;
+
+try{
+
+const ref =
+doc(db,"users",user.uid);
+
+const snapshot =
+await getDoc(ref);
+
+if(snapshot.exists()){
+
+data =
+snapshot.data();
+
+}else{
+
+data = {
+
+uid:user.uid,
+
+name:
+user.displayName || "Learner",
+
+email:
+user.email || "",
+
+goal:"",
+
+progress:0,
+
+streak:0,
+
+lessonsCompleted:0,
+
+quizAverage:0
+
+};
+
+}
+
+}catch(error){
+
+console.error(
+"LOAD USER ERROR:",
+error
+);
+
+data = {
+
+name:
+user.displayName || "Learner",
+
+email:
+user.email || "",
+
+goal:"",
+
+progress:0,
+
+streak:0,
+
+lessonsCompleted:0,
+
+quizAverage:0
+
+};
+
+}
+
+
+renderDashboard(data);
+
+}
+
+
+/* ================================
+   DASHBOARD
+================================ */
+
+function renderDashboard(data){
+
+const name =
+data.name ||
+" " ||
+".";
+
+document.getElementById(
+"userName"
+).textContent =
+name;
+
+document.getElementById(
+"avatar"
+).textContent =
+name.charAt(0).toUpperCase();
+
+document.getElementById(
+"streak"
+).textContent =
+data.streak || 0;
+
+document.getElementById(
+"lessons"
+).textContent =
+data.lessonsCompleted || 0;
+
+document.getElementById(
+"quiz"
+).textContent =
+(data.quizAverage || 0) + "%";
+
+const progress =
+Number(data.progress || 0);
+
+document.getElementById(
+"progressText"
+).textContent =
+progress + "%";
+
+document.getElementById(
+"progressFill"
+).style.width =
+progress + "%";
+
+if(data.goal){
+
+document.getElementById(
+"courseTitle"
+).textContent =
+data.goal;
+
+document.getElementById(
+"courseInfo"
+).textContent =
+"Continue learning your selected goal.";
+
+}
+
+}
+
+
+/* ================================
+   OTHER BUTTONS
+================================ */
+
+window.openLesson = function(){
+
+alert(
+"📖 Lesson section is ready. You can add your lessons here."
+);
 
 };
 
 
-/* =====================================================
-   AUTH BUTTON
-===================================================== */
+window.openQuiz = function(){
 
-authButton.addEventListener(
-  "click",
-  async function(){
+alert(
+"📝 Quiz section is ready."
+);
 
-    const email =
-      emailInput.value.trim();
+};
 
-    const password =
-      passwordInput.value;
 
-    const name =
-      nameInput.value.trim();
+window.openTutor = function(){
 
+alert(
+"🧠 AI Tutor section is ready."
+);
 
-    /* VALIDATION */
+};
 
-    if(!email){
 
-      showMessage(
-        "Please enter your email.",
-        "error"
-      );
+window.openProfile = function(){
 
-      return;
+const user =
+auth.currentUser;
 
-    }
+if(!user)return;
 
+alert(
+"Name: " +
+(user.displayName || "Learner") +
+"\nEmail: " +
+(user.email || "")
+);
 
-    if(!password){
+};
 
-      showMessage(
-        "Please enter your password.",
-        "error"
-      );
 
-      return;
+/* ================================
+   LOGOUT
+================================ */
 
-    }
+window.logout = async function(){
 
+await signOut(auth);
 
-    if(isSignup && !name){
+};
 
-      showMessage(
-        "Please enter your name.",
-        "error"
-      );
+</script>
 
-      return;
-
-    }
-
-
-    if(password.length < 6){
-
-      showMessage(
-        "Password must contain at least 6 characters.",
-        "error"
-      );
-
-      return;
-
-    }
-
-
-    /* DISABLE BUTTON */
-
-    authButton.disabled =
-      true;
-
-    authButton.textContent =
-      "Please wait...";
-
-
-    try{
-
-      /* =================================================
-         SIGN UP
-      ================================================= */
-
-      if(isSignup){
-
-        console.log(
-          "Creating Firebase account..."
-        );
-
-
-        const result =
-          await createUserWithEmailAndPassword(
-            auth,
-            email,
-            password
-          );
-
-
-        const user =
-          result.user;
-
-
-        console.log(
-          "Firebase Auth account created:",
-          user.uid
-        );
-
-
-        /* UPDATE NAME */
-
-        try{
-
-          await updateProfile(
-            user,
-            {
-              displayName:name
-            }
-          );
-
-        }catch(profileError){
-
-          console.warn(
-            "Profile update failed:",
-            profileError
-          );
-
-        }
-
-
-        /* =================================================
-           FIRESTORE SAVE
-
-           IMPORTANT:
-           Firestore failure WILL NOT delete
-           the Firebase Authentication account.
-        ================================================= */
-
-        try{
-
-          await setDoc(
-            doc(
-              db,
-              "users",
-              user.uid
-            ),
-            {
-
-              name:name,
-
-              email:email,
-
-              goal:"",
-
-              language:"English",
-
-              level:"Beginner",
-
-              dailyTime:15,
-
-              progress:0,
-
-              streak:0,
-
-              lessonsCompleted:0,
-
-              quizAverage:0,
-
-              createdAt:
-                new Date().toISOString()
-
-            }
-          );
-
-
-          console.log(
-            "User saved to Firestore."
-          );
-
-        }catch(firestoreError){
-
-          console.error(
-            "Firestore save failed:",
-            firestoreError
-          );
-
-          /*
-            Authentication account has already
-            been created successfully.
-          */
-
-        }
-
-
-        showMessage(
-          "Account created successfully! Opening Learnova...",
-          "success"
-        );
-
-
-        /*
-          onAuthStateChanged() will automatically
-          open the dashboard.
-        */
-
-      }
-
-
-      /* =================================================
-         LOGIN
-      ================================================= */
-
-      else{
-
-        console.log(
-          "Trying Firebase login..."
-        );
-
-
-        const result =
-          await signInWithEmailAndPassword(
-            auth,
-            email,
-            password
-          );
-
-
-        console.log(
-          "Login successful:",
-          result.user.uid
-        );
-
-
-        showMessage(
-          "Login successful!",
-          "success"
-        );
-
-      }
-
-
-    }catch(error){
-
-      console.error(
-        "========== FIREBASE ERROR =========="
-      );
-
-      console.error(
-        "Code:",
-        error.code
-      );
-
- 
+</body>
+  </html>
