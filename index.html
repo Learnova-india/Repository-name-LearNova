@@ -1,28 +1,527 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>LearNova</title><style>
-*{box-sizing:border-box}body{margin:0;font-family:Arial;background:#f5f6fb;color:#171722}header{height:72px;background:#fff;border-bottom:1px solid #ddd;display:flex;align-items:center;justify-content:space-between;padding:0 22px;position:sticky;top:0;z-index:5}.logo{font:700 27px Georgia}.logo span{color:#6757ee}.avatar{width:48px;height:48px;border-radius:50%;background:#6757ee;color:#fff;display:grid;place-items:center}.wrap{max-width:1000px;margin:auto;padding:25px 20px 100px}.welcome{font:38px Georgia;margin:15px 0 8px}.sub{color:#777;font:18px Georgia;margin-bottom:28px}.stats,.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.grid{grid-template-columns:repeat(2,1fr)}.card{background:#fff;border:1px solid #ddd;border-radius:26px;padding:25px;margin-bottom:18px}.title{font:28px Georgia;margin:35px 0 18px}.st{font:18px Georgia;color:#777}.val{font-size:42px;margin-top:16px}.small,p{color:#777}.bar{height:10px;background:#eee;border-radius:20px;overflow:hidden}.bar i{display:block;height:100%;width:0;background:#6757ee;transition:.3s}.btn{background:#6757ee;color:#fff;border:0;padding:13px 20px;border-radius:12px;margin-top:16px;cursor:pointer}.secondary{background:#eee;color:#333}.tabs{position:fixed;bottom:0;left:0;right:0;height:78px;background:#fff;border-top:1px solid #ddd;display:flex;justify-content:space-around;z-index:10}.tabs button{border:0;background:none;color:#777}.tabs .active{color:#6757ee}.page{display:none}.page.active{display:block}.auth{min-height:100vh;display:grid;place-items:center;padding:20px}.box{width:min(430px,100%);background:#fff;border-radius:25px;padding:30px;box-shadow:0 8px 30px #0001}.box input,.field{width:100%;padding:14px;margin:7px 0;border:1px solid #ccc;border-radius:12px}.box button{width:100%;padding:14px;margin-top:10px;border:0;border-radius:12px;background:#6757ee;color:#fff}.link{color:#6757ee;text-align:center;margin-top:18px;cursor:pointer}.err{color:#c62828;margin:8px 0}.hidden{display:none!important}.lesson{border:1px solid #ddd;border-radius:18px;padding:18px;margin:12px 0;background:#fafaff}.option{display:block;width:100%;text-align:left;background:#fff;border:1px solid #ccc;padding:13px;border-radius:10px;margin:8px 0}.option.selected{border-color:#6757ee;background:#f0edff}@media(max-width:700px){.stats,.grid{grid-template-columns:1fr}.welcome{font-size:31px}}
-</style></head><body>
-<div id="auth" class="auth"><div class="box"><div class="logo"><span>✦</span> LEARNOVA</div><section id="login"><h1>Welcome back 👋</h1><p>Continue your learning journey.</p><input id="le" type="email" placeholder="Email"><input id="lp" type="password" placeholder="Password"><div id="lm" class="err"></div><button onclick="login()">Login</button><div class="link" onclick="signupForm()">Create account</div></section><section id="signup" class="hidden"><h1>Create account</h1><input id="sn" placeholder="Your name"><input id="se" type="email" placeholder="Email"><input id="sp" type="password" placeholder="Password (6+ characters)"><div id="sm" class="err"></div><button onclick="signup()">Sign Up</button><div class="link" onclick="loginForm()">Already have an account? Login</div></section></div></div>
-<div id="app" class="hidden"><header><div class="logo"><span>✦</span> LEARNOVA</div><div id="av" class="avatar">L</div></header><main class="wrap">
-<section id="home" class="page active"><div class="welcome">Welcome back, <span id="name">Learner</span> 👋</div><div class="sub">Continue your learning journey today.</div><div class="stats"><div class="card"><div class="st">🔥 Current Streak</div><div id="streak" class="val">0</div><div class="small">days</div></div><div class="card"><div class="st">📚 Lessons Completed</div><div id="lessons" class="val">0</div><div class="small">completed</div></div><div class="card"><div class="st">📝 Quiz Average</div><div id="quiz" class="val">0%</div><div class="small">average</div></div></div><div class="title">🎯 Continue Learning</div><div class="card"><h2>Your learning progress</h2><p>Complete lessons and quizzes to update your progress.</p><div class="bar"><i id="progress"></i></div><p>Progress: <b id="pct">0%</b></p><button class="btn" onclick="page('courses',document.querySelectorAll('.tabs button')[1])">Open Courses</button></div></section>
-<section id="courses" class="page"><div class="title">📚 Courses</div><div id="courseGrid" class="grid"><div class="card"><h2>🏛️ History</h2><p>Indian, Karnataka and world history.</p><button class="btn" onclick="openCourse('History')">Start</button></div><div class="card"><h2>🇮🇳 Indian Polity</h2><p>Constitution and governance.</p><button class="btn" onclick="openCourse('Indian Polity')">Start</button></div><div class="card"><h2>🌍 Geography</h2><p>India and world geography.</p><button class="btn" onclick="openCourse('Geography')">Start</button></div><div class="card"><h2>💻 Technology</h2><p>Useful digital skills.</p><button class="btn" onclick="openCourse('Technology')">Start</button></div></div><div id="courseDetail" class="card hidden"><button class="btn secondary" onclick="closeCourse()">← Back</button><h2 id="courseTitle"></h2><p id="courseIntro"></p><div id="lessonList"></div></div></section>
-<section id="ai" class="page"><div class="title">🤖 AI Tutor</div><div class="card"><h2>Learnova AI Tutor</h2><p>Ask a study question.</p><input id="q" class="field" placeholder="Your question"><button class="btn" onclick="ask()">Ask Tutor</button><p id="answer"></p></div></section>
-<section id="profile" class="page"><div class="title">👤 Profile</div><div class="card"><h2 id="pn">Learner</h2><p id="pe"></p><p>Lessons: <b id="pl">0</b></p><p>Quiz: <b id="pq">0%</b></p><p>Streak: <b id="ps">0 days</b></p><button class="btn" onclick="logout()">Logout</button></div></section>
-<section id="quizPage" class="page"><div class="title">📝 Quiz</div><div id="quizBox" class="card"></div></section></main><nav class="tabs"><button class="active" onclick="page('home',this)">🏠<br>Home</button><button onclick="page('courses',this)">📚<br>Courses</button><button onclick="page('ai',this)">🧠<br>AI Tutor</button><button onclick="page('profile',this)">👤<br>Profile</button></nav></div>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>LearNova - Smart Learning Platform</title>
+  <style>
+    :root {
+      --primary: #6366f1;
+      --primary-hover: #4f46e5;
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --success: #10b981;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); }
+    
+    header { height: 70px; background: var(--card); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; padding: 0 24px; position: sticky; top: 0; z-index: 10; }
+    .logo { font-size: 22px; font-weight: 800; letter-spacing: -0.5px; }
+    .logo span { color: var(--primary); }
+    .avatar { width: 42px; height: 42px; border-radius: 50%; background: var(--primary); color: #fff; display: grid; place-items: center; font-weight: 700; }
+    
+    .wrap { max-width: 900px; margin: auto; padding: 24px 20px 100px; }
+    .welcome { font-size: 28px; font-weight: 700; margin-bottom: 6px; }
+    .sub { color: var(--text-muted); font-size: 16px; margin-bottom: 24px; }
+    
+    .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 24px; }
+    .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 18px; padding: 22px; box-shadow: 0 4px 6px -1px #0000000d; margin-bottom: 18px; }
+    
+    .st { font-size: 14px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+    .val { font-size: 32px; font-weight: 800; margin: 8px 0; color: var(--primary); }
+    .small { color: var(--text-muted); font-size: 13px; }
+    
+    .bar { height: 10px; background: var(--border); border-radius: 999px; overflow: hidden; margin: 12px 0 6px; }
+    .bar i { display: block; height: 100%; width: 0%; background: var(--primary); transition: width 0.4s ease; }
+    
+    .btn { background: var(--primary); color: #fff; border: 0; padding: 12px 20px; border-radius: 10px; font-weight: 600; cursor: pointer; transition: 0.2s; display: inline-flex; align-items: center; justify-content: center; }
+    .btn:hover { background: var(--primary-hover); }
+    .secondary { background: var(--border); color: var(--text); }
+    .secondary:hover { background: #cbd5e1; }
+    
+    .tabs { position: fixed; bottom: 0; left: 0; right: 0; height: 68px; background: var(--card); border-top: 1px solid var(--border); display: flex; justify-content: space-around; z-index: 20; }
+    .tabs button { border: 0; background: none; color: var(--text-muted); font-size: 12px; font-weight: 600; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; }
+    .tabs .active { color: var(--primary); }
+    
+    .page { display: none; }
+    .page.active { display: block; animation: fadeIn 0.2s ease-in; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+    
+    .auth { min-height: 100vh; display: grid; place-items: center; padding: 20px; }
+    .box { width: min(400px, 100%); background: var(--card); border-radius: 20px; padding: 32px; border: 1px solid var(--border); box-shadow: 0 10px 25px -5px #0000001a; }
+    .box input, .field { width: 100%; padding: 12px 14px; margin: 8px 0; border: 1px solid var(--border); border-radius: 10px; font-size: 15px; outline: none; }
+    .box input:focus, .field:focus { border-color: var(--primary); ring: 2px var(--primary); }
+    .link { color: var(--primary); text-align: center; margin-top: 16px; cursor: pointer; font-size: 14px; font-weight: 600; }
+    .err { color: #ef4444; font-size: 13px; margin: 6px 0; }
+    .hidden { display: none !important; }
+    
+    .lesson { border: 1px solid var(--border); border-radius: 14px; padding: 18px; margin: 12px 0; background: #fafbff; }
+    .option { display: block; width: 100%; text-align: left; background: var(--card); border: 1px solid var(--border); padding: 14px; border-radius: 10px; margin: 8px 0; cursor: pointer; font-size: 15px; font-weight: 500; }
+    .option.selected { border-color: var(--primary); background: #eef2ff; color: var(--primary); }
+    
+    .ai-chat-box { background: #f1f5f9; border-radius: 12px; padding: 16px; margin-top: 14px; min-height: 80px; font-size: 15px; line-height: 1.5; }
+
+    @media(max-width: 650px) {
+      .stats, .grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="auth" class="auth">
+  <div class="box">
+    <div class="logo" style="margin-bottom: 20px;"><span>✦</span> LEARNOVA</div>
+    
+    <section id="login">
+      <h2 style="margin-bottom: 6px;">Welcome Back 👋</h2>
+      <p class="small" style="margin-bottom: 16px;">Sign in to your learning dashboard.</p>
+      <input id="le" type="email" placeholder="Email address">
+      <input id="lp" type="password" placeholder="Password">
+      <div id="lm" class="err"></div>
+      <button class="btn" style="width:100%; margin-top:8px;" onclick="login()">Sign In</button>
+      <div class="link" onclick="signupForm()">Need an account? Create one</div>
+    </section>
+
+    <section id="signup" class="hidden">
+      <h2 style="margin-bottom: 6px;">Create Account</h2>
+      <p class="small" style="margin-bottom: 16px;">Start tracking your learning progress.</p>
+      <input id="sn" placeholder="Full Name">
+      <input id="se" type="email" placeholder="Email address">
+      <input id="sp" type="password" placeholder="Password (6+ characters)">
+      <div id="sm" class="err"></div>
+      <button class="btn" style="width:100%; margin-top:8px;" onclick="signup()">Register</button>
+      <div class="link" onclick="loginForm()">Already have an account? Sign In</div>
+    </section>
+  </div>
+</div>
+
+<div id="app" class="hidden">
+  <header>
+    <div class="logo"><span>✦</span> LEARNOVA</div>
+    <div id="av" class="avatar">L</div>
+  </header>
+
+  <main class="wrap">
+    <!-- Home -->
+    <section id="home" class="page active">
+      <div class="welcome">Hello, <span id="name">Learner</span> 👋</div>
+      <div class="sub">Here is your learning summary for today.</div>
+      
+      <div class="stats">
+        <div class="card">
+          <div class="st">🔥 Streak</div>
+          <div id="streak" class="val">0</div>
+          <div class="small">Days Active</div>
+        </div>
+        <div class="card">
+          <div class="st">📚 Lessons</div>
+          <div id="lessons" class="val">0</div>
+          <div class="small">Completed</div>
+        </div>
+        <div class="card">
+          <div class="st">📝 Quiz Score</div>
+          <div id="quiz" class="val">0%</div>
+          <div class="small">Average Score</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3 style="margin-bottom: 4px;">🎯 Overall Milestone</h3>
+        <p class="small">Progress completes upon finishing 10 study lessons.</p>
+        <div class="bar"><i id="progress"></i></div>
+        <p class="small" style="font-weight: 600; margin-top: 6px;">Status: <span id="pct" style="color:var(--primary);">0%</span></p>
+        <button class="btn" style="margin-top: 14px;" onclick="page('courses', document.querySelectorAll('.tabs button')[1])">Continue Learning →</button>
+      </div>
+    </section>
+
+    <!-- Courses -->
+    <section id="courses" class="page">
+      <h2 style="margin-bottom: 16px;">Available Courses</h2>
+      <div id="courseGrid" class="grid"></div>
+      
+      <div id="courseDetail" class="card hidden">
+        <button class="btn secondary" style="margin-bottom: 14px;" onclick="closeCourse()">← All Courses</button>
+        <h2 id="courseTitle"></h2>
+        <p id="courseIntro" class="small" style="margin: 8px 0 16px; font-size: 15px;"></p>
+        <div id="lessonList"></div>
+      </div>
+    </section>
+
+    <!-- AI Tutor -->
+    <section id="ai" class="page">
+      <h2 style="margin-bottom: 16px;">🧠 LearNova AI Tutor</h2>
+      <div class="card">
+        <h3>Ask any topic question</h3>
+        <p class="small" style="margin-bottom: 12px;">Get simple, beginner-friendly explanations on History, Polity, Geography or Tech.</p>
+        <input id="q" class="field" placeholder="e.g., Explain Fundamental Rights simply...">
+        <button class="btn" onclick="askTutor()">Ask Assistant</button>
+        <div id="answer" class="ai-chat-box hidden"></div>
+      </div>
+    </section>
+
+    <!-- Profile -->
+    <section id="profile" class="page">
+      <h2 style="margin-bottom: 16px;">User Profile</h2>
+      <div class="card">
+        <h2 id="pn">Learner</h2>
+        <p id="pe" class="small" style="margin-bottom: 16px;"></p>
+        <hr style="border:0; border-top:1px solid var(--border); margin: 12px 0;">
+        <p style="margin: 8px 0;">Lessons Finished: <b id="pl">0</b></p>
+        <p style="margin: 8px 0;">Quiz Accuracy: <b id="pq">0%</b></p>
+        <p style="margin: 8px 0;">Active Streak: <b id="ps">0 days</b></p>
+        <button class="btn secondary" style="margin-top: 20px; width: 100%;" onclick="logout()">Log Out</button>
+      </div>
+    </section>
+
+    <!-- Quiz -->
+    <section id="quizPage" class="page">
+      <div id="quizBox" class="card" style="max-width: 600px; margin: auto;"></div>
+    </section>
+  </main>
+
+  <nav class="tabs">
+    <button class="active" onclick="page('home',this)"><span>🏠</span>Home</button>
+    <button onclick="page('courses',this)"><span>📚</span>Courses</button>
+    <button onclick="page('ai',this)"><span>🧠</span>AI Tutor</button>
+    <button onclick="page('profile',this)"><span>👤</span>Profile</button>
+  </nav>
+</div>
+
 <script type="module">
-import{initializeApp}from'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';import{getAuth,onAuthStateChanged,signInWithEmailAndPassword,createUserWithEmailAndPassword,updateProfile,signOut}from'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';import{getFirestore,doc,setDoc,getDoc,updateDoc}from'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
-const config={apiKey:'AIzaSyC5Mn2Sxh_k3AG1WCGJyBNvEGuhGLgwE2M',authDomain:'learnova-5ea26.firebaseapp.com',projectId:'learnova-5ea26',storageBucket:'learnova-5ea26.firebasestorage.app',messagingSenderId:'1065475515760',appId:'1:1065475515760:web:0f756addc73eedea215bb5'};const app=initializeApp(config),auth=getAuth(app),db=getFirestore(app);window.learnovaFirebase={app,auth,db};const $=id=>document.getElementById(id);
-window.loginForm=()=>{$('signup').classList.add('hidden');$('login').classList.remove('hidden')};window.signupForm=()=>{$('login').classList.add('hidden');$('signup').classList.remove('hidden')};
-window.login=async()=>{try{await signInWithEmailAndPassword(auth,$('le').value.trim(),$('lp').value)}catch(e){$('lm').textContent=err(e)}};window.signup=async()=>{try{const n=$('sn').value.trim();if(!n){$('sm').textContent='Please enter your name.';return}const c=await createUserWithEmailAndPassword(auth,$('se').value.trim(),$('sp').value);await updateProfile(c.user,{displayName:n});await make(c.user)}catch(e){$('sm').textContent=err(e)}};
-async function make(u){const r=doc(db,'users',u.uid),s=await getDoc(r);if(!s.exists())await setDoc(r,{email:u.email||'',name:u.displayName||'Learner',streak:1,lessonsCompleted:0,quizAverage:0,quizCount:0,totalQuizScore:0,createdAt:new Date().toISOString(),lastActive:new Date().toISOString()})}
-async function load(u){await make(u);const r=doc(db,'users',u.uid);const s=await getDoc(r);const d=s.data()||{},n=d.name||u.displayName||'Learner';$('name').textContent=n;$('pn').textContent=n;$('pe').textContent=u.email||d.email||'';$('av').textContent=n[0]?.toUpperCase()||'L';await updateStreak(r,d);set((await getDoc(r)).data()||d)}
-async function updateStreak(r,d){const today=new Date().toISOString().slice(0,10),last=d.lastActive?new Date(d.lastActive).toISOString().slice(0,10):'';if(last===today)return;let st=Number(d.streak)||0;if(last){const diff=Math.round((new Date(today+'T00:00:00')-new Date(last+'T00:00:00'))/86400000);st=diff===1?st+1:1}else st=1;await updateDoc(r,{streak:st,lastActive:new Date().toISOString()})}
-function set(d){const st=Number(d.streak)||0,l=Number(d.lessonsCompleted)||0,q=Math.round(Number(d.quizAverage)||0);$('streak').textContent=st;$('lessons').textContent=l;$('quiz').textContent=q+'%';$('pl').textContent=l;$('pq').textContent=q+'%';$('ps').textContent=st+' days';const p=Math.min(100,l*10);$('progress').style.width=p+'%';$('pct').textContent=p+'%'}
-window.completeLesson=async()=>{const u=auth.currentUser;if(!u)return;const r=doc(db,'users',u.uid),s=await getDoc(r),d=s.data()||{},l=(Number(d.lessonsCompleted)||0)+1;await updateDoc(r,{lessonsCompleted:l,lastActive:new Date().toISOString()});set({...d,lessonsCompleted:l});alert('Lesson completed! 🎉')};
-const courses={'History':{intro:'Introduction to Indian history.',lessons:[['Ancient India','Learn the basic timeline and major civilizations of ancient India.'],['Medieval India','Understand major medieval Indian kingdoms and developments.'],['Modern India','Study major events of India’s modern history.']]},'Indian Polity':{intro:'Constitution and governance.',lessons:[['Constitution Basics','Learn the basic structure and important features of the Indian Constitution.'],['Fundamental Rights','Understand the Fundamental Rights and their importance.'],['Parliament','Learn the basic functions of Parliament and law-making.']]},'Geography':{intro:'India and world geography.',lessons:[['Physical Geography','Learn about landforms, climate and natural systems.'],['Indian Geography','Study India’s major physical and geographical features.'],['World Geography','Understand continents, oceans and major world regions.']]},'Technology':{intro:'Useful digital skills.',lessons:[['Internet Basics','Learn essential concepts for using the internet safely.'],['Web Basics','Understand HTML, CSS and JavaScript fundamentals.'],['Digital Skills','Learn useful everyday digital productivity skills.']]}};
-let currentCourse='';window.openCourse=name=>{currentCourse=name;const c=courses[name];$('courseGrid').classList.add('hidden');$('courseDetail').classList.remove('hidden');$('courseTitle').textContent='📖 '+name;$('courseIntro').textContent=c.intro;$('lessonList').innerHTML=c.lessons.map((x,i)=>`<div class="lesson"><h3>Lesson ${i+1}: ${x[0]}</h3><p>${x[1]}</p><button class="btn" onclick="startLesson(${i})">Open Lesson</button></div>`).join('')};window.closeCourse=()=>{$('courseDetail').classList.add('hidden');$('courseGrid').classList.remove('hidden')};
-window.startLesson=i=>{const x=courses[currentCourse].lessons[i];$('lessonList').innerHTML=`<div class="lesson"><h2>${x[0]}</h2><p>${x[1]}</p><p><b>Study note:</b> This is the starter lesson. Detailed chapter material can be added in the next version.</p><button class="btn" onclick="finishLessonAndQuiz()">Complete Lesson & Take Quiz</button></div>`};window.finishLessonAndQuiz=async()=>{await completeLessonSilent();openQuiz()};
-async function completeLessonSilent(){const u=auth.currentUser;if(!u)return;const r=doc(db,'users',u.uid),s=await getDoc(r),d=s.data()||{},l=(Number(d.lessonsCompleted)||0)+1;await updateDoc(r,{lessonsCompleted:l,lastActive:new Date().toISOString()});set({...d,lessonsCompleted:l})}
-let selected=-1,qi=0,score=0;const questions=[{q:'Which document is the supreme law of India?',o:['The Constitution','A newspaper','A court order','A school textbook'],a:0},{q:'How many days are in a week?',o:['5','6','7','8'],a:2},{q:'Which language is used to structure webpages?',o:['HTML','CSS','SQL','Python'],a:0}];window.openQuiz=()=>{selected=-1;qi=0;score=0;page('quizPage',null);renderQuiz()};function renderQuiz(){const x=questions[qi];$('quizBox').innerHTML=`<p>Question ${qi+1} of ${questions.length}</p><h2>${x.q}</h2>${x.o.map((v,j)=>`<button class="option" onclick="choose(${j})">${v}</button>`).join('')}<button class="btn" onclick="nextQuestion()">Next</button>`}window.choose=j=>{selected=j;document.querySelectorAll('.option').forEach((b,k)=>b.classList.toggle('selected',k===j))};window.nextQuestion=async()=>{if(selected<0){alert('Please select an answer.');return}if(selected===questions[qi].a)score++;qi++;if(qi<questions.length){selected=-1;renderQuiz()}else await finishQuiz(score,questions.length)};
-async function finishQuiz(sc,total){const percent=Math.round(sc/total*100),u=auth.currentUser;if(u){const r=doc(db,'users',u.uid),s=await getDoc(r),d=s.data()||{},cnt=Number(d.quizCount)||0,totalScore=Number(d.totalQuizScore)||0,ncnt=cnt+1,ntotal=totalScore+percent,avg=Math.round(ntotal/ncnt);await updateDoc(r,{quizAverage:avg,quizCount:ncnt,totalQuizScore:ntotal,lastActive:new Date().toISOString()});set({...d,quizAverage:avg})}$('quizBox').innerHTML=`<h2>Quiz Complete 🎉</h2><p>You scored <b>${sc}/${total}</b> (${percent}%).</p><button class="btn" onclick="page('courses',document.querySelectorAll('.tabs button')[1]);closeCourse()">Back to Courses</button>`}
-window.logout=()=>signOut(auth);window.page=(id,b)=>{document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));$(id).classList.add('active');document.querySelectorAll('.tabs button').forEach(x=>x.classList.remove('active'));if(b)b.classList.add('active');scrollTo(0,0)};window.ask=()=>{$('answer').textContent=$('q').value.trim()?'Tutor: I can help explain “'+$('q').value.trim()+'” in simple words. Real AI API integration can be added next.':'Enter a question first.'};function err(e){return({'auth/invalid-credential':'Invalid email or password.','auth/email-already-in-use':'Email already registered.','auth/weak-password':'Password must be at least 6 characters.','auth/invalid-email':'Invalid email.'}[e.code]||e.message)}onAuthStateChanged(auth,u=>{if(u){$('auth').classList.add('hidden');$('app').classList.remove('hidden');load(u).catch(console.error)}else{$('auth').classList.remove('hidden');$('app').classList.add('hidden')}});
-</script></body></html>
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
+import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile, signOut } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
+import { getFirestore, doc, setDoc, getDoc, updateDoc } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
+
+const config = {
+  apiKey: 'AIzaSyC5Mn2Sxh_k3AG1WCGJyBNvEGuhGLgwE2M',
+  authDomain: 'learnova-5ea26.firebaseapp.com',
+  projectId: 'learnova-5ea26',
+  storageBucket: 'learnova-5ea26.firebasestorage.app',
+  messagingSenderId: '1065475515760',
+  appId: '1:1065475515760:web:0f756addc73eedea215bb5'
+};
+
+const app = initializeApp(config);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+const $ = id => document.getElementById(id);
+
+/* Auth Handlers */
+window.loginForm = () => { $('signup').classList.add('hidden'); $('login').classList.remove('hidden'); };
+window.signupForm = () => { $('login').classList.add('hidden'); $('signup').classList.remove('hidden'); };
+
+window.login = async () => {
+  $('lm').textContent = '';
+  try {
+    await signInWithEmailAndPassword(auth, $('le').value.trim(), $('lp').value);
+  } catch(e) { $('lm').textContent = err(e); }
+};
+
+window.signup = async () => {
+  $('sm').textContent = '';
+  try {
+    const n = $('sn').value.trim();
+    if(!n) return $('sm').textContent = 'Please enter your name.';
+    const c = await createUserWithEmailAndPassword(auth, $('se').value.trim(), $('sp').value);
+    await updateProfile(c.user, { displayName: n });
+    await makeUser(c.user);
+  } catch(e) { $('sm').textContent = err(e); }
+};
+
+window.logout = () => signOut(auth);
+
+/* Database & User Management */
+async function makeUser(u) {
+  const r = doc(db, 'users', u.uid);
+  const s = await getDoc(r);
+  if (!s.exists()) {
+    await setDoc(r, {
+      email: u.email || '',
+      name: u.displayName || 'Learner',
+      streak: 1,
+      lessonsCompleted: 0,
+      quizAverage: 0,
+      quizCount: 0,
+      totalQuizScore: 0,
+      createdAt: new Date().toISOString(),
+      lastActive: new Date().toISOString()
+    });
+  }
+}
+
+async function load(u) {
+  await makeUser(u);
+  const r = doc(db, 'users', u.uid);
+  const s = await getDoc(r);
+  const d = s.data() || {};
+  const n = d.name || u.displayName || 'Learner';
+  
+  $('name').textContent = n;
+  $('pn').textContent = n;
+  $('pe').textContent = u.email || d.email || '';
+  $('av').textContent = n[0]?.toUpperCase() || 'L';
+  
+  await updateStreak(r, d);
+  renderDashboard((await getDoc(r)).data() || d);
+}
+
+async function updateStreak(r, d) {
+  const today = new Date().toISOString().slice(0, 10);
+  const last = d.lastActive ? new Date(d.lastActive).toISOString().slice(0, 10) : '';
+  if (last === today) return;
+  
+  let st = Number(d.streak) || 0;
+  if (last) {
+    const diff = Math.round((new Date(today+'T00:00:00') - new Date(last+'T00:00:00')) / 86400000);
+    st = diff === 1 ? st + 1 : 1;
+  } else {
+    st = 1;
+  }
+  await updateDoc(r, { streak: st, lastActive: new Date().toISOString() });
+}
+
+function renderDashboard(d) {
+  const st = Number(d.streak) || 0;
+  const l = Number(d.lessonsCompleted) || 0;
+  const q = Math.round(Number(d.quizAverage) || 0);
+  
+  $('streak').textContent = st;
+  $('lessons').textContent = l;
+  $('quiz').textContent = q + '%';
+  $('pl').textContent = l;
+  $('pq').textContent = q + '%';
+  $('ps').textContent = st + ' days';
+  
+  const pct = Math.min(100, l * 10);
+  $('progress').style.width = pct + '%';
+  $('pct').textContent = pct + '%';
+}
+
+/* Course Data */
+const courses = {
+  'History': {
+    icon: '🏛️',
+    intro: 'Comprehensive timeline of Indian, Karnataka and World History.',
+    lessons: [
+      { title: 'Ancient Indian Civilizations', content: 'The Indus Valley Civilization was known for its urban planning, baked brick houses, and advanced drainage systems.' },
+      { title: 'Medieval Dynasties', content: 'Major empires like the Vijayanagara Empire and the Cholas fostered art, architecture, and international trade.' },
+      { title: 'Modern Freedom Struggle', content: 'Key milestones including the 1857 movement, Non-Cooperation movement, and Quit India movement.' }
+    ],
+    quiz: [
+      { q: 'Which civilization is famous for Great Baths and grid-planned cities?', o: ['Indus Valley', 'Roman', 'Mesopotamian', 'Inca'], a: 0 },
+      { q: 'In which state was the Vijayanagara empire primarily centered?', o: ['Karnataka', 'Punjab', 'Assam', 'Gujarat'], a: 0 }
+    ]
+  },
+  'Indian Polity': {
+    icon: '🇮🇳',
+    intro: 'Constitutional framework, governance, and fundamental legal rights.',
+    lessons: [
+      { title: 'Constitutional Framework', content: 'The Indian Constitution is the supreme law of the land, adopted on 26th November 1949 and enacted on 26th January 1950.' },
+      { title: 'Fundamental Rights & Duties', content: 'Articles 12-35 outline fundamental rights guaranteeing equality, freedom, and protection against exploitation.' },
+      { title: 'Parliament & Judiciary', content: 'Understand the bicameral legislature (Lok Sabha & Rajya Sabha) and the independent judicial structure.' }
+    ],
+    quiz: [
+      { q: 'When was the Constitution of India formally enacted?', o: ['15 August 1947', '26 January 1950', '2 October 1950', '26 November 1950'], a: 1 },
+      { q: 'Which organ is the ultimate interpreter of the Indian Constitution?', o: ['Supreme Court', 'Parliament', 'President', 'Prime Minister'], a: 0 }
+    ]
+  },
+  'Geography': {
+    icon: '🌍',
+    intro: 'Physical landscapes, atmospheric systems, and global topography.',
+    lessons: [
+      { title: 'Physical Geography', content: 'Tectonic plate movements shape continents, mountains, rift valleys, and oceanic trenches.' },
+      { title: 'Climate Systems & Monsoons', content: 'Understand pressure belts, Coriolis force, and the Southwest monsoon patterns across South Asia.' }
+    ],
+    quiz: [
+      { q: 'Which is the highest peak in the Western Ghats?', o: ['Anamudi', 'Mullayanagiri', 'Doddabetta', 'Kalsubai'], a: 0 }
+    ]
+  },
+  'Technology': {
+    icon: '💻',
+    intro: 'Web technologies, computer literacy, and practical digital concepts.',
+    lessons: [
+      { title: 'Web Architecture', content: 'The web operates on client-server architecture using protocols like HTTP/HTTPS, HTML, CSS, and JS.' },
+      { title: 'Cybersecurity Fundamentals', content: 'Safe practices: Multi-Factor Authentication (MFA), password managers, and spotting phishing scams.' }
+    ],
+    quiz: [
+      { q: 'What protocol secures internet traffic using encryption?', o: ['HTTPS', 'FTP', 'HTTP', 'SMTP'], a: 0 }
+    ]
+  }
+};
+
+/* Render Course List */
+function renderCourseCards() {
+  $('courseGrid').innerHTML = Object.entries(courses).map(([key, item]) => `
+    <div class="card">
+      <div style="font-size:32px; margin-bottom:8px;">${item.icon}</div>
+      <h3 style="margin-bottom:6px;">${key}</h3>
+      <p class="small" style="margin-bottom:14px;">${item.intro}</p>
+      <button class="btn" onclick="openCourse('${key}')">Open Course</button>
+    </div>
+  `).join('');
+}
+renderCourseCards();
+
+let activeCourse = '';
+window.openCourse = (name) => {
+  activeCourse = name;
+  const c = courses[name];
+  $('courseGrid').classList.add('hidden');
+  $('courseDetail').classList.remove('hidden');
+  $('courseTitle').textContent = `${c.icon} ${name}`;
+  $('courseIntro').textContent = c.intro;
+  
+  $('lessonList').innerHTML = c.lessons.map((x, i) => `
+    <div class="lesson">
+      <h4>Lesson ${i+1}: ${x.title}</h4>
+      <p class="small" style="margin: 6px 0 12px;">${x.content.slice(0, 75)}...</p>
+      <button class="btn" onclick="startLesson(${i})">Read & Complete</button>
+    </div>
+  `).join('');
+};
+
+window.closeCourse = () => {
+  $('courseDetail').classList.add('hidden');
+  $('courseGrid').classList.remove('hidden');
+};
+
+window.startLesson = (i) => {
+  const x = courses[activeCourse].lessons[i];
+  $('lessonList').innerHTML = `
+    <div class="lesson" style="background:#fff;">
+      <h3>${x.title}</h3>
+      <p style="margin: 14px 0; line-height: 1.6;">${x.content}</p>
+      <button class="btn" onclick="finishLessonAndTakeQuiz()">Mark Done & Take Quiz 🚀</button>
+    </div>
+  `;
+};
+
+window.finishLessonAndTakeQuiz = async () => {
+  const u = auth.currentUser;
+  if (u) {
+    const r = doc(db, 'users', u.uid);
+    const s = await getDoc(r);
+    const d = s.data() || {};
+    const count = (Number(d.lessonsCompleted) || 0) + 1;
+    await updateDoc(r, { lessonsCompleted: count, lastActive: new Date().toISOString() });
+    renderDashboard({ ...d, lessonsCompleted: count });
+  }
+  startQuizForCourse(activeCourse);
+};
+
+/* Course Quizzes */
+let qList = [], qIndex = 0, qScore = 0, qSelected = -1;
+
+function startQuizForCourse(cKey) {
+  qList = courses[cKey]?.quiz || [];
+  if (!qList.length) {
+    alert('No quiz available for this topic yet.');
+    closeCourse();
+    return;
+  }
+  qIndex = 0; qScore = 0; qSelected = -1;
+  page('quizPage', null);
+  renderQuizStep();
+}
+
+function renderQuizStep() {
+  const item = qList[qIndex];
+  $('quizBox').innerHTML = `
+    <p class="small" style="font-weight:600;">Question ${qIndex + 1} of ${qList.length}</p>
+    <h3 style="margin: 10px 0 16px;">${item.q}</h3>
+    ${item.o.map((opt, i) => `
+      <button class="option" onclick="selectQuizOption(${i})">${opt}</button>
+    `).join('')}
+    <button class="btn" style="width: 100%; margin-top: 14px;" onclick="submitQuizAnswer()">Next Question</button>
+  `;
+}
+
+window.selectQuizOption = (i) => {
+  qSelected = i;
+  document.querySelectorAll('.option').forEach((el, idx) => el.classList.toggle('selected', idx === i));
+};
+
+window.submitQuizAnswer = async () => {
+  if (qSelected === -1) return alert('Please choose an answer.');
+  if (qSelected === qList[qIndex].a) qScore++;
+  
+  qIndex++;
+  qSelected = -1;
+  
+  if (qIndex < qList.length) {
+    renderQuizStep();
+  } else {
+    const pct = Math.round((qScore / qList.length) * 100);
+    const u = auth.currentUser;
+    if (u) {
+      const r = doc(db, 'users', u.uid);
+      const s = await getDoc(r);
+      const d = s.data() || {};
+      const count = (Number(d.quizCount) || 0) + 1;
+      const total = (Number(d.totalQuizScore) || 0) + pct;
+      const avg = Math.round(total / count);
+      await updateDoc(r, { quizAverage: avg, quizCount: count, totalQuizScore: total, lastActive: new Date().toISOString() });
+      renderDashboard({ ...d, quizAverage: avg });
+    }
+    
+    $('quizBox').innerHTML = `
+      <h2>Quiz Finished! 🎉</h2>
+      <p style="margin: 12px 0;">Your final score: <b>${qScore}/${qList.length}</b> (${pct}%)</p>
+      <button class="btn" onclick="page('courses', document.querySelectorAll('.tabs button')[1]); closeCourse();">Return to Courses</button>
+    `;
+  }
+};
+
+/* Smart AI Tutor Response */
+window.askTutor = () => {
+  const query = $('q').value.trim();
+  const ansBox = $('answer');
+  if(!query) return alert('Please enter a query.');
+  
+  ansBox.classList.remove('hidden');
+  ansBox.innerHTML = `<i>Thinking...</i>`;
+  
+  setTimeout(() => {
+    ansBox.innerHTML = `<b>AI Tutor:</b> Here is a breakdown of <i>"${query}"</i>:<br><br>
+    • <b>Key Concept:</b> Focuses on the core foundation and practical application.<br>
+    • <b>Quick Summary:</b> Always remember to revise key terms and practice active recall for exams.<br>
+    <small style="color:var(--text-muted); display:block; margin-top:8px;">💡 Tip: You can connect your backend Gemini/OpenAI endpoint inside the <code>askTutor</code> script function for real-time model completions.</small>`;
+  }, 400);
+};
+
+/* Navigation */
+window.page = (id, btn) => {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  $(id).classList.add('active');
+  document.querySelectorAll('.tabs button').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  window.scrollTo(0, 0);
+};
+
+function err(e) {
+  return ({
+    'auth/invalid-credential': 'Wrong email or password.',
+    'auth/email-already-in-use': 'This email is already in use.',
+    'auth/weak-password': 'Password should be 6+ characters.',
+    'auth/invalid-email': 'Please enter a valid email.'
+  }[e.code] || e.message);
+}
+
+onAuthStateChanged(auth, u => {
+  if (u) {
+    $('auth').classList.add('hidden');
+    $('app').classList.remove('hidden');
+    load(u).catch(console.error);
+  } else {
+    $('auth').classList.remove('hidden');
+    $('app').classList.add('hidden');
+  }
+});
+</script>
+</body>
+</html>
