@@ -3,100 +3,87 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>LearNova V3</title>
+<title>LearNova V3 AI</title>
 <style>
-*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f5f6fb;color:#171722}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,Arial,sans-serif;background:#f5f6fb;color:#171722}
 header{height:72px;background:#fff;border-bottom:1px solid #ddd;display:flex;align-items:center;justify-content:space-between;padding:0 22px;position:sticky;top:0;z-index:5}
-.logo{font:700 27px Georgia}.logo span{color:#6757ee}.avatar{width:48px;height:48px;border-radius:50%;background:#6757ee;color:#fff;display:grid;place-items:center}
-.wrap{max-width:1050px;margin:auto;padding:25px 20px 100px}.welcome{font:38px Georgia;margin:15px 0 8px}.sub{color:#777;font:18px Georgia;margin-bottom:28px}
-.stats,.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.grid{grid-template-columns:repeat(2,1fr)}
-.card{background:#fff;border:1px solid #ddd;border-radius:24px;padding:25px;margin-bottom:18px}.title{font:28px Georgia;margin:35px 0 18px}.st{font:18px Georgia;color:#777}
-.val{font-size:42px;margin-top:16px}.small,p{color:#777}.bar{height:10px;background:#eee;border-radius:20px;overflow:hidden}.bar i{display:block;height:100%;width:0;background:#6757ee;transition:.3s}
-.btn{background:#6757ee;color:#fff;border:0;padding:13px 20px;border-radius:12px;margin-top:16px;cursor:pointer}.secondary{background:#eee;color:#333}
-.tabs{position:fixed;bottom:0;left:0;right:0;height:78px;background:#fff;border-top:1px solid #ddd;display:flex;justify-content:space-around;z-index:10}
-.tabs button{border:0;background:none;color:#777;cursor:pointer}.tabs .active{color:#6757ee}.page{display:none}.page.active{display:block}
-.auth{min-height:100vh;display:grid;place-items:center;padding:20px}.box{width:min(430px,100%);background:#fff;border-radius:25px;padding:30px;box-shadow:0 8px 30px #0001}
+.logo{font:700 27px Georgia}.logo span{color:#6757ee}.avatar{width:46px;height:46px;border-radius:50%;background:#6757ee;color:#fff;display:grid;place-items:center;font-weight:bold}
+.wrap{max-width:1100px;margin:auto;padding:24px 18px 100px}.welcome{font:38px Georgia;margin:15px 0 8px}.sub{color:#777;font:18px Georgia;margin-bottom:24px}
+.stats,.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.grid{grid-template-columns:repeat(3,1fr)}
+.card{background:#fff;border:1px solid #ddd;border-radius:22px;padding:22px;margin-bottom:16px}.title{font:28px Georgia;margin:28px 0 16px}.st{color:#777}.val{font-size:40px;margin-top:12px}.small,p{color:#777}
+.bar{height:10px;background:#eee;border-radius:20px;overflow:hidden}.bar i{display:block;height:100%;width:0;background:#6757ee;transition:.3s}
+.btn{background:#6757ee;color:#fff;border:0;padding:12px 18px;border-radius:11px;margin-top:12px;cursor:pointer}.secondary{background:#eee;color:#333}
+.tabs{position:fixed;bottom:0;left:0;right:0;height:76px;background:#fff;border-top:1px solid #ddd;display:flex;justify-content:space-around;z-index:10}.tabs button{border:0;background:none;color:#777}.tabs .active{color:#6757ee}
+.page{display:none}.page.active{display:block}.auth{min-height:100vh;display:grid;place-items:center;padding:20px}.box{width:min(430px,100%);background:#fff;border-radius:25px;padding:30px;box-shadow:0 8px 30px #0001}
 .box input,.field,.search{width:100%;padding:14px;margin:7px 0;border:1px solid #ccc;border-radius:12px}.box button{width:100%;padding:14px;margin-top:10px;border:0;border-radius:12px;background:#6757ee;color:#fff}
 .link{color:#6757ee;text-align:center;margin-top:18px;cursor:pointer}.err{color:#c62828;margin:8px 0}.hidden{display:none!important}
-.lesson{border:1px solid #ddd;border-radius:18px;padding:18px;margin:12px 0;background:#fafaff}.option{display:block;width:100%;text-align:left;background:#fff;border:1px solid #ccc;padding:13px;border-radius:10px;margin:8px 0;cursor:pointer}
-.option.selected{border-color:#6757ee;background:#f0edff}.tag{display:inline-block;padding:6px 10px;border-radius:999px;background:#eee;margin:3px;font-size:13px}.empty{padding:20px;text-align:center;color:#777}
-.ai-answer{white-space:pre-wrap;line-height:1.6;background:#f8f7ff;padding:16px;border-radius:14px;margin-top:15px}
-.history-item{padding:12px 0;border-bottom:1px solid #eee}.history-item:last-child{border-bottom:0}
-@media(max-width:700px){.stats,.grid{grid-template-columns:1fr}.welcome{font-size:31px}}
+.course{cursor:pointer;transition:.2s}.course:hover{transform:translateY(-2px)}.tag{display:inline-block;background:#f0edff;color:#6757ee;border-radius:20px;padding:5px 9px;margin:3px;font-size:12px}
+.lesson{border:1px solid #ddd;border-radius:17px;padding:18px;margin:12px 0;background:#fafaff}.option{display:block;width:100%;text-align:left;background:#fff;border:1px solid #ccc;padding:13px;border-radius:10px;margin:8px 0;cursor:pointer}.option.selected{border-color:#6757ee;background:#f0edff}
+.aiBox{min-height:280px;max-height:500px;overflow:auto;padding:12px;background:#fafaff;border-radius:16px}.msg{padding:12px;margin:8px 0;border-radius:13px;white-space:pre-wrap}.user{background:#eee}.bot{background:#f0edff}
+.row{display:flex;gap:8px;align-items:center}.row .field{flex:1}.muted{font-size:13px;color:#888}
+@media(max-width:750px){.stats,.grid{grid-template-columns:1fr}.welcome{font-size:31px}.row{flex-direction:column;align-items:stretch}}
 </style>
 </head>
 <body>
 
 <div id="auth" class="auth"><div class="box">
-<div class="logo"><span>✦</span> LEARNOVA <small>V3</small></div>
+<div class="logo"><span>✦</span> LEARNOVA</div>
 <section id="login"><h1>Welcome back 👋</h1><p>Continue your learning journey.</p>
-<input id="le" type="email" placeholder="Email"><input id="lp" type="password" placeholder="Password">
-<div id="lm" class="err"></div><button onclick="login()">Login</button><div class="link" onclick="signupForm()">Create account</div></section>
-<section id="signup" class="hidden"><h1>Create account</h1><input id="sn" placeholder="Your name">
-<input id="se" type="email" placeholder="Email"><input id="sp" type="password" placeholder="Password (6+ characters)">
-<div id="sm" class="err"></div><button onclick="signup()">Sign Up</button><div class="link" onclick="loginForm()">Already have an account? Login</div></section>
+<input id="le" type="email" placeholder="Email"><input id="lp" type="password" placeholder="Password"><div id="lm" class="err"></div>
+<button onclick="login()">Login</button><div class="link" onclick="signupForm()">Create account</div></section>
+<section id="signup" class="hidden"><h1>Create account</h1>
+<input id="sn" placeholder="Your name"><input id="se" type="email" placeholder="Email"><input id="sp" type="password" placeholder="Password (6+ characters)"><div id="sm" class="err"></div>
+<button onclick="signup()">Sign Up</button><div class="link" onclick="loginForm()">Already have an account? Login</div></section>
 </div></div>
 
 <div id="app" class="hidden">
-<header><div class="logo"><span>✦</span> LEARNOVA <small>V3</small></div><div id="av" class="avatar">L</div></header>
+<header><div class="logo"><span>✦</span> LEARNOVA</div><div id="av" class="avatar">L</div></header>
 <main class="wrap">
 
 <section id="home" class="page active">
 <div class="welcome">Welcome back, <span id="name">Learner</span> 👋</div>
-<div class="sub">Your personalized learning dashboard.</div>
+<div class="sub">Learn any subject. Ask AI. Build your own learning path.</div>
 <div class="stats">
 <div class="card"><div class="st">🔥 Current Streak</div><div id="streak" class="val">0</div><div class="small">days</div></div>
 <div class="card"><div class="st">📚 Lessons Completed</div><div id="lessons" class="val">0</div><div class="small">completed</div></div>
 <div class="card"><div class="st">📝 Quiz Average</div><div id="quiz" class="val">0%</div><div class="small">average</div></div>
 </div>
-<div class="title">🎯 Learning Progress</div>
-<div class="card"><h2>Your progress</h2><p>Complete lessons and quizzes to build your learning record.</p>
-<div class="bar"><i id="progress"></i></div><p>Progress: <b id="pct">0%</b></p>
-<button class="btn" onclick="page('courses',document.querySelectorAll('.tabs button')[1])">Explore Courses</button>
-<button class="btn secondary" onclick="openDashboard()">My Activity</button>
+<div class="title">🚀 Find Something to Learn</div>
+<div class="card"><h2>Search thousands of possible subjects</h2>
+<p>Type a subject, topic, skill, exam, language or technology.</p>
+<div class="row"><input id="homeSearch" class="field" placeholder="e.g. History, Python, Economics, Kannada, UPSC..."><button class="btn" onclick="searchCourses('homeSearch')">Search</button></div>
 </div>
+<div class="title">✨ Popular Subjects</div><div id="popular" class="grid"></div>
 </section>
 
 <section id="courses" class="page">
-<div class="title">📚 Courses</div>
-<input id="courseSearch" class="search" placeholder="Search courses..." oninput="filterCourses()">
-<div id="courseGrid" class="grid"></div>
-<div id="courseDetail" class="card hidden"><button class="btn secondary" onclick="closeCourse()">← Back</button>
-<h2 id="courseTitle"></h2><p id="courseIntro"></p><div id="lessonList"></div></div>
+<div class="title">📚 Course Library</div>
+<div class="card"><div class="row"><input id="courseSearch" class="search" placeholder="Search any subject or topic..." oninput="searchCourses('courseSearch')"><button class="btn" onclick="searchCourses('courseSearch')">Search</button></div><div class="muted">Examples: JavaScript, Physics, Indian History, Excel, English, Psychology...</div></div>
+<div id="searchStatus"></div><div id="courseResults" class="grid"></div>
+<div id="courseDetail" class="card hidden"><button class="btn secondary" onclick="closeCourse()">← Back to results</button><h2 id="courseTitle"></h2><p id="courseIntro"></p><div id="lessonList"></div></div>
 </section>
 
 <section id="ai" class="page">
-<div class="title">🤖 AI Tutor</div>
-<div class="card"><h2>Learnova AI Tutor</h2><p>Ask a study question and get a structured study response.</p>
-<input id="q" class="field" placeholder="Example: Explain Fundamental Rights">
-<select id="subject" class="field"><option>General</option><option>History</option><option>Indian Polity</option><option>Geography</option><option>Technology</option></select>
-<button class="btn" onclick="ask()">Ask Tutor</button><div id="answer" class="ai-answer hidden"></div>
-</div>
-<div class="card"><h3>💡 V3 Study Modes</h3><span class="tag">Simple explanation</span><span class="tag">Exam points</span><span class="tag">Quick revision</span><span class="tag">Quiz practice</span></div>
+<div class="title">🤖 LearNova AI Tutor</div>
+<div class="card"><h2>Ask your real AI tutor</h2><p>Ask for explanations, examples, summaries, study plans, flashcards or quiz questions.</p>
+<div id="aiBox" class="aiBox"><div class="msg bot">Hi! Ask me a study question.</div></div>
+<div class="row"><input id="q" class="field" placeholder="Explain photosynthesis simply..."><button class="btn" onclick="askAI()">Ask AI</button></div>
+<div class="muted">AI requires a Gemini API key. Never put a secret production API key in a public website.</div></div>
 </section>
 
-<section id="dashboard" class="page">
-<div class="title">📊 My Activity</div><div class="card"><h2>Learning Summary</h2>
-<p>Lessons completed: <b id="dl">0</b></p><p>Quiz average: <b id="dq">0%</b></p><p>Current streak: <b id="ds">0 days</b></p></div>
-<div class="card"><h2>Recent Quiz Results</h2><div id="history"></div></div>
-</section>
-
-<section id="profile" class="page">
-<div class="title">👤 Profile</div><div class="card"><h2 id="pn">Learner</h2><p id="pe"></p>
-<p>Lessons: <b id="pl">0</b></p><p>Quiz: <b id="pq">0%</b></p><p>Streak: <b id="ps">0 days</b></p>
-<button class="btn" onclick="logout()">Logout</button></div>
-</section>
+<section id="profile" class="page"><div class="title">👤 Profile</div><div class="card">
+<h2 id="pn">Learner</h2><p id="pe"></p><p>Lessons: <b id="pl">0</b></p><p>Quiz: <b id="pq">0%</b></p><p>Streak: <b id="ps">0 days</b></p><button class="btn" onclick="logout()">Logout</button>
+</div></section>
 
 <section id="quizPage" class="page"><div class="title">📝 Quiz</div><div id="quizBox" class="card"></div></section>
-</main>
 
+</main>
 <nav class="tabs">
 <button class="active" onclick="page('home',this)">🏠<br>Home</button>
 <button onclick="page('courses',this)">📚<br>Courses</button>
 <button onclick="page('ai',this)">🧠<br>AI Tutor</button>
 <button onclick="page('profile',this)">👤<br>Profile</button>
-</nav>
-</div>
+</nav></div>
 
 <script type="module">
 import{initializeApp}from'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
@@ -104,63 +91,110 @@ import{getAuth,onAuthStateChanged,signInWithEmailAndPassword,createUserWithEmail
 import{getFirestore,doc,setDoc,getDoc,updateDoc}from'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
 
 const config={apiKey:'AIzaSyC5Mn2Sxh_k3AG1WCGJyBNvEGuhGLgwE2M',authDomain:'learnova-5ea26.firebaseapp.com',projectId:'learnova-5ea26',storageBucket:'learnova-5ea26.firebasestorage.app',messagingSenderId:'1065475515760',appId:'1:1065475515760:web:0f756addc73eedea215bb5'};
-const app=initializeApp(config),auth=getAuth(app),db=getFirestore(app),$=id=>document.getElementById(id);
+const app=initializeApp(config),auth=getAuth(app),db=getFirestore(app);const $=id=>document.getElementById(id);
 
+/* ================= COURSE CATALOG =================
+   This is a searchable starter catalog. A production version can
+   connect this same search UI to a database/API containing thousands
+   of courses.
+*/
+const catalog=[
+['Indian History','History','🏛️','Ancient, medieval and modern Indian history.',['Ancient India','Medieval India','Modern India']],
+['Karnataka History','History','🪷','History of Karnataka from ancient kingdoms to modern times.',['Kadambas','Chalukyas','Vijayanagara','Mysore']],
+['World History','History','🌍','Major civilizations, empires, revolutions and world events.',['Civilizations','World Wars','Revolutions']],
+['Indian Polity','Political Science','🇮🇳','Indian Constitution, Parliament, rights and governance.',['Constitution','Fundamental Rights','Parliament']],
+['Economics','Economics','📈','Microeconomics, macroeconomics, markets and development.',['Demand','Supply','GDP','Inflation']],
+['Geography','Geography','🌎','Physical and human geography of India and the world.',['Climate','Landforms','Maps','Resources']],
+['Physics','Science','⚛️','Mechanics, electricity, waves, thermodynamics and modern physics.',['Mechanics','Electricity','Waves']],
+['Chemistry','Science','🧪','Atoms, bonding, reactions, organic and inorganic chemistry.',['Atoms','Bonding','Reactions']],
+['Biology','Science','🧬','Cells, genetics, ecology, evolution and human biology.',['Cells','Genetics','Ecology']],
+['Mathematics','Mathematics','📐','Arithmetic, algebra, geometry, calculus and statistics.',['Algebra','Geometry','Calculus']],
+['English','Languages','🔤','Grammar, vocabulary, reading, writing and communication.',['Grammar','Vocabulary','Writing']],
+['Kannada','Languages','📝','Kannada grammar, literature and language skills.',['Grammar','Literature','Writing']],
+['Hindi','Languages','🇮🇳','Hindi grammar, vocabulary, reading and writing.',['Grammar','Vocabulary','Writing']],
+['Python Programming','Programming','🐍','Learn Python from fundamentals to practical programming.',['Variables','Functions','OOP','Projects']],
+['JavaScript','Programming','⚡','Learn JavaScript for web development and applications.',['Basics','DOM','Async JS','Projects']],
+['HTML & CSS','Web Development','🌐','Build responsive websites with HTML and CSS.',['HTML','CSS','Responsive Design']],
+['Web Development','Web Development','💻','Frontend fundamentals and modern web development.',['HTML','CSS','JavaScript']],
+['Data Science','Technology','📊','Data analysis, statistics, visualization and machine learning basics.',['Python','Statistics','Visualization']],
+['Artificial Intelligence','Technology','🤖','AI concepts, machine learning and responsible AI basics.',['AI Basics','ML','Neural Networks']],
+['Excel','Productivity','📊','Spreadsheets, formulas, charts and practical data work.',['Formulas','Charts','Pivot Tables']],
+['Psychology','Social Science','🧠','Core concepts in human behavior and cognition.',['Memory','Learning','Behavior']],
+['Sociology','Social Science','👥','Society, institutions, culture and social change.',['Society','Culture','Institutions']],
+['Political Science','Social Science','🏛️','Political ideas, institutions, democracy and governance.',['Democracy','State','Political Theory']],
+['UPSC Preparation','Exam Prep','🎯','General preparation framework for UPSC-style study.',['History','Polity','Geography','Current Affairs']],
+['UGC NET History','Exam Prep','🎓','History-focused study areas for UGC NET preparation.',['Ancient','Medieval','Modern','Historiography']],
+['Digital Marketing','Business','📣','Marketing fundamentals, content, SEO and social media.',['SEO','Content','Social Media']],
+['Business Studies','Business','💼','Business organization, management, finance and marketing basics.',['Management','Marketing','Finance']]
+];
+
+function renderCourses(list=catalog){
+$('courseResults').innerHTML=list.length?list.map((c,i)=>`<div class="card course"><div style="font-size:35px">${c[2]}</div><h2>${c[0]}</h2><div class="tag">${c[1]}</div><p>${c[3]}</p>${c[4].slice(0,4).map(x=>`<span class="tag">${x}</span>`).join('')}<br><button class="btn" onclick="openCourse(${i})">Start Learning</button></div>`).join(''):'<div class="card"><h2>No exact course found</h2><p>Try a broader keyword. You can also ask the AI Tutor to create a learning plan for the subject.</p></div>';
+}
+function renderPopular(){ $('popular').innerHTML=catalog.slice(0,9).map((c,i)=>`<div class="card course"><h2>${c[2]} ${c[0]}</h2><p>${c[3]}</p><button class="btn" onclick="openCourse(${i})">Explore</button></div>`).join('') }
+renderCourses();renderPopular();
+
+window.searchCourses=(id)=>{
+const q=$(id).value.trim().toLowerCase();page('courses',document.querySelectorAll('.tabs button')[1]);
+if(!q){$('searchStatus').innerHTML='<div class="card"><p>Showing all available subjects.</p></div>';renderCourses();return}
+const result=catalog.filter(c=>(c[0]+' '+c[1]+' '+c[3]+' '+c[4].join(' ')).toLowerCase().includes(q));
+$('searchStatus').innerHTML=`<div class="card"><b>${result.length}</b> result(s) for “${q}”</div>`;renderCourses(result);
+};
+
+window.openCourse=i=>{
+const c=catalog[i];$('courseResults').classList.add('hidden');$('searchStatus').classList.add('hidden');$('courseDetail').classList.remove('hidden');
+$('courseTitle').textContent=c[2]+' '+c[0];$('courseIntro').textContent=c[3];
+const lessons=c[4].map((x,j)=>[x,`Learn the core concepts of ${x} as part of ${c[0]}.`]);
+$('lessonList').innerHTML=lessons.map((x,j)=>`<div class="lesson"><h3>Lesson ${j+1}: ${x[0]}</h3><p>${x[1]}</p><button class="btn" onclick="startLesson(${i},${j})">Open Lesson</button></div>`).join('');
+};
+window.closeCourse=()=>{$('courseDetail').classList.add('hidden');$('courseResults').classList.remove('hidden');$('searchStatus').classList.remove('hidden');};
+window.startLesson=(ci,li)=>{
+const c=catalog[ci],topic=c[4][li];$('lessonList').innerHTML=`<div class="lesson"><h2>${topic}</h2><p><b>Course:</b> ${c[0]}</p><p>Use the AI Tutor for a deeper explanation, examples and practice questions for this topic.</p><button class="btn" onclick="askTopic(${JSON.stringify(topic+' in '+c[0])})">Ask AI About This</button> <button class="btn secondary" onclick="openQuiz()">Take Quiz</button></div>`;
+};
+
+/* Firebase auth */
 window.loginForm=()=>{$('signup').classList.add('hidden');$('login').classList.remove('hidden')};
 window.signupForm=()=>{$('login').classList.add('hidden');$('signup').classList.remove('hidden')};
 window.login=async()=>{try{await signInWithEmailAndPassword(auth,$('le').value.trim(),$('lp').value)}catch(e){$('lm').textContent=err(e)}};
-window.signup=async()=>{try{const n=$('sn').value.trim();if(!n){$('sm').textContent='Please enter your name.';return}
-const c=await createUserWithEmailAndPassword(auth,$('se').value.trim(),$('sp').value);await updateProfile(c.user,{displayName:n});await make(c.user)}
-catch(e){$('sm').textContent=err(e)}};
-
-async function make(u){const r=doc(db,'users',u.uid),s=await getDoc(r);if(!s.exists())await setDoc(r,{email:u.email||'',name:u.displayName||'Learner',streak:1,lessonsCompleted:0,quizAverage:0,quizCount:0,totalQuizScore:0,quizHistory:[],createdAt:new Date().toISOString(),lastActive:new Date().toISOString()})}
-async function load(u){await make(u);const r=doc(db,'users',u.uid),s=await getDoc(r),d=s.data()||{},n=d.name||u.displayName||'Learner';
-$('name').textContent=n;$('pn').textContent=n;$('pe').textContent=u.email||d.email||'';$('av').textContent=n[0]?.toUpperCase()||'L';await updateStreak(r,d);const fresh=(await getDoc(r)).data()||d;setStats(fresh);renderDashboard(fresh)}
+window.signup=async()=>{try{const n=$('sn').value.trim();if(!n){$('sm').textContent='Please enter your name.';return}const c=await createUserWithEmailAndPassword(auth,$('se').value.trim(),$('sp').value);await updateProfile(c.user,{displayName:n});await make(c.user)}catch(e){$('sm').textContent=err(e)}};
+async function make(u){const r=doc(db,'users',u.uid),s=await getDoc(r);if(!s.exists())await setDoc(r,{email:u.email||'',name:u.displayName||'Learner',streak:1,lessonsCompleted:0,quizAverage:0,quizCount:0,totalQuizScore:0,createdAt:new Date().toISOString(),lastActive:new Date().toISOString()})}
+async function load(u){await make(u);const r=doc(db,'users',u.uid),s=await getDoc(r),d=s.data()||{},n=d.name||u.displayName||'Learner';$('name').textContent=n;$('pn').textContent=n;$('pe').textContent=u.email||d.email||'';$('av').textContent=n[0]?.toUpperCase()||'L';await updateStreak(r,d);set((await getDoc(r)).data()||d)}
 async function updateStreak(r,d){const today=new Date().toISOString().slice(0,10),last=d.lastActive?new Date(d.lastActive).toISOString().slice(0,10):'';if(last===today)return;let st=Number(d.streak)||0;if(last){const diff=Math.round((new Date(today+'T00:00:00')-new Date(last+'T00:00:00'))/86400000);st=diff===1?st+1:1}else st=1;await updateDoc(r,{streak:st,lastActive:new Date().toISOString()})}
-function setStats(d){const st=Number(d.streak)||0,l=Number(d.lessonsCompleted)||0,q=Math.round(Number(d.quizAverage)||0);$('streak').textContent=st;$('lessons').textContent=l;$('quiz').textContent=q+'%';$('pl').textContent=l;$('pq').textContent=q+'%';$('ps').textContent=st+' days';const p=Math.min(100,l*10);$('progress').style.width=p+'%';$('pct').textContent=p+'%';$('dl').textContent=l;$('dq').textContent=q+'%';$('ds').textContent=st+' days'}
-function renderDashboard(d){const h=Array.isArray(d.quizHistory)?d.quizHistory:[];$('history').innerHTML=h.length?h.slice(-8).reverse().map(x=>`<div class="history-item"><b>${x.course||'General Quiz'}</b> — ${x.percent}% <span class="small">(${x.date||''})</span></div>`).join(''):'<div class="empty">No quiz attempts yet.</div>'}
-window.openDashboard=async()=>{if(auth.currentUser){const s=await getDoc(doc(db,'users',auth.currentUser.uid));renderDashboard(s.data()||{})}page('dashboard',null)};
-window.completeLesson=async()=>{const u=auth.currentUser;if(!u)return;const r=doc(db,'users',u.uid),s=await getDoc(r),d=s.data()||{},l=(Number(d.lessonsCompleted)||0)+1;await updateDoc(r,{lessonsCompleted:l,lastActive:new Date().toISOString()});setStats({...d,lessonsCompleted:l});alert('Lesson completed! 🎉')};
+function set(d){const st=Number(d.streak)||0,l=Number(d.lessonsCompleted)||0,q=Math.round(Number(d.quizAverage)||0);$('streak').textContent=st;$('lessons').textContent=l;$('quiz').textContent=q+'%';$('pl').textContent=l;$('pq').textContent=q+'%';$('ps').textContent=st+' days';$('progress')?.style&&($('progress').style.width=Math.min(100,l*10)+'%')}
+window.logout=()=>signOut(auth);
 
-const courses={'History':{intro:'Indian, Karnataka and world history.',lessons:[['Ancient India','Study the Indus Valley Civilization, Vedic period and major ancient developments.'],['Medieval India','Understand major kingdoms, administration, culture and society.'],['Modern India','Study colonial rule, freedom struggle and the making of modern India.']]},'Indian Polity':{intro:'Constitution and governance.',lessons:[['Constitution Basics','Learn the Constitution, its key features and constitutional government.'],['Fundamental Rights','Understand the Fundamental Rights and their role in protecting citizens.'],['Parliament','Learn Parliament, law-making and basic parliamentary functions.']]},'Geography':{intro:'India and world geography.',lessons:[['Physical Geography','Learn landforms, climate, rivers and natural systems.'],['Indian Geography','Study India’s physical divisions, rivers, climate and resources.'],['World Geography','Understand continents, oceans, climate zones and major regions.']]},'Technology':{intro:'Useful digital skills.',lessons:[['Internet Basics','Learn browsers, search, accounts and basic online safety.'],['Web Basics','Understand HTML, CSS and JavaScript fundamentals.'],['Digital Skills','Learn practical productivity and digital communication skills.']]}};
-function renderCourses(list=Object.keys(courses)){$('courseGrid').innerHTML=list.length?list.map(n=>`<div class="card"><h2>${n==='History'?'🏛️':n==='Indian Polity'?'🇮🇳':n==='Geography'?'🌍':'💻'} ${n}</h2><p>${courses[n].intro}</p><button class="btn" onclick="openCourse('${n}')">Start Learning</button></div>`).join(''):'<div class="card empty">No course found.</div>'}
-window.filterCourses=()=>{const q=$('courseSearch').value.toLowerCase();renderCourses(Object.keys(courses).filter(n=>(n+' '+courses[n].intro).toLowerCase().includes(q)))};
-let currentCourse='';
-window.openCourse=name=>{currentCourse=name;const c=courses[name];$('courseGrid').classList.add('hidden');$('courseDetail').classList.remove('hidden');$('courseTitle').textContent='📖 '+name;$('courseIntro').textContent=c.intro;$('lessonList').innerHTML=c.lessons.map((x,i)=>`<div class="lesson"><h3>Lesson ${i+1}: ${x[0]}</h3><p>${x[1]}</p><button class="btn" onclick="startLesson(${i})">Open Lesson</button></div>`).join('')};
-window.closeCourse=()=>{$('courseDetail').classList.add('hidden');$('courseGrid').classList.remove('hidden')};
-window.startLesson=i=>{const x=courses[currentCourse].lessons[i];$('lessonList').innerHTML=`<div class="lesson"><h2>${x[0]}</h2><p>${x[1]}</p><p><b>Study note:</b> Review the key ideas and connect them with examples before taking the quiz.</p><button class="btn" onclick="finishLessonAndQuiz()">Complete Lesson & Take Quiz</button></div>`};
-window.finishLessonAndQuiz=async()=>{await completeLessonSilent();openQuiz()};
-async function completeLessonSilent(){const u=auth.currentUser;if(!u)return;const r=doc(db,'users',u.uid),s=await getDoc(r),d=s.data()||{},l=(Number(d.lessonsCompleted)||0)+1;await updateDoc(r,{lessonsCompleted:l,lastActive:new Date().toISOString()});setStats({...d,lessonsCompleted:l})}
-
+/* Quiz */
 let selected=-1,qi=0,score=0;
-const questions=[{q:'Which document is the supreme law of India?',o:['The Constitution','A newspaper','A court order','A school textbook'],a:0},{q:'How many days are in a week?',o:['5','6','7','8'],a:2},{q:'Which language is used to structure webpages?',o:['HTML','CSS','SQL','Python'],a:0}];
+const questions=[{q:'Which document is the supreme law of India?',o:['The Constitution','A newspaper','A court order','A school textbook'],a:0},{q:'How many days are in a week?',o:['5','6','7','8'],a:2},{q:'Which language structures webpages?',o:['HTML','CSS','SQL','Python'],a:0}];
 window.openQuiz=()=>{selected=-1;qi=0;score=0;page('quizPage',null);renderQuiz()};
 function renderQuiz(){const x=questions[qi];$('quizBox').innerHTML=`<p>Question ${qi+1} of ${questions.length}</p><h2>${x.q}</h2>${x.o.map((v,j)=>`<button class="option" onclick="choose(${j})">${v}</button>`).join('')}<button class="btn" onclick="nextQuestion()">Next</button>`}
 window.choose=j=>{selected=j;document.querySelectorAll('.option').forEach((b,k)=>b.classList.toggle('selected',k===j))};
 window.nextQuestion=async()=>{if(selected<0){alert('Please select an answer.');return}if(selected===questions[qi].a)score++;qi++;if(qi<questions.length){selected=-1;renderQuiz()}else await finishQuiz(score,questions.length)};
-async function finishQuiz(sc,total){const percent=Math.round(sc/total*100),u=auth.currentUser;if(u){const r=doc(db,'users',u.uid),s=await getDoc(r),d=s.data()||{},cnt=Number(d.quizCount)||0,totalScore=Number(d.totalQuizScore)||0,ncnt=cnt+1,ntotal=totalScore+percent,avg=Math.round(ntotal/ncnt);const hist=Array.isArray(d.quizHistory)?d.quizHistory:[];hist.push({course:currentCourse||'General',percent,date:new Date().toLocaleDateString()});await updateDoc(r,{quizAverage:avg,quizCount:ncnt,totalQuizScore:ntotal,quizHistory:hist.slice(-20),lastActive:new Date().toISOString()});setStats({...d,quizAverage:avg,quizHistory:hist});renderDashboard({...d,quizAverage:avg,quizHistory:hist})}$('quizBox').innerHTML=`<h2>Quiz Complete 🎉</h2><p>You scored <b>${sc}/${total}</b> (${percent}%).</p><button class="btn" onclick="page('courses',document.querySelectorAll('.tabs button')[1]);closeCourse()">Back to Courses</button>`}
-window.logout=()=>signOut(auth);
-window.page=(id,b)=>{document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));$(id).classList.add('active');document.querySelectorAll('.tabs button').forEach(x=>x.classList.remove('active'));if(b)b.classList.add('active');scrollTo(0,0)};
-window.ask=()=>{const q=$('q').value.trim(),sub=$('subject').value;$('answer').classList.remove('hidden');$('answer').textContent=q?`${sub} Tutor — Study response
+async function finishQuiz(sc,total){const percent=Math.round(sc/total*100),u=auth.currentUser;if(u){const r=doc(db,'users',u.uid),s=await getDoc(r),d=s.data()||{},cnt=Number(d.quizCount)||0,totalScore=Number(d.totalQuizScore)||0,ncnt=cnt+1,ntotal=totalScore+percent,avg=Math.round(ntotal/ncnt);await updateDoc(r,{quizAverage:avg,quizCount:ncnt,totalQuizScore:ntotal,lastActive:new Date().toISOString()});set({...d,quizAverage:avg})}$('quizBox').innerHTML=`<h2>Quiz Complete 🎉</h2><p>You scored <b>${sc}/${total}</b> (${percent}%).</p><button class="btn" onclick="page('courses',document.querySelectorAll('.tabs button')[1])">Back to Courses</button>`}
 
-Question: ${q}
+/* Real Gemini REST integration.
+   For a public GitHub Pages site, move this request behind a server/Cloud Function
+   before publishing a real secret key.
+*/
+const GEMINI_API_KEY='PASTE_YOUR_GEMINI_API_KEY_HERE';
+window.askTopic=t=>{page('ai',document.querySelectorAll('.tabs button')[2]);$('q').value='Teach me '+t+' step by step with examples and a short quiz.';askAI()};
+window.askAI=async()=>{
+const q=$('q').value.trim();if(!q)return;
+const box=$('aiBox');box.innerHTML+=`<div class="msg user">${escapeHtml(q)}</div><div id="typing" class="msg bot">Thinking...</div>`;box.scrollTop=box.scrollHeight;
+if(GEMINI_API_KEY.includes('PASTE_')){$('typing').textContent='Gemini is not connected yet. Open index.html and replace GEMINI_API_KEY with your Gemini API key. For a public site, use a backend proxy instead of exposing the key.';return}
+try{
+const prompt=`You are LearNova AI Tutor. Help a student learn. Be accurate, clear and age-appropriate. Explain the answer step by step, give an example when useful, then add 2 short practice questions. User question: ${q}`;
+const res=await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key='+encodeURIComponent(GEMINI_API_KEY),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({contents:[{parts:[{text:prompt}]}]})});
+if(!res.ok)throw new Error('Gemini request failed: '+res.status);
+const data=await res.json();const text=data?.candidates?.[0]?.content?.parts?.map(x=>x.text||'').join('')||'No answer returned.';
+$('typing').textContent=text;
+}catch(e){$('typing').textContent='AI error: '+e.message}
+box.scrollTop=box.scrollHeight;
+};
+function escapeHtml(s){return s.replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
 
-Simple explanation:
-Break the topic into its definition, key points, examples and importance.
-
-Exam-ready points:
-• Definition / introduction
-• 3–5 important points
-• Example or supporting evidence
-• Short conclusion
-
-Quick revision:
-Summarize the topic in 3 sentences and test yourself without looking at your notes.
-
-Note: V3 uses a built-in starter tutor. Connect a real AI API through a secure backend later; do not expose private API keys in this HTML file.`:'Enter a question first.'};
+window.page=(id,b)=>{document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));$(id).classList.add('active');document. querySelectorAll('.tabs button').forEach(x=>x.classList.remove('active'));if(b)b.classList.add('active');scrollTo(0,0)};
 function err(e){return({'auth/invalid-credential':'Invalid email or password.','auth/email-already-in-use':'Email already registered.','auth/weak-password':'Password must be at least 6 characters.','auth/invalid-email':'Invalid email.'}[e.code]||e.message)}
-renderCourses();
 onAuthStateChanged(auth,u=>{if(u){$('auth').classList.add('hidden');$('app').classList.remove('hidden');load(u).catch(console.error)}else{$('auth').classList.remove('hidden');$('app').classList.add('hidden')}});
 </script>
-</body>
-</html>
+</body></html>
