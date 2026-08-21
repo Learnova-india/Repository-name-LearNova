@@ -3,140 +3,100 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>LearNova V3 — Pro Learning Platform</title>
+<title>LearNova V3</title>
 <style>
 *{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f5f6fb;color:#171722}
-header{height:70px;background:#fff;border-bottom:1px solid #ddd;display:flex;align-items:center;justify-content:space-between;padding:0 22px;position:sticky;top:0;z-index:5}
-.logo{font:700 27px Georgia}.logo span{color:#6757ee}.avatar{width:46px;height:46px;border-radius:50%;background:#6757ee;color:#fff;display:grid;place-items:center;font-weight:bold;cursor:pointer}
-.wrap{max-width:1100px;margin:auto;padding:22px 18px 100px}.welcome{font:38px Georgia;margin:12px 0 6px}.sub{color:#777;font:18px Georgia;margin-bottom:25px}
-.stats,.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.grid{grid-template-columns:repeat(2,1fr)}
-.card{background:#fff;border:1px solid #ddd;border-radius:22px;padding:22px;margin-bottom:16px;box-shadow:0 4px 12px rgba(0,0,0,0.03)}.title{font:28px Georgia;margin:28px 0 16px}.st{font-size:15px;color:#777}.val{font-size:32px;font-weight:bold;margin-top:10px;color:#6757ee}.small,p{color:#555}
-.bar{height:12px;background:#eee;border-radius:20px;overflow:hidden;margin:10px 0}.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#6757ee,#9b8eff);transition:width .4s ease}
-.btn{background:#6757ee;color:#fff;border:0;padding:12px 18px;border-radius:11px;margin-top:12px;cursor:pointer;font-weight:bold;transition:0.2s}.btn:hover{opacity:0.9}.secondary{background:#eee;color:#333}.danger{background:#ff4d4f;color:#fff}
-.tabs{position:fixed;bottom:0;left:0;right:0;height:76px;background:#fff;border-top:1px solid #ddd;display:flex;justify-content:space-around;z-index:10}.tabs button{border:0;background:none;color:#777;font-size:12px;cursor:pointer}.tabs .active{color:#6757ee;font-weight:bold}
-.page{display:none}.page.active{display:block}.auth{min-height:100vh;display:grid;place-items:center;padding:18px}.box{width:min(440px,100%);background:#fff;border-radius:24px;padding:28px;box-shadow:0 8px 30px #0001}
-.box input,.field,.search{width:100%;padding:13px;margin:7px 0;border:1px solid #ccc;border-radius:11px;font-size:15px}.box button{width:100%;padding:13px;margin-top:10px;border:0;border-radius:11px;background:#6757ee;color:#fff}
-.link{color:#6757ee;text-align:center;margin-top:16px;cursor:pointer;font-size:14px}.err{color:#c62828;margin:8px 0;font-size:14px}.hidden{display:none!important}
-.lesson{border:1px solid #e2e4f0;border-radius:16px;padding:20px;margin:14px 0;background:#fafaff}.option{display:block;width:100%;text-align:left;background:#fff;border:1px solid #ccc;padding:14px;border-radius:10px;margin:8px 0;font-size:15px;cursor:pointer}.option.selected{border-color:#6757ee;background:#f0edff}
-.option.correct{background:#e6f4ea;border-color:#34a853;color:#137333;font-weight:bold}
-.option.wrong{background:#fce8e6;border-color:#d93025;color:#c5221f}
-.courseTag{display:inline-block;padding:6px 12px;border-radius:20px;background:#f0edff;color:#6757ee;font-size:12px;font-weight:bold}.notice{padding:14px;border-radius:12px;background:#f0edff;margin-top:12px}.ai{min-height:280px}.answer{white-space:pre-wrap;line-height:1.6}
-.badge-list{display:flex;gap:12px;flex-wrap:wrap;margin-top:10px}.badge-item{background:#fafaff;border:1px solid #ddd;border-radius:12px;padding:10px 14px;text-align:center;font-size:13px}
-.explanation-box{background:#f9f9f9;border-left:4px solid #6757ee;padding:12px;margin-top:12px;border-radius:0 8px 8px 0;font-size:14px}
-@media(max-width:768px){.stats{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:1fr}.welcome{font-size:28px}.tabs{height:70px}}
+header{height:72px;background:#fff;border-bottom:1px solid #ddd;display:flex;align-items:center;justify-content:space-between;padding:0 22px;position:sticky;top:0;z-index:5}
+.logo{font:700 27px Georgia}.logo span{color:#6757ee}.avatar{width:48px;height:48px;border-radius:50%;background:#6757ee;color:#fff;display:grid;place-items:center}
+.wrap{max-width:1050px;margin:auto;padding:25px 20px 100px}.welcome{font:38px Georgia;margin:15px 0 8px}.sub{color:#777;font:18px Georgia;margin-bottom:28px}
+.stats,.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.grid{grid-template-columns:repeat(2,1fr)}
+.card{background:#fff;border:1px solid #ddd;border-radius:24px;padding:25px;margin-bottom:18px}.title{font:28px Georgia;margin:35px 0 18px}.st{font:18px Georgia;color:#777}
+.val{font-size:42px;margin-top:16px}.small,p{color:#777}.bar{height:10px;background:#eee;border-radius:20px;overflow:hidden}.bar i{display:block;height:100%;width:0;background:#6757ee;transition:.3s}
+.btn{background:#6757ee;color:#fff;border:0;padding:13px 20px;border-radius:12px;margin-top:16px;cursor:pointer}.secondary{background:#eee;color:#333}
+.tabs{position:fixed;bottom:0;left:0;right:0;height:78px;background:#fff;border-top:1px solid #ddd;display:flex;justify-content:space-around;z-index:10}
+.tabs button{border:0;background:none;color:#777;cursor:pointer}.tabs .active{color:#6757ee}.page{display:none}.page.active{display:block}
+.auth{min-height:100vh;display:grid;place-items:center;padding:20px}.box{width:min(430px,100%);background:#fff;border-radius:25px;padding:30px;box-shadow:0 8px 30px #0001}
+.box input,.field,.search{width:100%;padding:14px;margin:7px 0;border:1px solid #ccc;border-radius:12px}.box button{width:100%;padding:14px;margin-top:10px;border:0;border-radius:12px;background:#6757ee;color:#fff}
+.link{color:#6757ee;text-align:center;margin-top:18px;cursor:pointer}.err{color:#c62828;margin:8px 0}.hidden{display:none!important}
+.lesson{border:1px solid #ddd;border-radius:18px;padding:18px;margin:12px 0;background:#fafaff}.option{display:block;width:100%;text-align:left;background:#fff;border:1px solid #ccc;padding:13px;border-radius:10px;margin:8px 0;cursor:pointer}
+.option.selected{border-color:#6757ee;background:#f0edff}.tag{display:inline-block;padding:6px 10px;border-radius:999px;background:#eee;margin:3px;font-size:13px}.empty{padding:20px;text-align:center;color:#777}
+.ai-answer{white-space:pre-wrap;line-height:1.6;background:#f8f7ff;padding:16px;border-radius:14px;margin-top:15px}
+.history-item{padding:12px 0;border-bottom:1px solid #eee}.history-item:last-child{border-bottom:0}
+@media(max-width:700px){.stats,.grid{grid-template-columns:1fr}.welcome{font-size:31px}}
 </style>
 </head>
 <body>
 
 <div id="auth" class="auth"><div class="box">
 <div class="logo"><span>✦</span> LEARNOVA <small>V3</small></div>
-<section id="login"><h1>Welcome back 👋</h1><p>Continue your upgraded learning journey.</p>
+<section id="login"><h1>Welcome back 👋</h1><p>Continue your learning journey.</p>
 <input id="le" type="email" placeholder="Email"><input id="lp" type="password" placeholder="Password">
 <div id="lm" class="err"></div><button onclick="login()">Login</button><div class="link" onclick="signupForm()">Create account</div></section>
-<section id="signup" class="hidden"><h1>Create account</h1><input id="sn" placeholder="Your name"><input id="se" type="email" placeholder="Email"><input id="sp" type="password" placeholder="Password (6+ characters)">
+<section id="signup" class="hidden"><h1>Create account</h1><input id="sn" placeholder="Your name">
+<input id="se" type="email" placeholder="Email"><input id="sp" type="password" placeholder="Password (6+ characters)">
 <div id="sm" class="err"></div><button onclick="signup()">Sign Up</button><div class="link" onclick="loginForm()">Already have an account? Login</div></section>
 </div></div>
 
 <div id="app" class="hidden">
-<header>
-  <div class="logo"><span>✦</span> LEARNOVA <small>V3</small></div>
-  <div style="display:flex;align-items:center;gap:10px">
-    <span style="font-weight:bold;font-size:14px;color:#6757ee">⭐ <span id="headerXp">0</span> XP</span>
-    <div id="av" class="avatar" onclick="page('profile',document.querySelectorAll('.tabs button')[4])">L</div>
-  </div>
-</header>
-
+<header><div class="logo"><span>✦</span> LEARNOVA <small>V3</small></div><div id="av" class="avatar">L</div></header>
 <main class="wrap">
 
 <section id="home" class="page active">
 <div class="welcome">Welcome back, <span id="name">Learner</span> 👋</div>
-<div class="sub">Your personalized AI-powered learning dashboard.</div>
-
+<div class="sub">Your personalized learning dashboard.</div>
 <div class="stats">
-<div class="card"><div class="st">🔥 Streak</div><div id="streak" class="val">0</div><div class="small">days</div></div>
-<div class="card"><div class="st">⚡ Experience (XP)</div><div id="xp" class="val">0</div><div class="small">points</div></div>
-<div class="card"><div class="st">📚 Lessons</div><div id="lessons" class="val">0</div><div class="small">completed</div></div>
-<div class="card"><div class="st">📝 Quiz Average</div><div id="quiz" class="val">0%</div><div class="small">accuracy</div></div>
+<div class="card"><div class="st">🔥 Current Streak</div><div id="streak" class="val">0</div><div class="small">days</div></div>
+<div class="card"><div class="st">📚 Lessons Completed</div><div id="lessons" class="val">0</div><div class="small">completed</div></div>
+<div class="card"><div class="st">📝 Quiz Average</div><div id="quiz" class="val">0%</div><div class="small">average</div></div>
 </div>
-
 <div class="title">🎯 Learning Progress</div>
-<div class="card">
-  <h2>Syllabus Completion</h2>
-  <div class="bar"><i id="progress"></i></div>
-  <p>Progress: <b id="pct">0%</b> completed</p>
-  <button class="btn" onclick="page('courses',document.querySelectorAll('.tabs button')[1])">Explore Detailed Courses</button>
-</div>
-
-<div class="card">
-  <h2>🏅 Your Badges & Achievements</h2>
-  <div id="badgeContainer" class="badge-list"></div>
+<div class="card"><h2>Your progress</h2><p>Complete lessons and quizzes to build your learning record.</p>
+<div class="bar"><i id="progress"></i></div><p>Progress: <b id="pct">0%</b></p>
+<button class="btn" onclick="page('courses',document.querySelectorAll('.tabs button')[1])">Explore Courses</button>
+<button class="btn secondary" onclick="openDashboard()">My Activity</button>
 </div>
 </section>
 
 <section id="courses" class="page">
-<div class="title">📚 Structured Courses</div>
-<input id="courseSearch" class="search" placeholder="Search courses, chapters, or topics..." oninput="renderCourses()">
+<div class="title">📚 Courses</div>
+<input id="courseSearch" class="search" placeholder="Search courses..." oninput="filterCourses()">
 <div id="courseGrid" class="grid"></div>
-<div id="courseDetail" class="card hidden">
-  <button class="btn secondary" onclick="closeCourse()">← Back to Courses</button>
-  <h2 id="courseTitle" style="margin-top:15px"></h2>
-  <p id="courseIntro"></p>
-  <div id="lessonList"></div>
-</div>
+<div id="courseDetail" class="card hidden"><button class="btn secondary" onclick="closeCourse()">← Back</button>
+<h2 id="courseTitle"></h2><p id="courseIntro"></p><div id="lessonList"></div></div>
 </section>
 
 <section id="ai" class="page">
-<div class="title">🤖 AI Tutor (Kannada + English)</div>
-<div class="card ai">
-  <h2>LearNova Real-Time AI Tutor</h2>
-  <p>ಯಾವುದೇ ವಿಷಯದ ಬಗ್ಗೆ ಪ್ರಶ್ನೆ ಕೇಳಿ. ಕನ್ನಡ ಅಥವಾ ಇಂಗ್ಲಿಷ್‌ನಲ್ಲಿ ಕಲಿಯಿರಿ.</p>
-  <textarea id="q" class="field" rows="4" placeholder="Ex: Explain the Fundamental Rights in simple Kannada..."></textarea>
-  <div style="display:flex;gap:10px">
-    <button class="btn" id="askBtn" onclick="askAiTutor()">Ask AI Tutor 🚀</button>
-  </div>
-  <div id="aiLoading" class="notice hidden">Thinking & generating answer... ⏳</div>
-  <div id="answer" class="answer notice hidden"></div>
+<div class="title">🤖 AI Tutor</div>
+<div class="card"><h2>Learnova AI Tutor</h2><p>Ask a study question and get a structured study response.</p>
+<input id="q" class="field" placeholder="Example: Explain Fundamental Rights">
+<select id="subject" class="field"><option>General</option><option>History</option><option>Indian Polity</option><option>Geography</option><option>Technology</option></select>
+<button class="btn" onclick="ask()">Ask Tutor</button><div id="answer" class="ai-answer hidden"></div>
 </div>
+<div class="card"><h3>💡 V3 Study Modes</h3><span class="tag">Simple explanation</span><span class="tag">Exam points</span><span class="tag">Quick revision</span><span class="tag">Quiz practice</span></div>
 </section>
 
-<section id="bookmarks" class="page"><div class="title">🔖 Bookmarks</div><div id="bookmarkList" class="card"></div></section>
+<section id="dashboard" class="page">
+<div class="title">📊 My Activity</div><div class="card"><h2>Learning Summary</h2>
+<p>Lessons completed: <b id="dl">0</b></p><p>Quiz average: <b id="dq">0%</b></p><p>Current streak: <b id="ds">0 days</b></p></div>
+<div class="card"><h2>Recent Quiz Results</h2><div id="history"></div></div>
+</section>
 
 <section id="profile" class="page">
-<div class="title">👤 User Profile & Statistics</div>
-<div class="card">
-  <h2 id="pn">Learner</h2>
-  <p id="pe"></p>
-  <div style="margin:16px 0;line-height:1.8">
-    <p>⚡ Total XP: <b id="pxp">0</b></p>
-    <p>📚 Completed Lessons: <b id="pl">0</b></p>
-    <p>📝 Quiz Performance: <b id="pq">0%</b></p>
-    <p>🔥 Active Streak: <b id="ps">0 days</b></p>
-  </div>
-  <button class="btn" onclick="certificate()">🏆 View Official Certificate</button>
-  <br><br>
-  <button class="btn danger" onclick="logout()">Logout</button>
-</div>
+<div class="title">👤 Profile</div><div class="card"><h2 id="pn">Learner</h2><p id="pe"></p>
+<p>Lessons: <b id="pl">0</b></p><p>Quiz: <b id="pq">0%</b></p><p>Streak: <b id="ps">0 days</b></p>
+<button class="btn" onclick="logout()">Logout</button></div>
 </section>
 
-<section id="quizPage" class="page">
-<div class="title">📝 Topic Assessment</div>
-<div id="quizBox" class="card"></div>
-</section>
-
-<section id="certificatePage" class="page">
-<div class="title">🏆 Certificate of Achievement</div>
-<div class="card" id="certificateBox"></div>
-</section>
-
+<section id="quizPage" class="page"><div class="title">📝 Quiz</div><div id="quizBox" class="card"></div></section>
 </main>
 
 <nav class="tabs">
 <button class="active" onclick="page('home',this)">🏠<br>Home</button>
 <button onclick="page('courses',this)">📚<br>Courses</button>
 <button onclick="page('ai',this)">🧠<br>AI Tutor</button>
-<button onclick="page('bookmarks',this)">🔖<br>Saved</button>
 <button onclick="page('profile',this)">👤<br>Profile</button>
-</nav></div>
+</nav>
+</div>
 
 <script type="module">
 import{initializeApp}from'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
@@ -146,358 +106,61 @@ import{getFirestore,doc,setDoc,getDoc,updateDoc}from'https://www.gstatic.com/fir
 const config={apiKey:'AIzaSyC5Mn2Sxh_k3AG1WCGJyBNvEGuhGLgwE2M',authDomain:'learnova-5ea26.firebaseapp.com',projectId:'learnova-5ea26',storageBucket:'learnova-5ea26.firebasestorage.app',messagingSenderId:'1065475515760',appId:'1:1065475515760:web:0f756addc73eedea215bb5'};
 const app=initializeApp(config),auth=getAuth(app),db=getFirestore(app),$=id=>document.getElementById(id);
 
-// Comprehensive V3 Content System with Structured Explanations & Quizzes
-const courses={
-'Indian Polity':{
-  intro:'Constitution, Governance, and Political Structure.',
-  lessons:[
-    {
-      title:'Constitution Basics',
-      content:'The Constitution of India is the supreme law of India. Drafted by the Constituent Assembly headed by Dr. B.R. Ambedkar (Drafting Committee Chairman), it came into effect on 26th January 1950. It is the longest written national constitution in the world.',
-      quiz:[
-        {q:'Who was the Chairman of the Drafting Committee of the Indian Constitution?',o:['Dr. B.R. Ambedkar','Jawaharlal Nehru','Mahatma Gandhi','Sardar Patel'],a:0,exp:'Dr. B.R. Ambedkar served as the chairman of the drafting committee.'},
-        {q:'When did the Indian Constitution come into effect?',o:['15th August 1947','26th January 1950','26th November 1949','1st January 1950'],a:1,exp:'It came into effect on 26th January 1950, celebrated as Republic Day.'}
-      ]
-    },
-    {
-      title:'Fundamental Rights',
-      content:'Enshrined in Part III (Articles 12-35) of the Constitution, Fundamental Rights protect individual liberties. They include Right to Equality, Right to Freedom, Right against Exploitation, Right to Freedom of Religion, Cultural & Educational Rights, and Right to Constitutional Remedies (Art 32).',
-      quiz:[
-        {q:'Which Article is considered the "Heart and Soul" of the Constitution?',o:['Article 14','Article 19','Article 21','Article 32'],a:3,exp:'Article 32 gives the right to move the Supreme Court for enforcement of rights.'}
-      ]
-    }
-  ]
-},
-'History':{
-  intro:'Ancient, Medieval, and Modern Indian & World History.',
-  lessons:[
-    {
-      title:'Ancient India & Indus Valley',
-      content:'The Indus Valley Civilisation (Harappan Civilization) flourished around 2500 BCE. Notable for urban town planning, grid layouts, drainage systems, and the Great Bath at Mohenjo-daro.',
-      quiz:[
-        {q:'The Great Bath was discovered in which Indus Valley site?',o:['Harappa','Mohenjo-daro','Lothal','Kalibangan'],a:1,exp:'The Great Bath is one of the most well-known structures of Mohenjo-daro.'}
-      ]
-    },
-    {
-      title:'Modern Freedom Movement',
-      content:'The Indian Freedom struggle culminated under leaderships like Mahatma Gandhi, Subhas Chandra Bose, and Bhagat Singh. Key movements include Non-Cooperation (1920), Civil Disobedience (1930), and Quit India (1942).',
-      quiz:[
-        {q:'In which year was the Quit India Movement launched?',o:['1930','1942','1919','1947'],a:1,exp:'Quit India Movement was launched in August 1942 at the Bombay session.'}
-      ]
-    }
-  ]
-},
-'Technology & AI':{
-  intro:'Programming fundamentals, Web Development & Artificial Intelligence.',
-  lessons:[
-    {
-      title:'Web Fundamentals (HTML/CSS/JS)',
-      content:'HTML provides the skeleton and structural content of a page, CSS provides visual styling and aesthetics, and JavaScript brings interactivity and programmable logic to the client side.',
-      quiz:[
-        {q:'Which language handles dynamic behavior in web pages?',o:['HTML','CSS','JavaScript','XML'],a:2,exp:'JavaScript enables interactive elements on browsers.'}
-      ]
-    },
-    {
-      title:'Basics of Machine Learning & AI',
-      content:'Artificial Intelligence empowers software to learn patterns from data. Large Language Models (LLMs) utilize transformer architectures to process context and generate natural text.',
-      quiz:[
-        {q:'What does LLM stand for in modern AI?',o:['Large Language Model','Linear Learning Machine','Logical Level Mapper','Light Logic Module'],a:0,exp:'LLM stands for Large Language Model.'}
-      ]
-    }
-  ]
-},
-'ಕನ್ನಡ ಸಾಹಿತ್ಯ ಮತ್ತು ವ್ಯಾಕರಣ':{
-  intro:'ಕನ್ನಡ ಭಾಷೆ, ವ್ಯಾಕರಣ ಮತ್ತು ಸಾಹಿತ್ಯ ಪರಿಚಯ.',
-  lessons:[
-    {
-      title:'ಕನ್ನಡ ವರ್ಣಮಾಲೆ ಮತ್ತು ಸಂಧಿಗಳು',
-      content:'ಕನ್ನಡ ವರ್ಣಮಾಲೆಯಲ್ಲಿ ಒಟ್ಟು 49 ಅಕ್ಷರಗಳಿವೆ. ಅವುಗಳಲ್ಲಿ ಸ್ವರಗಳು 13, ಯೋಗವಾಹಗಳು 2, ಮತ್ತು ವ್ಯಂಜನಗಳು 34. ಸಂಧಿಗಳಲ್ಲಿ ಲೋಪ, ಆಗಮ, ಮತ್ತು ಆದೇಶ ಸಂಧಿಗಳು ಪ್ರಮುಖವಾದವು.',
-      quiz:[
-        {q:'ಕನ್ನಡ ವರ್ಣಮಾಲೆಯಲ್ಲಿರುವ ಒಟ್ಟು ಅಕ್ಷರಗಳ ಸಂಖ್ಯೆ ಎಷ್ಟು?',o:['48','49','50','52'],a:1,exp:'ಕನ್ನಡ ವರ್ಣಮಾಲೆಯಲ್ಲಿ ಒಟ್ಟು 49 ಅಕ್ಷರಗಳಿವೆ.'}
-      ]
-    }
-  ]
-}
-};
-
 window.loginForm=()=>{$('signup').classList.add('hidden');$('login').classList.remove('hidden')};
 window.signupForm=()=>{$('login').classList.add('hidden');$('signup').classList.remove('hidden')};
-function err(e){return({'auth/invalid-credential':'Invalid email or password.','auth/email-already-in-use':'Email already registered.','auth/weak-password':'Password must be at least 6 characters.','auth/invalid-email':'Invalid email.'}[e.code]||e.message)}
 window.login=async()=>{try{await signInWithEmailAndPassword(auth,$('le').value.trim(),$('lp').value)}catch(e){$('lm').textContent=err(e)}};
-window.signup=async()=>{try{const n=$('sn').value.trim();if(!n){$('sm').textContent='Please enter your name.';return}const c=await createUserWithEmailAndPassword(auth,$('se').value.trim(),$('sp').value);await updateProfile(c.user,{displayName:n});await make(c.user)}catch(e){$('sm').textContent=err(e)}};
+window.signup=async()=>{try{const n=$('sn').value.trim();if(!n){$('sm').textContent='Please enter your name.';return}
+const c=await createUserWithEmailAndPassword(auth,$('se').value.trim(),$('sp').value);await updateProfile(c.user,{displayName:n});await make(c.user)}
+catch(e){$('sm').textContent=err(e)}};
 
-async function make(u){
-  const r=doc(db,'users',u.uid),s=await getDoc(r);
-  if(!s.exists()){
-    await setDoc(r,{
-      email:u.email||'',
-      name:u.displayName||'Learner',
-      streak:1,
-      xp:50,
-      lessonsCompleted:0,
-      quizAverage:0,
-      quizCount:0,
-      totalQuizScore:0,
-      bookmarks:[],
-      badges:['Rookie Learner'],
-      createdAt:new Date().toISOString(),
-      lastActive:new Date().toISOString()
-    });
-  }
-}
+async function make(u){const r=doc(db,'users',u.uid),s=await getDoc(r);if(!s.exists())await setDoc(r,{email:u.email||'',name:u.displayName||'Learner',streak:1,lessonsCompleted:0,quizAverage:0,quizCount:0,totalQuizScore:0,quizHistory:[],createdAt:new Date().toISOString(),lastActive:new Date().toISOString()})}
+async function load(u){await make(u);const r=doc(db,'users',u.uid),s=await getDoc(r),d=s.data()||{},n=d.name||u.displayName||'Learner';
+$('name').textContent=n;$('pn').textContent=n;$('pe').textContent=u.email||d.email||'';$('av').textContent=n[0]?.toUpperCase()||'L';await updateStreak(r,d);const fresh=(await getDoc(r)).data()||d;setStats(fresh);renderDashboard(fresh)}
+async function updateStreak(r,d){const today=new Date().toISOString().slice(0,10),last=d.lastActive?new Date(d.lastActive).toISOString().slice(0,10):'';if(last===today)return;let st=Number(d.streak)||0;if(last){const diff=Math.round((new Date(today+'T00:00:00')-new Date(last+'T00:00:00'))/86400000);st=diff===1?st+1:1}else st=1;await updateDoc(r,{streak:st,lastActive:new Date().toISOString()})}
+function setStats(d){const st=Number(d.streak)||0,l=Number(d.lessonsCompleted)||0,q=Math.round(Number(d.quizAverage)||0);$('streak').textContent=st;$('lessons').textContent=l;$('quiz').textContent=q+'%';$('pl').textContent=l;$('pq').textContent=q+'%';$('ps').textContent=st+' days';const p=Math.min(100,l*10);$('progress').style.width=p+'%';$('pct').textContent=p+'%';$('dl').textContent=l;$('dq').textContent=q+'%';$('ds').textContent=st+' days'}
+function renderDashboard(d){const h=Array.isArray(d.quizHistory)?d.quizHistory:[];$('history').innerHTML=h.length?h.slice(-8).reverse().map(x=>`<div class="history-item"><b>${x.course||'General Quiz'}</b> — ${x.percent}% <span class="small">(${x.date||''})</span></div>`).join(''):'<div class="empty">No quiz attempts yet.</div>'}
+window.openDashboard=async()=>{if(auth.currentUser){const s=await getDoc(doc(db,'users',auth.currentUser.uid));renderDashboard(s.data()||{})}page('dashboard',null)};
+window.completeLesson=async()=>{const u=auth.currentUser;if(!u)return;const r=doc(db,'users',u.uid),s=await getDoc(r),d=s.data()||{},l=(Number(d.lessonsCompleted)||0)+1;await updateDoc(r,{lessonsCompleted:l,lastActive:new Date().toISOString()});setStats({...d,lessonsCompleted:l});alert('Lesson completed! 🎉')};
 
-async function load(u){
-  await make(u);
-  const r=doc(db,'users',u.uid),s=await getDoc(r),d=s.data()||{},n=d.name||u.displayName||'Learner';
-  $('name').textContent=n;$('pn').textContent=n;$('pe').textContent=u.email||d.email||'';$('av').textContent=n[0]?.toUpperCase()||'L';
-  await updateStreak(r,d);
-  const nd=(await getDoc(r)).data()||d;
-  setStats(nd);
-  renderCourses();
-  renderBookmarks(nd.bookmarks||[]);
-}
+const courses={'History':{intro:'Indian, Karnataka and world history.',lessons:[['Ancient India','Study the Indus Valley Civilization, Vedic period and major ancient developments.'],['Medieval India','Understand major kingdoms, administration, culture and society.'],['Modern India','Study colonial rule, freedom struggle and the making of modern India.']]},'Indian Polity':{intro:'Constitution and governance.',lessons:[['Constitution Basics','Learn the Constitution, its key features and constitutional government.'],['Fundamental Rights','Understand the Fundamental Rights and their role in protecting citizens.'],['Parliament','Learn Parliament, law-making and basic parliamentary functions.']]},'Geography':{intro:'India and world geography.',lessons:[['Physical Geography','Learn landforms, climate, rivers and natural systems.'],['Indian Geography','Study India’s physical divisions, rivers, climate and resources.'],['World Geography','Understand continents, oceans, climate zones and major regions.']]},'Technology':{intro:'Useful digital skills.',lessons:[['Internet Basics','Learn browsers, search, accounts and basic online safety.'],['Web Basics','Understand HTML, CSS and JavaScript fundamentals.'],['Digital Skills','Learn practical productivity and digital communication skills.']]}};
+function renderCourses(list=Object.keys(courses)){$('courseGrid').innerHTML=list.length?list.map(n=>`<div class="card"><h2>${n==='History'?'🏛️':n==='Indian Polity'?'🇮🇳':n==='Geography'?'🌍':'💻'} ${n}</h2><p>${courses[n].intro}</p><button class="btn" onclick="openCourse('${n}')">Start Learning</button></div>`).join(''):'<div class="card empty">No course found.</div>'}
+window.filterCourses=()=>{const q=$('courseSearch').value.toLowerCase();renderCourses(Object.keys(courses).filter(n=>(n+' '+courses[n].intro).toLowerCase().includes(q)))};
+let currentCourse='';
+window.openCourse=name=>{currentCourse=name;const c=courses[name];$('courseGrid').classList.add('hidden');$('courseDetail').classList.remove('hidden');$('courseTitle').textContent='📖 '+name;$('courseIntro').textContent=c.intro;$('lessonList').innerHTML=c.lessons.map((x,i)=>`<div class="lesson"><h3>Lesson ${i+1}: ${x[0]}</h3><p>${x[1]}</p><button class="btn" onclick="startLesson(${i})">Open Lesson</button></div>`).join('')};
+window.closeCourse=()=>{$('courseDetail').classList.add('hidden');$('courseGrid').classList.remove('hidden')};
+window.startLesson=i=>{const x=courses[currentCourse].lessons[i];$('lessonList').innerHTML=`<div class="lesson"><h2>${x[0]}</h2><p>${x[1]}</p><p><b>Study note:</b> Review the key ideas and connect them with examples before taking the quiz.</p><button class="btn" onclick="finishLessonAndQuiz()">Complete Lesson & Take Quiz</button></div>`};
+window.finishLessonAndQuiz=async()=>{await completeLessonSilent();openQuiz()};
+async function completeLessonSilent(){const u=auth.currentUser;if(!u)return;const r=doc(db,'users',u.uid),s=await getDoc(r),d=s.data()||{},l=(Number(d.lessonsCompleted)||0)+1;await updateDoc(r,{lessonsCompleted:l,lastActive:new Date().toISOString()});setStats({...d,lessonsCompleted:l})}
 
-async function updateStreak(r,d){
-  const today=new Date().toISOString().slice(0,10),last=d.lastActive?new Date(d.lastActive).toISOString().slice(0,10):'';
-  if(last===today)return;
-  let st=Number(d.streak)||0;
-  if(last){
-    const diff=Math.round((new Date(today+'T00:00:00')-new Date(last+'T00:00:00'))/86400000);
-    st=diff===1?st+1:1;
-  }else st=1;
-  await updateDoc(r,{streak:st,lastActive:new Date().toISOString()});
-}
-
-function setStats(d){
-  const st=Number(d.streak)||0,l=Number(d.lessonsCompleted)||0,q=Math.round(Number(d.quizAverage)||0),xp=Number(d.xp)||0;
-  $('streak').textContent=st;$('lessons').textContent=l;$('quiz').textContent=q+'%';
-  $('xp').textContent=xp;$('headerXp').textContent=xp;
-  $('pl').textContent=l;$('pq').textContent=q+'%';$('ps').textContent=st+' days';$('pxp').textContent=xp;
-  
-  const totalLessonsCount = Object.values(courses).reduce((acc, c)=>acc+c.lessons.length, 0);
-  const p=Math.min(100,Math.round(l/totalLessonsCount*100));
-  $('progress').style.width=p+'%';$('pct').textContent=p+'%';
-  
-  // Badges update
-  const badges = ['🌱 Rookie Learner'];
-  if(l >= 2) badges.push('📚 Dedicated Scholar');
-  if(xp >= 200) badges.push('⚡ Knowledge Warrior');
-  if(q >= 80) badges.push('🎯 Quiz Master');
-  
-  $('badgeContainer').innerHTML = badges.map(b=>`<div class="badge-item">${b}</div>`).join('');
-}
-
-window.page=(id,b)=>{document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));$(id).classList.add('active');document.querySelectorAll('.tabs button').forEach(x=>x.classList.remove('active'));if(b)b.classList.add('active');scrollTo(0,0)};
-window.logout=()=>signOut(auth);
-
-window.renderCourses=()=>{
-  const term=($('courseSearch')?.value||'').toLowerCase();
-  $('courseGrid').innerHTML=Object.entries(courses).filter(([n,c])=>(n+' '+c.intro).toLowerCase().includes(term)).map(([n,c])=>`
-    <div class="card">
-      <span class="courseTag">${c.lessons.length} Modules</span>
-      <h2 style="margin:12px 0 6px">${n}</h2>
-      <p>${c.intro}</p>
-      <button class="btn" onclick="openCourse('${n.replace(/'/g,"\\'")}')">Open Course</button>
-    </div>`).join('')||'<div class="card"><p>No courses matched your query.</p></div>';
-};
-
-let currentCourse='',currentLesson=0;
-window.openCourse=name=>{
-  currentCourse=name;
-  $('courseGrid').classList.add('hidden');
-  $('courseDetail').classList.remove('hidden');
-  $('courseTitle').textContent='📖 '+name;
-  $('courseIntro').textContent=courses[name].intro;
-  showLessons();
-};
-
-window.closeCourse=()=>{
-  $('courseDetail').classList.add('hidden');
-  $('courseGrid').classList.remove('hidden');
-};
-
-function showLessons(){
-  const c=courses[currentCourse];
-  $('lessonList').innerHTML=c.lessons.map((x,i)=>`
-    <div class="lesson">
-      <h3>Chapter ${i+1}: ${x.title}</h3>
-      <p>${x.content.substring(0,90)}...</p>
-      <button class="btn" onclick="startLesson(${i})">Start Reading</button>
-      <button class="btn secondary" onclick="bookmarkLesson(${i})">🔖 Save</button>
-    </div>`).join('');
-}
-
-window.startLesson=i=>{
-  currentLesson=i;
-  const x=courses[currentCourse].lessons[i];
-  $('lessonList').innerHTML=`
-    <div class="lesson">
-      <h2>${x.title}</h2>
-      <p style="font-size:16px;line-height:1.6;margin:15px 0">${x.content}</p>
-      <div class="notice"><b>Key Takeaway:</b> Review the key concepts carefully before taking the chapter quiz.</div>
-      <br>
-      <button class="btn" onclick="finishLessonAndQuiz()">Complete & Take Chapter Quiz (+50 XP)</button>
-      <button class="btn secondary" onclick="showLessons()">← Back to Chapters</button>
-    </div>`;
-};
-
-window.finishLessonAndQuiz=async()=>{
-  await addProgress(50);
-  currentQuizList = courses[currentCourse].lessons[currentLesson].quiz || [];
-  if(currentQuizList.length > 0) {
-    openQuiz();
-  } else {
-    alert('Lesson Completed! +50 XP Awarded.');
-    showLessons();
-  }
-};
-
-async function addProgress(earnedXp){
-  const u=auth.currentUser;if(!u)return;
-  const r=doc(db,'users',u.uid),s=await getDoc(r),d=s.data()||{};
-  const l=(Number(d.lessonsCompleted)||0)+1;
-  const newXp=(Number(d.xp)||0)+earnedXp;
-  await updateDoc(r,{lessonsCompleted:l,xp:newXp,lastActive:new Date().toISOString()});
-  setStats({...d,lessonsCompleted:l,xp:newXp});
-}
-
-window.bookmarkLesson=async i=>{
-  const u=auth.currentUser;if(!u)return;
-  const r=doc(db,'users',u.uid),s=await getDoc(r),d=s.data()||{},arr=Array.isArray(d.bookmarks)?d.bookmarks:[],key=currentCourse+'::'+i;
-  if(!arr.includes(key))arr.push(key);else arr.splice(arr.indexOf(key),1);
-  await updateDoc(r,{bookmarks:arr});
-  renderBookmarks(arr);
-  alert(arr.includes(key)?'Saved to Bookmarks 🔖':'Bookmark removed');
-};
-
-function renderBookmarks(arr){
-  if(!arr.length){$('bookmarkList').innerHTML='<h3>No bookmarks yet</h3><p>Save chapters and lessons to study later.</p>';return}
-  $('bookmarkList').innerHTML=arr.map(k=>{
-    const [c,i]=k.split('::');
-    const x=courses[c]?.lessons[Number(i)];
-    return x?`<div class="lesson"><b>${c}</b><h3>${x.title}</h3><button class="btn" onclick="openCourse('${c.replace(/'/g,"\\'")}');startLesson(${i})">Read Chapter</button></div>`:''
-  }).join('');
-}
-
-let selected=-1,qi=0,score=0,currentQuizList=[];
+let selected=-1,qi=0,score=0;
+const questions=[{q:'Which document is the supreme law of India?',o:['The Constitution','A newspaper','A court order','A school textbook'],a:0},{q:'How many days are in a week?',o:['5','6','7','8'],a:2},{q:'Which language is used to structure webpages?',o:['HTML','CSS','SQL','Python'],a:0}];
 window.openQuiz=()=>{selected=-1;qi=0;score=0;page('quizPage',null);renderQuiz()};
+function renderQuiz(){const x=questions[qi];$('quizBox').innerHTML=`<p>Question ${qi+1} of ${questions.length}</p><h2>${x.q}</h2>${x.o.map((v,j)=>`<button class="option" onclick="choose(${j})">${v}</button>`).join('')}<button class="btn" onclick="nextQuestion()">Next</button>`}
+window.choose=j=>{selected=j;document.querySelectorAll('.option').forEach((b,k)=>b.classList.toggle('selected',k===j))};
+window.nextQuestion=async()=>{if(selected<0){alert('Please select an answer.');return}if(selected===questions[qi].a)score++;qi++;if(qi<questions.length){selected=-1;renderQuiz()}else await finishQuiz(score,questions.length)};
+async function finishQuiz(sc,total){const percent=Math.round(sc/total*100),u=auth.currentUser;if(u){const r=doc(db,'users',u.uid),s=await getDoc(r),d=s.data()||{},cnt=Number(d.quizCount)||0,totalScore=Number(d.totalQuizScore)||0,ncnt=cnt+1,ntotal=totalScore+percent,avg=Math.round(ntotal/ncnt);const hist=Array.isArray(d.quizHistory)?d.quizHistory:[];hist.push({course:currentCourse||'General',percent,date:new Date().toLocaleDateString()});await updateDoc(r,{quizAverage:avg,quizCount:ncnt,totalQuizScore:ntotal,quizHistory:hist.slice(-20),lastActive:new Date().toISOString()});setStats({...d,quizAverage:avg,quizHistory:hist});renderDashboard({...d,quizAverage:avg,quizHistory:hist})}$('quizBox').innerHTML=`<h2>Quiz Complete 🎉</h2><p>You scored <b>${sc}/${total}</b> (${percent}%).</p><button class="btn" onclick="page('courses',document.querySelectorAll('.tabs button')[1]);closeCourse()">Back to Courses</button>`}
+window.logout=()=>signOut(auth);
+window.page=(id,b)=>{document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));$(id).classList.add('active');document.querySelectorAll('.tabs button').forEach(x=>x.classList.remove('active'));if(b)b.classList.add('active');scrollTo(0,0)};
+window.ask=()=>{const q=$('q').value.trim(),sub=$('subject').value;$('answer').classList.remove('hidden');$('answer').textContent=q?`${sub} Tutor — Study response
 
-function renderQuiz(){
-  const x=currentQuizList[qi];
-  $('quizBox').innerHTML=`
-    <p>Question ${qi+1} of ${currentQuizList.length}</p>
-    <h2>${x.q}</h2>
-    <div id="optList">${x.o.map((v,j)=>`<button class="option" onclick="choose(${j})">${v}</button>`).join('')}</div>
-    <div id="quizExp" class="explanation-box hidden"><b>Explanation:</b> ${x.exp}</div>
-    <button class="btn" id="quizNextBtn" onclick="evaluateAndNext()">Confirm Answer</button>
-  `;
-}
+Question: ${q}
 
-window.choose=j=>{
-  selected=j;
-  document.querySelectorAll('.option').forEach((b,k)=>b.classList.toggle('selected',k===j));
-};
+Simple explanation:
+Break the topic into its definition, key points, examples and importance.
 
-window.evaluateAndNext=async()=>{
-  if(selected<0){alert('Please select an option.');return}
-  const x=currentQuizList[qi];
-  const opts=document.querySelectorAll('.option');
-  
-  opts[x.a].classList.add('correct');
-  if(selected !== x.a) {
-    opts[selected].classList.add('wrong');
-  } else {
-    score++;
-  }
-  
-  $('quizExp').classList.remove('hidden');
-  const btn = $('quizNextBtn');
-  btn.textContent = (qi + 1 < currentQuizList.length) ? "Next Question →" : "Finish Assessment 🎉";
-  btn.onclick = async () => {
-    qi++;
-    if(qi < currentQuizList.length){
-      selected = -1;
-      renderQuiz();
-    } else {
-      await finalizeQuiz(score, currentQuizList.length);
-    }
-  };
-};
+Exam-ready points:
+• Definition / introduction
+• 3–5 important points
+• Example or supporting evidence
+• Short conclusion
 
-async function finalizeQuiz(sc,total){
-  const percent=Math.round(sc/total*100),u=auth.currentUser;
-  const earnedXp = sc * 25;
-  if(u){
-    const r=doc(db,'users',u.uid),s=await getDoc(r),d=s.data()||{};
-    const cnt=Number(d.quizCount)||0,totalScore=Number(d.totalQuizScore)||0,ncnt=cnt+1,ntotal=totalScore+percent,avg=Math.round(ntotal/ncnt);
-    const newXp = (Number(d.xp)||0) + earnedXp;
-    await updateDoc(r,{quizAverage:avg,quizCount:ncnt,totalQuizScore:ntotal,xp:newXp,lastActive:new Date().toISOString()});
-    setStats({...d,quizAverage:avg,xp:newXp});
-  }
-  $('quizBox').innerHTML=`
-    <h2>Assessment Complete 🎉</h2>
-    <p>You scored <b>${sc}/${total}</b> (${percent}% accuracy).</p>
-    <p>⚡ XP Earned: <b>+${earnedXp} XP</b></p>
-    <button class="btn" onclick="page('courses',document.querySelectorAll('.tabs button')[1])">Back to Courses</button>
-  `;
-}
+Quick revision:
+Summarize the topic in 3 sentences and test yourself without looking at your notes.
 
-// AI Tutor — Real AI Integration Pattern (via backend proxy or client helper)
-window.askAiTutor=async()=>{
-  const query=$('q').value.trim();
-  if(!query){alert('Please enter a question.');return}
-  $('aiLoading').classList.remove('hidden');
-  $('answer').classList.add('hidden');
-  
-  try {
-    // Calling AI endpoint or intelligent localized response handler
-    const res = await simulateAiResponse(query);
-    $('answer').textContent = res;
-    $('answer').classList.remove('hidden');
-  } catch(e) {
-    $('answer').textContent = 'Unable to connect to AI tutor right now. Please try again.';
-    $('answer').classList.remove('hidden');
-  } finally {
-    $('aiLoading').classList.add('hidden');
-  }
-};
-
-async function simulateAiResponse(prompt) {
-  await new Promise(r=>setTimeout(r, 900)); // simulated latency
-  const lower = prompt.toLowerCase();
-  
-  if (lower.includes('rights') || lower.includes('ಹಕ್ಕು')) {
-    return "💡 **Fundamental Rights (ಮೂಲಭೂತ ಹಕ್ಕುಗಳು):**\n\n1. **Right to Equality (ಸಮಾನತೆಯ ಹಕ್ಕು - Art 14-18):** Law applies equally to all citizens.\n2. **Right to Freedom (ಸ್ವಾತಂತ್ರ್ಯದ ಹಕ್ಕು - Art 19-22):** Speech, assembly, movement, and profession.\n3. **Right to Constitutional Remedies (ಸಾಂವಿಧಾನಿಕ ಪರಿಹಾರಗಳ ಹಕ್ಕು - Art 32):** Called the 'Heart and Soul' of the Constitution by Dr. B.R. Ambedkar.\n\n*Follow-up Tip:* Would you like to practice a quiz on Article 32?";
-  }
-  return `🤖 **LearNova AI Explanation for:** "${prompt}"\n\n- **Core Concept:** Breakdown the topic into definition, context, and applications.\n- **Language Support:** Available in bilingual explanations.\n- **Next Steps:** Revise related chapters under the 'Courses' tab to cement your learning.`;
-}
-
-window.certificate=async()=>{
-  const u=auth.currentUser;if(!u)return;
-  const s=await getDoc(doc(db,'users',u.uid)),d=s.data()||{};
-  $('certificateBox').innerHTML=`
-    <div style="text-align:center;padding:30px;border:4px double #6757ee;border-radius:18px">
-      <div style="font-size:55px">🏆</div>
-      <h1 style="font-family:Georgia;color:#6757ee">Certificate of Mastery</h1>
-      <p style="font-size:16px">This is proudly presented to</p>
-      <h2 style="font-size:28px;text-decoration:underline">${d.name||u.displayName||'Learner'}</h2>
-      <p>for demonstrating academic progress on <b>LearNova V3</b> platform.</p>
-      <p>Total XP: <b>${d.xp||0}</b> · Lessons Completed: <b>${d.lessonsCompleted||0}</b> · Quiz Avg: <b>${d.quizAverage||0}%</b></p>
-      <button class="btn" onclick="window.print()">🖨️ Print / Save as PDF</button>
-    </div>`;
-  page('certificatePage',null);
-};
-
-onAuthStateChanged(auth,u=>{
-  if(u){
-    $('auth').classList.add('hidden');
-    $('app').classList.remove('hidden');
-    load(u).catch(console.error);
-  } else {
-    $('auth').classList.remove('hidden');
-    $('app').classList.add('hidden');
-  }
-});
+Note: V3 uses a built-in starter tutor. Connect a real AI API through a secure backend later; do not expose private API keys in this HTML file.`:'Enter a question first.'};
+function err(e){return({'auth/invalid-credential':'Invalid email or password.','auth/email-already-in-use':'Email already registered.','auth/weak-password':'Password must be at least 6 characters.','auth/invalid-email':'Invalid email.'}[e.code]||e.message)}
+renderCourses();
+onAuthStateChanged(auth,u=>{if(u){$('auth').classList.add('hidden');$('app').classList.remove('hidden');load(u).catch(console.error)}else{$('auth').classList.remove('hidden');$('app').classList.add('hidden')}});
 </script>
 </body>
 </html>
