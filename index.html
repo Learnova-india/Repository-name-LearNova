@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>LearNova V3 AI</title>
+<title>LearNova V4 — Real AI</title>
 <style>
 *{box-sizing:border-box}body{margin:0;font-family:Inter,Arial,sans-serif;background:#f5f6fb;color:#171722}
 header{height:72px;background:#fff;border-bottom:1px solid #ddd;display:flex;align-items:center;justify-content:space-between;padding:0 22px;position:sticky;top:0;z-index:5}
@@ -64,11 +64,12 @@ header{height:72px;background:#fff;border-bottom:1px solid #ddd;display:flex;ali
 </section>
 
 <section id="ai" class="page">
-<div class="title">🤖 LearNova AI Tutor</div>
-<div class="card"><h2>Ask your real AI tutor</h2><p>Ask for explanations, examples, summaries, study plans, flashcards or quiz questions.</p>
-<div id="aiBox" class="aiBox"><div class="msg bot">Hi! Ask me a study question.</div></div>
-<div class="row"><input id="q" class="field" placeholder="Explain photosynthesis simply..."><button class="btn" onclick="askAI()">Ask AI</button></div>
-<div class="muted">AI requires a Gemini API key. Never put a secret production API key in a public website.</div></div>
+<div class="title">🤖 LearNova Real AI</div>
+<div class="card"><h2>AI Tutor</h2><p>Ask questions and get a real Gemini-powered explanation through a secure Firebase backend.</p>
+<div class="row"><select id="aiLang" class="field" style="max-width:180px"><option>English</option><option>Kannada</option><option>Hindi</option></select><input id="q" class="field" placeholder="Explain photosynthesis simply..."><button class="btn" onclick="askAI()">Ask AI</button></div>
+<div id="aiBox" class="aiBox"><div class="msg bot">Hi! I am your real AI tutor. Ask me anything educational.</div></div></div>
+<div class="card"><h2>📚 Create a Course with AI</h2><div class="row"><input id="aiSubject" class="field" placeholder="e.g. Indian History, Python, Physics"><select id="aiLevel" class="field" style="max-width:170px"><option>Beginner</option><option>Intermediate</option><option>Advanced</option></select><button class="btn" onclick="generateCourseAI()">Generate</button></div><div id="generatedCourse"></div></div>
+<div class="card"><h2>📝 Generate Quiz with AI</h2><div class="row"><input id="quizSubject" class="field" placeholder="Subject or topic"><button class="btn" onclick="generateQuizAI()">Generate Quiz</button></div><div id="generatedQuiz"></div></div>
 </section>
 
 <section id="profile" class="page"><div class="title">👤 Profile</div><div class="card">
@@ -89,9 +90,15 @@ header{height:72px;background:#fff;border-bottom:1px solid #ddd;display:flex;ali
 import{initializeApp}from'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
 import{getAuth,onAuthStateChanged,signInWithEmailAndPassword,createUserWithEmailAndPassword,updateProfile,signOut}from'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
 import{getFirestore,doc,setDoc,getDoc,updateDoc}from'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
+import{getFunctions,httpsCallable}from'https://www.gstatic.com/firebasejs/10.12.2/firebase-functions.js';
 
 const config={apiKey:'AIzaSyC5Mn2Sxh_k3AG1WCGJyBNvEGuhGLgwE2M',authDomain:'learnova-5ea26.firebaseapp.com',projectId:'learnova-5ea26',storageBucket:'learnova-5ea26.firebasestorage.app',messagingSenderId:'1065475515760',appId:'1:1065475515760:web:0f756addc73eedea215bb5'};
-const app=initializeApp(config),auth=getAuth(app),db=getFirestore(app);const $=id=>document.getElementById(id);
+const app=initializeApp(config),auth=getAuth(app),db=getFirestore(app);
+const functions=getFunctions(app,'us-central1');
+const askTutorFn=httpsCallable(functions,'askTutor');
+const generateCourseFn=httpsCallable(functions,'generateCourse');
+const generateQuizFn=httpsCallable(functions,'generateQuiz');
+const $=id=>document.getElementById(id);
 
 /* ================= COURSE CATALOG =================
    This is a searchable starter catalog. A production version can
@@ -129,10 +136,12 @@ const catalog=[
 ];
 
 function renderCourses(list=catalog){
-$('courseResults').innerHTML=list.length?list.map((c,i)=>`<div class="card course"><div style="font-size:35px">${c[2]}</div><h2>${c[0]}</h2><div class="tag">${c[1]}</div><p>${c[3]}</p>${c[4].slice(0,4).map(x=>`<span class="tag">${x}</span>`).join('')}<br><button class="btn" onclick="openCourse(${i})">Start Learning</button></div>`).join(''):'<div class="card"><h2>No exact course found</h2><p>Try a broader keyword. You can also ask the AI Tutor to create a learning plan for the subject.</p></div>';
+$('courseResults').innerHTML=list.length?list.map((c,i)=>`<div class="card course"><div style="font-size:35px">${c[2]}</div><h2>${c[0]}</h2><div class="tag">${c[1]}</div><p>${c[3]}</p>${c[4].slice(0,4).map(x=>`<span class="tag">${x}</span>`).join('')}<br><button class="btn" onclick="openCourse(${i})">Start Learning</button></div>`).join(''):'<div class="card"><h2>🤖 No fixed course found</h2><p>LearNova can create a new course for this subject with real AI.</p><button class="btn" onclick="generateFromSearch()">Create Course with AI</button></div>';
 }
 function renderPopular(){ $('popular').innerHTML=catalog.slice(0,9).map((c,i)=>`<div class="card course"><h2>${c[2]} ${c[0]}</h2><p>${c[3]}</p><button class="btn" onclick="openCourse(${i})">Explore</button></div>`).join('') }
 renderCourses();renderPopular();
+
+window.generateFromSearch=()=>{const q=($('courseSearch').value||$('homeSearch').value).trim();if(!q)return;page('ai',document.querySelectorAll('.tabs button')[2]);$('aiSubject').value=q;generateCourseAI()};
 
 window.searchCourses=(id)=>{
 const q=$(id).value.trim().toLowerCase();page('courses',document.querySelectorAll('.tabs button')[1]);
@@ -172,28 +181,49 @@ window.choose=j=>{selected=j;document.querySelectorAll('.option').forEach((b,k)=
 window.nextQuestion=async()=>{if(selected<0){alert('Please select an answer.');return}if(selected===questions[qi].a)score++;qi++;if(qi<questions.length){selected=-1;renderQuiz()}else await finishQuiz(score,questions.length)};
 async function finishQuiz(sc,total){const percent=Math.round(sc/total*100),u=auth.currentUser;if(u){const r=doc(db,'users',u.uid),s=await getDoc(r),d=s.data()||{},cnt=Number(d.quizCount)||0,totalScore=Number(d.totalQuizScore)||0,ncnt=cnt+1,ntotal=totalScore+percent,avg=Math.round(ntotal/ncnt);await updateDoc(r,{quizAverage:avg,quizCount:ncnt,totalQuizScore:ntotal,lastActive:new Date().toISOString()});set({...d,quizAverage:avg})}$('quizBox').innerHTML=`<h2>Quiz Complete 🎉</h2><p>You scored <b>${sc}/${total}</b> (${percent}%).</p><button class="btn" onclick="page('courses',document.querySelectorAll('.tabs button')[1])">Back to Courses</button>`}
 
-/* Real Gemini REST integration.
-   For a public GitHub Pages site, move this request behind a server/Cloud Function
-   before publishing a real secret key.
+/* ================= REAL AI BACKEND =================
+   The Gemini API key is NOT stored in this public file.
+   The browser calls Firebase callable functions, and the secret
+   stays in Google Secret Manager on the server.
 */
-const GEMINI_API_KEY='PASTE_YOUR_GEMINI_API_KEY_HERE';
 window.askTopic=t=>{page('ai',document.querySelectorAll('.tabs button')[2]);$('q').value='Teach me '+t+' step by step with examples and a short quiz.';askAI()};
 window.askAI=async()=>{
-const q=$('q').value.trim();if(!q)return;
-const box=$('aiBox');box.innerHTML+=`<div class="msg user">${escapeHtml(q)}</div><div id="typing" class="msg bot">Thinking...</div>`;box.scrollTop=box.scrollHeight;
-if(GEMINI_API_KEY.includes('PASTE_')){$('typing').textContent='Gemini is not connected yet. Open index.html and replace GEMINI_API_KEY with your Gemini API key. For a public site, use a backend proxy instead of exposing the key.';return}
-try{
-const prompt=`You are LearNova AI Tutor. Help a student learn. Be accurate, clear and age-appropriate. Explain the answer step by step, give an example when useful, then add 2 short practice questions. User question: ${q}`;
-const res=await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key='+encodeURIComponent(GEMINI_API_KEY),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({contents:[{parts:[{text:prompt}]}]})});
-if(!res.ok)throw new Error('Gemini request failed: '+res.status);
-const data=await res.json();const text=data?.candidates?.[0]?.content?.parts?.map(x=>x.text||'').join('')||'No answer returned.';
-$('typing').textContent=text;
-}catch(e){$('typing').textContent='AI error: '+e.message}
-box.scrollTop=box.scrollHeight;
+ const q=$('q').value.trim(); if(!q)return;
+ const lang=$('aiLang').value; const box=$('aiBox');
+ box.innerHTML+=`<div class="msg user">${escapeHtml(q)}</div><div id="typing" class="msg bot">Thinking with Gemini…</div>`;
+ box.scrollTop=box.scrollHeight;
+ try{
+   const result=await askTutorFn({question:q,language:lang});
+   $('typing').textContent=result.data.answer||'No answer returned.';
+ }catch(e){
+   $('typing').textContent='AI error: '+(e.message||'Please try again.');
+ }
+ box.scrollTop=box.scrollHeight;
 };
-function escapeHtml(s){return s.replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
 
-window.page=(id,b)=>{document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));$(id).classList.add('active');document. querySelectorAll('.tabs button').forEach(x=>x.classList.remove('active'));if(b)b.classList.add('active');scrollTo(0,0)};
+window.generateCourseAI=async()=>{
+ const subject=$('aiSubject').value.trim(); if(!subject){alert('Enter a subject first.');return}
+ const out=$('generatedCourse'); out.innerHTML='<div class="lesson"><b>Generating a complete course…</b></div>';
+ try{
+   const result=await generateCourseFn({subject,level:$('aiLevel').value,language:$('aiLang').value});
+   const c=result.data.course;
+   out.innerHTML=`<div class="lesson"><h2>${escapeHtml(c.title||subject)}</h2><p>${escapeHtml(c.description||'')}</p><p><b>Level:</b> ${escapeHtml(c.level||'')}</p>${(c.lessons||[]).map((l,i)=>`<div class="lesson"><h3>Lesson ${i+1}: ${escapeHtml(l.title||'')}</h3><p>${escapeHtml(l.summary||'')}</p><p><b>Key points:</b> ${(l.keyPoints||[]).map(escapeHtml).join(' • ')}</p><p><b>Example:</b> ${escapeHtml(l.example||'')}</p></div>`).join('')}</div>`;
+ }catch(e){out.innerHTML='<div class="err">'+escapeHtml(e.message||'Course generation failed.')+'</div>'}
+};
+
+window.generateQuizAI=async()=>{
+ const subject=$('quizSubject').value.trim(); if(!subject){alert('Enter a subject first.');return}
+ const out=$('generatedQuiz'); out.innerHTML='<div class="lesson"><b>Generating quiz…</b></div>';
+ try{
+   const result=await generateQuizFn({subject,level:$('aiLevel').value,language:$('aiLang').value});
+   const quiz=result.data.quiz;
+   out.innerHTML=`<div class="lesson"><h2>${escapeHtml(quiz.title||'AI Quiz')}</h2>${(quiz.questions||[]).map((x,i)=>`<div class="lesson"><h3>${i+1}. ${escapeHtml(x.question||'')}</h3>${(x.options||[]).map((o,j)=>`<button class="option" onclick="this.classList.add('selected')">${String.fromCharCode(65+j)}. ${escapeHtml(o)}</button>`).join('')}<p class="muted">Answer and explanation are generated by AI and can be reviewed after practice.</p></div>`).join('')}</div>`;
+ }catch(e){out.innerHTML='<div class="err">'+escapeHtml(e.message||'Quiz generation failed.')+'</div>'}
+};
+
+function escapeHtml(s){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
+
+window.page=(id,b)=>{document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));$(id).classList.add('active');document.querySelectorAll('.tabs button').forEach(x=>x.classList.remove('active'));if(b)b.classList.add('active');scrollTo(0,0)};
 function err(e){return({'auth/invalid-credential':'Invalid email or password.','auth/email-already-in-use':'Email already registered.','auth/weak-password':'Password must be at least 6 characters.','auth/invalid-email':'Invalid email.'}[e.code]||e.message)}
 onAuthStateChanged(auth,u=>{if(u){$('auth').classList.add('hidden');$('app').classList.remove('hidden');load(u).catch(console.error)}else{$('auth').classList.remove('hidden');$('app').classList.add('hidden')}});
 </script>
