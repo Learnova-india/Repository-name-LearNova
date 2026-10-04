@@ -4,99 +4,1684 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#6c4cff">
-<title>Learnova V3 — AI Learning</title>
+<title>Learnova V4 — AI Learning</title>
+
 <style>
-*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f7f8fc;color:#171827}
-header{position:sticky;top:0;background:#fff;border-bottom:1px solid #e5e7eb;z-index:5}
-nav{max-width:1150px;margin:auto;padding:14px 18px;display:flex;gap:15px;align-items:center}
-.logo{font-size:23px;font-weight:900;color:#6c4cff}.search{flex:1}
-.search input{width:100%;padding:13px 16px;border:1px solid #ddd;border-radius:13px;outline:0}
-.hero,main{max-width:1150px;margin:auto;padding:20px 18px}
-.heroBox{padding:32px;border-radius:24px;background:linear-gradient(135deg,#25165f,#6c4cff,#987bff);color:white}
-h1{font-size:clamp(32px,6vw,52px);margin:0}.hero p{font-size:17px;max-width:700px;color:#eee}
-.ask{display:flex;gap:8px;max-width:780px}.ask input{flex:1;padding:13px;border:0;border-radius:11px}
-button{cursor:pointer;border:0;border-radius:10px;padding:11px 15px;font-weight:700}.primary{background:#171126;color:#fff}
-.filters{display:flex;gap:8px;overflow:auto;margin:10px 0 20px}.filter{background:#fff;border:1px solid #ddd;white-space:nowrap}.active{background:#eee9ff!important;color:#6c4cff;border-color:#c9c0ff!important}
-.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}.card{background:#fff;border:1px solid #e5e7eb;border-radius:17px;padding:17px}
-.icon{font-size:27px;background:#eee9ff;width:52px;height:52px;display:grid;place-items:center;border-radius:14px}
-.card h3{margin:12px 0 5px}.card p{color:#6b7280;font-size:13px;min-height:42px}.meta{font-size:12px;color:#777;display:flex;justify-content:space-between}
-.open{width:100%;margin-top:13px;background:#f1effb;color:#6c4cff}
-.ai{margin-top:28px;background:#fff;border:1px solid #e5e7eb;border-radius:18px;overflow:hidden}
-.aihead{padding:16px;border-bottom:1px solid #eee;font-weight:800}.chat{padding:17px;min-height:160px;max-height:400px;overflow:auto}
-.msg{padding:11px 13px;border-radius:13px;max-width:85%;margin-bottom:9px;white-space:pre-wrap}.user{margin-left:auto;background:#6c4cff;color:white}.bot{background:#f0f1f5}
-.chatbar{display:flex;gap:8px;padding:12px;border-top:1px solid #eee}.chatbar input{flex:1;padding:11px;border:1px solid #ddd;border-radius:10px}
-footer{text-align:center;color:#888;padding:25px}
-@media(max-width:850px){.grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:520px){.grid{grid-template-columns:1fr}.ask{flex-direction:column}}
+*{box-sizing:border-box}
+body{
+ margin:0;font-family:Arial,sans-serif;
+ background:#f7f8fc;color:#171827
+}
+button{cursor:pointer;border:0;border-radius:10px;padding:11px 15px;font-weight:700}
+input,select{font:inherit}
+header{
+ position:sticky;top:0;background:#fff;
+ border-bottom:1px solid #e5e7eb;z-index:20
+}
+nav{
+ max-width:1150px;margin:auto;padding:13px 18px;
+ display:flex;align-items:center;gap:12px
+}
+.logo{font-size:23px;font-weight:900;color:#6c4cff}
+.search{flex:1}
+.search input{
+ width:100%;padding:12px 15px;
+ border:1px solid #ddd;border-radius:12px;outline:0
+}
+.container{max-width:1150px;margin:auto;padding:20px 18px}
+.hidden{display:none!important}
+
+.heroBox{
+ padding:30px;border-radius:24px;
+ background:linear-gradient(135deg,#25165f,#6c4cff,#987bff);
+ color:#fff
+}
+h1{font-size:clamp(32px,6vw,52px);margin:0 0 10px}
+.heroBox p{color:#eee;max-width:700px}
+.ask{display:flex;gap:8px;max-width:780px}
+.ask input{
+ flex:1;padding:13px;border:0;border-radius:11px
+}
+.primary{background:#171126;color:white}
+.secondary{background:#eee9ff;color:#6c4cff}
+
+.sectionTitle{
+ display:flex;justify-content:space-between;
+ align-items:center;margin-top:28px
+}
+
+.filters{
+ display:flex;gap:8px;overflow:auto;margin:10px 0 20px
+}
+.filter{
+ background:#fff;border:1px solid #ddd;
+ white-space:nowrap
+}
+.active{
+ background:#eee9ff!important;
+ color:#6c4cff;
+ border-color:#c9c0ff!important
+}
+
+.grid{
+ display:grid;
+ grid-template-columns:repeat(4,1fr);
+ gap:15px
+}
+.card{
+ background:#fff;border:1px solid #e5e7eb;
+ border-radius:17px;padding:17px
+}
+.icon{
+ font-size:27px;background:#eee9ff;
+ width:52px;height:52px;
+ display:grid;place-items:center;
+ border-radius:14px
+}
+.card h3{margin:12px 0 5px}
+.card p{
+ color:#6b7280;font-size:13px;
+ min-height:42px
+}
+.meta{
+ font-size:12px;color:#777;
+ display:flex;justify-content:space-between
+}
+.open{
+ width:100%;margin-top:13px;
+ background:#f1effb;color:#6c4cff
+}
+
+.dashboard{
+ display:grid;
+ grid-template-columns:repeat(4,1fr);
+ gap:14px
+}
+.stat{
+ background:white;border:1px solid #e5e7eb;
+ border-radius:16px;padding:18px
+}
+.stat b{font-size:28px}
+.stat span{display:block;color:#777;font-size:13px;margin-top:5px}
+
+.panel{
+ background:#fff;border:1px solid #e5e7eb;
+ border-radius:18px;padding:20px;margin-top:20px
+}
+
+.progress{
+ height:9px;background:#eee;border-radius:20px;
+ overflow:hidden;margin-top:8px
+}
+.progress div{
+ height:100%;background:#6c4cff;
+ width:0%
+}
+
+.lessonList{
+ display:grid;gap:10px;margin-top:15px
+}
+.lesson{
+ padding:15px;border:1px solid #e5e7eb;
+ border-radius:13px;background:#fafaff;
+ display:flex;align-items:center;
+ justify-content:space-between;gap:10px
+}
+
+.quizBox{
+ background:#fff;border:1px solid #e5e7eb;
+ border-radius:18px;padding:22px;margin-top:20px
+}
+.option{
+ display:block;width:100%;text-align:left;
+ margin:9px 0;padding:13px;
+ border:1px solid #ddd;
+ background:#fff;border-radius:10px
+}
+.option:hover{background:#f2efff}
+.correct{background:#dff7e8!important;border-color:#5bbf7b!important}
+.wrong{background:#ffe3e3!important;border-color:#e66!important}
+
+.ai{
+ margin-top:28px;background:#fff;
+ border:1px solid #e5e7eb;
+ border-radius:18px;overflow:hidden
+}
+.aihead{
+ padding:16px;border-bottom:1px solid #eee;
+ font-weight:800
+}
+.chat{
+ padding:17px;min-height:160px;
+ max-height:420px;overflow:auto
+}
+.msg{
+ padding:11px 13px;border-radius:13px;
+ max-width:85%;margin-bottom:9px;
+ white-space:pre-wrap
+}
+.user{margin-left:auto;background:#6c4cff;color:white}
+.bot{background:#f0f1f5}
+.chatbar{
+ display:flex;gap:8px;padding:12px;
+ border-top:1px solid #eee
+}
+.chatbar input{
+ flex:1;padding:11px;
+ border:1px solid #ddd;border-radius:10px
+}
+
+.auth{
+ min-height:100vh;display:grid;
+ place-items:center;padding:20px
+}
+.authBox{
+ width:min(420px,100%);
+ background:white;border:1px solid #e5e7eb;
+ border-radius:22px;padding:25px
+}
+.authBox h2{margin-top:0}
+.authBox input{
+ width:100%;padding:13px;
+ margin:7px 0;border:1px solid #ddd;
+ border-radius:10px
+}
+.authBox button{width:100%;margin-top:8px}
+
+.userMenu{
+ display:flex;align-items:center;gap:8px
+}
+.avatar{
+ width:38px;height:38px;border-radius:50%;
+ background:#6c4cff;color:white;
+ display:grid;place-items:center;
+ font-weight:bold
+}
+
+.back{
+ background:#eee9ff;color:#6c4cff;
+ margin-bottom:15px
+}
+
+footer{text-align:center;color:#888;padding:30px}
+
+@media(max-width:850px){
+ .grid{grid-template-columns:repeat(2,1fr)}
+ .dashboard{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:520px){
+ .grid,.dashboard{grid-template-columns:1fr}
+ .ask{flex-direction:column}
+ nav{flex-wrap:wrap}
+ .search{order:3;flex-basis:100%}
+}
 </style>
 </head>
+
 <body>
-<header><nav><div class="logo">Learnova ✦</div><div class="search"><input id="search" placeholder="Search any subject or course..."></div><button onclick="ai.scrollIntoView({behavior:'smooth'})">AI Tutor</button></nav></header>
 
-<section class="hero"><div class="heroBox">
-<h1>Learn anything.<br>Ask your AI tutor.</h1>
-<p>Search subjects, open a learning topic, or ask Learnova AI to explain anything in simple language.</p>
-<div class="ask"><input id="heroQ" placeholder="Ask: Explain the Indian Constitution"><button class="primary" onclick="ask('heroQ')">Ask AI</button></div>
-</div></section>
+<!-- ================= AUTH ================= -->
 
-<main>
-<h2>Explore subjects</h2>
-<div class="filters">
-<button class="filter active" onclick="filter('All',this)">All</button>
-<button class="filter" onclick="filter('Technology',this)">Technology</button>
-<button class="filter" onclick="filter('History',this)">History</button>
-<button class="filter" onclick="filter('Science',this)">Science</button>
-<button class="filter" onclick="filter('Business',this)">Business</button>
-<button class="filter" onclick="filter('Languages',this)">Languages</button>
-<button class="filter" onclick="filter('Exam Prep',this)">Exam Prep</button>
+<section id="authPage" class="auth">
+<div class="authBox">
+
+<div class="logo">Learnova ✦</div>
+
+<h2 id="authTitle">Create your account</h2>
+
+<input id="nameInput" placeholder="Your name">
+
+<input id="emailInput" type="email" placeholder="Email">
+
+<input id="passwordInput" type="password" placeholder="Password">
+
+<button class="primary" onclick="register()" id="registerBtn">
+Create Account
+</button>
+
+<button class="secondary" onclick="login()" id="loginBtn">
+Login
+</button>
+
+<p id="authMsg" style="color:#d33;font-size:13px"></p>
+
+<hr>
+
+<button onclick="toggleAuth()" id="toggleBtn">
+Already have an account? Login
+</button>
+
 </div>
+</section>
+
+
+<!-- ================= APP ================= -->
+
+<div id="app" class="hidden">
+
+<header>
+<nav>
+
+<div class="logo">Learnova ✦</div>
+
+<div class="search">
+<input id="search"
+placeholder="Search subject or course..."
+oninput="searchCourses()">
+</div>
+
+<button class="secondary"
+onclick="showPage('aiPage')">
+AI Tutor
+</button>
+
+<div class="userMenu">
+<div class="avatar" id="avatar">P</div>
+<button onclick="logout()">Logout</button>
+</div>
+
+</nav>
+</header>
+
+
+<!-- ================= HOME ================= -->
+
+<section id="homePage">
+
+<section class="container">
+<div class="heroBox">
+
+<h1>
+Learn anything.<br>
+Ask your AI tutor.
+</h1>
+
+<p>
+Learn subjects step-by-step, test yourself with quizzes,
+and track your progress with Learnova.
+</p>
+
+<div class="ask">
+<input id="heroQ"
+placeholder="Ask: Explain the Indian Constitution">
+<button class="primary" onclick="ask('heroQ')">
+Ask AI
+</button>
+</div>
+
+</div>
+</section>
+
+
+<main class="container">
+
+<h2>My Learning</h2>
+
+<div class="dashboard">
+
+<div class="stat">
+<b id="statLessons">0</b>
+<span>Lessons Completed</span>
+</div>
+
+<div class="stat">
+<b id="statQuiz">0%</b>
+<span>Quiz Average</span>
+</div>
+
+<div class="stat">
+<b id="statProgress">0%</b>
+<span>Overall Progress</span>
+</div>
+
+<div class="stat">
+<b id="statStreak">0</b>
+<span>Learning Streak</span>
+</div>
+
+</div>
+
+
+<div class="sectionTitle">
+<h2>Explore Subjects</h2>
+</div>
+
+<div class="filters">
+
+<button class="filter active"
+onclick="filterCourses('All',this)">
+All
+</button>
+
+<button class="filter"
+onclick="filterCourses('Technology',this)">
+Technology
+</button>
+
+<button class="filter"
+onclick="filterCourses('History',this)">
+History
+</button>
+
+<button class="filter"
+onclick="filterCourses('Science',this)">
+Science
+</button>
+
+<button class="filter"
+onclick="filterCourses('Business',this)">
+Business
+</button>
+
+<button class="filter"
+onclick="filterCourses('Languages',this)">
+Languages
+</button>
+
+<button class="filter"
+onclick="filterCourses('Exam Prep',this)">
+Exam Prep
+</button>
+
+</div>
+
 <div id="courses" class="grid"></div>
 
-<section id="ai" class="ai">
-<div class="aihead">🟢 Learnova AI Tutor</div>
-<div id="chat" class="chat"><div class="msg bot">Hi! Ask me about any subject, chapter, concept or exam topic.</div></div>
-<div class="chatbar"><input id="q" placeholder="Ask your question..." onkeydown="if(event.key==='Enter')ask('q')"><button class="primary" onclick="ask('q')">Send</button></div>
-</section>
 </main>
-<footer>Learnova V3 • AI-powered learning platform</footer>
+</section>
 
-<script>
-const API_BASE="https://learnova-ai.rpavankumar570.workers.dev";
-const data=[
-["Indian Constitution","History","🇮🇳","Constitution, Fundamental Rights, DPSP and Parliament."],
-["Modern Indian History","History","📜","Freedom movement, Gandhi era, British rule and independence."],
-["World History","History","🌍","Civilizations, empires, revolutions and world wars."],
-["Computer Science","Technology","💻","Programming, algorithms, databases and core CS."],
-["Web Development","Technology","🌐","HTML, CSS, JavaScript, APIs and web apps."],
-["Artificial Intelligence","Technology","🤖","AI, machine learning and neural networks."],
-["Physics","Science","⚛️","Motion, force, energy, electricity and formulas."],
-["Chemistry","Science","🧪","Atoms, reactions, bonding and chemistry basics."],
-["Biology","Science","🧬","Cells, genetics, human biology and ecology."],
-["Economics","Business","📈","Demand, supply, markets and national income."],
-["Entrepreneurship","Business","🚀","Business ideas, validation, marketing and finance."],
-["English","Languages","🔤","Grammar, vocabulary, writing and speaking."],
-["Kannada","Languages","ಕ","Grammar, literature, writing and communication."],
-["Competitive Exams","Exam Prep","🎯","GK, reasoning, current topics and exam preparation."]
-];
-let category="All";
-function render(list){
-courses.innerHTML=list.length?list.map(x=>`<article class="card"><div class="icon">${x[2]}</div><h3>${x[0]}</h3><p>${x[3]}</p><div class="meta"><span>${x[1]}</span><span>Learn</span></div><button class="open" onclick="start(${JSON.stringify(x[0])})">Learn this subject</button></article>`).join(""):'<p>No matching subject found.</p>';
+
+<!-- ================= COURSE PAGE ================= -->
+
+<section id="coursePage" class="container hidden">
+
+<button class="back" onclick="showPage('homePage')">
+← Back
+</button>
+
+<div class="panel">
+
+<h1 id="courseTitle"></h1>
+<p id="courseDescription"></p>
+
+<div class="progress">
+<div id="courseProgress"></div>
+</div>
+
+<p id="courseProgressText">0% completed</p>
+
+</div>
+
+<div class="panel">
+
+<h2>Lessons</h2>
+
+<div id="lessonList" class="lessonList"></div>
+
+</div>
+
+</section>
+
+
+<!-- ================= LESSON PAGE ================= -->
+
+<section id="lessonPage" class="container hidden">
+
+<button class="back" onclick="showPage('coursePage')">
+← Back to Course
+</button>
+
+<div class="panel">
+
+<h1 id="lessonTitle"></h1>
+
+<div id="lessonContent"></div>
+
+<br>
+
+<button class="primary"
+onclick="completeLesson()">
+✓ Mark Lesson Complete
+</button>
+
+<button class="secondary"
+onclick="startQuiz()">
+Take Quiz →
+</button>
+
+</div>
+
+</section>
+
+
+<!-- ================= QUIZ PAGE ================= -->
+
+<section id="quizPage" class="container hidden">
+
+<button class="back" onclick="showPage('lessonPage')">
+← Back to Lesson
+</button>
+
+<div class="quizBox">
+
+<h2 id="quizTitle">Lesson Quiz</h2>
+
+<div id="quizQuestion"></div>
+
+<div id="quizOptions"></div>
+
+<p id="quizResult"></p>
+
+<button id="nextQuizBtn"
+class="primary hidden"
+onclick="nextQuestion()">
+Next Question
+</button>
+
+</div>
+
+</section>
+
+
+<!-- ================= AI PAGE ================= -->
+
+<section id="aiPage" class="container hidden">
+
+<button class="back"
+onclick="showPage('homePage')">
+← Back
+</button>
+
+<section class="ai">
+
+<div class="aihead">
+🟢 Learnova AI Tutor
+</div>
+
+<div id="chat" class="chat">
+
+<div class="msg bot">
+Hi! Ask me about any subject, chapter,
+concept or exam topic.
+</div>
+
+</div>
+
+<div class="chatbar">
+
+<input id="q"
+placeholder="Ask your question..."
+onkeydown="if(event.key==='Enter')ask('q')">
+
+<button class="primary"
+onclick="ask('q')">
+Send
+</button>
+
+</div>
+
+</section>
+
+</section>
+
+
+<footer>
+Learnova V4 • AI-powered learning platform
+</footer>
+
+</div>
+
+
+<!-- ================= FIREBASE ================= -->
+
+<script type="module">
+
+import {initializeApp}
+from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
+
+import {
+getAuth,
+createUserWithEmailAndPassword,
+signInWithEmailAndPassword,
+onAuthStateChanged,
+signOut
 }
-function filter(c,b){category=c;document.querySelectorAll(".filter").forEach(x=>x.classList.remove("active"));b.classList.add("active");render(c==="All"?data:data.filter(x=>x[1]===c));}
-search.oninput=()=>{let s=search.value.toLowerCase().trim();render(data.filter(x=>(x[0]+" "+x[1]+" "+x[3]).toLowerCase().includes(s)));};
-function start(name){q.value="Teach me "+name+" from beginner level. Give me a simple learning plan and the first lesson.";ai.scrollIntoView({behavior:"smooth"});setTimeout(()=>ask("q"),400);}
-function add(t,c){let d=document.createElement("div");d.className="msg "+c;d.textContent=t;chat.appendChild(d);chat.scrollTop=chat.scrollHeight;return d;}
-async function ask(id){
-let input=document.getElementById(id),text=input.value.trim();if(!text)return;
-add(text,"user");input.value="";let wait=add("Thinking...","bot");
+from "https://www.gstatic.com/firebasejs/12.7.0/firebase-auth.js";
+
+import {
+getFirestore,
+doc,
+setDoc,
+getDoc,
+updateDoc
+}
+from "https://www.gstatic.com/firebasejs/12.7.0/firebase-firestore.js";
+
+
+const firebaseConfig = {
+
+apiKey:"AIzaSyC5Mn2Sxh_k3AG1WCGJyBNvEGuhGLgwE2M",
+
+authDomain:"learnova-5ea26.firebaseapp.com",
+
+projectId:"learnova-5ea26",
+
+storageBucket:"learnova-5ea26.firebasestorage.app",
+
+messagingSenderId:"1065475515760",
+
+appId:"1:1065475515760:web:0f756addc73eedea215bb5"
+
+};
+
+
+const app=initializeApp(firebaseConfig);
+
+const auth=getAuth(app);
+
+const db=getFirestore(app);
+
+
+/* ================= GLOBAL ================= */
+
+window.currentUser=null;
+
+window.userData={};
+
+const API_BASE=
+"https://learnova-ai.rpavankumar570.workers.dev";
+
+
+/* ================= AUTH ================= */
+
+window.register=async function(){
+
+const name=document.getElementById("nameInput").value.trim();
+
+const email=document.getElementById("emailInput").value.trim();
+
+const password=document.getElementById("passwordInput").value;
+
+if(!name||!email||password.length<6){
+
+authMsg.textContent=
+"Enter name, valid email and password of at least 6 characters.";
+
+return;
+}
+
 try{
-let r=await fetch(API_BASE+"/ask",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({question:text})});
-let j=await r.json().catch(()=>({}));wait.remove();
-if(!r.ok) return add("AI request failed ("+r.status+"). Check the Cloudflare Worker /ask route.","bot");
-let answer=j.answer||j.response||j.text||j.message;
-add(answer||"Worker responded, but no answer field was returned. Expected {answer:'...'}","bot");
-}catch(e){wait.remove();add("Could not connect to Learnova AI. Check Worker URL, /ask route and CORS.","bot");}
+
+const result=
+await createUserWithEmailAndPassword(
+auth,email,password
+);
+
+await setDoc(
+doc(db,"users",result.user.uid),
+{
+name:name,
+email:email,
+goal:"",
+language:"English",
+level:"Beginner",
+dailyTime:15,
+progress:0,
+streak:0,
+lessonsCompleted:0,
+quizAverage:0,
+completedLessons:[],
+quizScores:[],
+createdAt:new Date().toISOString()
 }
-render(data);
+);
+
+}catch(e){
+
+authMsg.textContent=e.message;
+
+}
+
+};
+
+
+window.login=async function(){
+
+const email=
+document.getElementById("emailInput").value.trim();
+
+const password=
+document.getElementById("passwordInput").value;
+
+if(!email||!password){
+
+authMsg.textContent=
+"Enter email and password.";
+
+return;
+}
+
+try{
+
+await signInWithEmailAndPassword(
+auth,email,password
+);
+
+}catch(e){
+
+authMsg.textContent=e.message;
+
+}
+
+};
+
+
+window.logout=async function(){
+
+await signOut(auth);
+
+};
+
+
+window.toggleAuth=function(){
+
+const registerMode=
+document.getElementById("registerBtn")
+.classList.contains("hidden");
+
+if(registerMode){
+
+authTitle.textContent="Create your account";
+
+registerBtn.classList.remove("hidden");
+
+nameInput.classList.remove("hidden");
+
+loginBtn.textContent="Login";
+
+toggleBtn.textContent=
+"Already have an account? Login";
+
+}else{
+
+authTitle.textContent="Welcome back";
+
+registerBtn.classList.add("hidden");
+
+nameInput.classList.add("hidden");
+
+loginBtn.textContent="Login";
+
+toggleBtn.textContent=
+"Don't have an account? Create one";
+
+}
+
+authMsg.textContent="";
+
+};
+
+
+/* ================= USER ================= */
+
+onAuthStateChanged(auth,async user=>{
+
+if(user){
+
+currentUser=user;
+
+authPage.classList.add("hidden");
+
+app.classList.remove("hidden");
+
+await loadUser();
+
+}else{
+
+currentUser=null;
+
+app.classList.add("hidden");
+
+authPage.classList.remove("hidden");
+
+}
+
+});
+
+
+async function loadUser(){
+
+const ref=doc(db,"users",currentUser.uid);
+
+const snap=await getDoc(ref);
+
+if(snap.exists()){
+
+userData=snap.data();
+
+}else{
+
+userData={
+name:currentUser.email.split("@")[0],
+email:currentUser.email,
+progress:0,
+streak:0,
+lessonsCompleted:0,
+quizAverage:0,
+completedLessons:[],
+quizScores:[]
+};
+
+}
+
+const first=
+(userData.name||"P").charAt(0).toUpperCase();
+
+avatar.textContent=first;
+
+updateStats();
+
+}
+
+
+/* ================= STATS ================= */
+
+function updateStats(){
+
+statLessons.textContent=
+userData.lessonsCompleted||0;
+
+statQuiz.textContent=
+(userData.quizAverage||0)+"%";
+
+statProgress.textContent=
+(userData.progress||0)+"%";
+
+statStreak.textContent=
+userData.streak||0;
+
+}
+
+
+/* ================= COURSE DATA ================= */
+
+const courses=[
+
+{
+name:"Indian Constitution",
+category:"History",
+icon:"🇮🇳",
+description:
+"Constitution, Fundamental Rights, DPSP and Parliament.",
+lessons:[
+"Introduction to Indian Constitution",
+"Fundamental Rights",
+"Directive Principles of State Policy",
+"Parliament of India",
+"President and Prime Minister"
+]
+},
+
+{
+name:"Modern Indian History",
+category:"History",
+icon:"📜",
+description:
+"Freedom movement, Gandhi era, British rule and independence.",
+lessons:[
+"British Expansion in India",
+"Revolt of 1857",
+"Indian National Congress",
+"Gandhian Era",
+"Independence and Partition"
+]
+},
+
+{
+name:"World History",
+category:"History",
+icon:"🌍",
+description:
+"Civilizations, empires, revolutions and world wars.",
+lessons:[
+"Ancient Civilizations",
+"French Revolution",
+"Industrial Revolution",
+"World War I",
+"World War II"
+]
+},
+
+{
+name:"Computer Science",
+category:"Technology",
+icon:"💻",
+description:
+"Programming, algorithms, databases and core CS.",
+lessons:[
+"Introduction to Computer Science",
+"Programming Basics",
+"Algorithms",
+"Databases",
+"Computer Networks"
+]
+},
+
+{
+name:"Web Development",
+category:"Technology",
+icon:"🌐",
+description:
+"HTML, CSS, JavaScript, APIs and web apps.",
+lessons:[
+"HTML Basics",
+"CSS Basics",
+"JavaScript Basics",
+"APIs",
+"Building Web Apps"
+]
+},
+
+{
+name:"Artificial Intelligence",
+category:"Technology",
+icon:"🤖",
+description:
+"AI, machine learning and neural networks.",
+lessons:[
+"What is AI?",
+"Machine Learning",
+"Neural Networks",
+"Generative AI",
+"AI Applications"
+]
+},
+
+{
+name:"Physics",
+category:"Science",
+icon:"⚛️",
+description:
+"Motion, force, energy, electricity and formulas.",
+lessons:[
+"Motion",
+"Force",
+"Work and Energy",
+"Electricity",
+"Light"
+]
+},
+
+{
+name:"Chemistry",
+category:"Science",
+icon:"🧪",
+description:
+"Atoms, reactions, bonding and chemistry basics.",
+lessons:[
+"Atoms",
+"Periodic Table",
+"Chemical Bonding",
+"Chemical Reactions",
+"Acids and Bases"
+]
+},
+
+{
+name:"Biology",
+category:"Science",
+icon:"🧬",
+description:
+"Cells, genetics, human biology and ecology.",
+lessons:[
+"Cell",
+"Genetics",
+"Human Body",
+"Evolution",
+"Ecology"
+]
+},
+
+{
+name:"Economics",
+category:"Business",
+icon:"📈",
+description:
+"Demand, supply, markets and national income.",
+lessons:[
+"Introduction to Economics",
+"Demand",
+"Supply",
+"Market",
+"National Income"
+]
+},
+
+{
+name:"Entrepreneurship",
+category:"Business",
+icon:"🚀",
+description:
+"Business ideas, validation, marketing and finance.",
+lessons:[
+"Finding a Business Idea",
+"Market Research",
+"Business Model",
+"Marketing",
+"Finance Basics"
+]
+},
+
+{
+name:"English",
+category:"Languages",
+icon:"🔤",
+description:
+"Grammar, vocabulary, writing and speaking.",
+lessons:[
+"Parts of Speech",
+"Tenses",
+"Vocabulary",
+"Writing Skills",
+"Speaking Skills"
+]
+},
+
+{
+name:"Kannada",
+category:"Languages",
+icon:"ಕ",
+description:
+"Grammar, literature, writing and communication.",
+lessons:[
+"ಕನ್ನಡ ವ್ಯಾಕರಣ",
+"ಸಂಧಿ",
+"ಸಮಾಸ",
+"ಕನ್ನಡ ಸಾಹಿತ್ಯ",
+"ಬರವಣಿಗೆ ಕೌಶಲ್ಯ"
+]
+},
+
+{
+name:"Competitive Exams",
+category:"Exam Prep",
+icon:"🎯",
+description:
+"GK, reasoning, current topics and exam preparation.",
+lessons:[
+"General Knowledge",
+"Indian Polity",
+"Reasoning",
+"Current Affairs",
+"Mock Test"
+]
+}
+
+];
+
+
+/* ================= COURSE RENDER ================= */
+
+window.renderCourses=function(list){
+
+courses.innerHTML=list.map((c,index)=>`
+
+<article class="card">
+
+<div class="icon">${c.icon}</div>
+
+<h3>${c.name}</h3>
+
+<p>${c.description}</p>
+
+<div class="meta">
+<span>${c.category}</span>
+<span>${c.lessons.length} Lessons</span>
+</div>
+
+<button class="open"
+onclick="openCourse(${index})">
+Learn this subject
+</button>
+
+</article>
+
+`).join("");
+
+};
+
+renderCourses(courses);
+
+
+/* ================= FILTER ================= */
+
+window.filterCourses=function(category,btn){
+
+document.querySelectorAll(".filter")
+.forEach(x=>x.classList.remove("active"));
+
+btn.classList.add("active");
+
+if(category==="All")
+renderCourses(courses);
+
+else
+renderCourses(
+courses.filter(x=>x.category===category)
+);
+
+};
+
+
+window.searchCourses=function(){
+
+const value=
+search.value.toLowerCase().trim();
+
+if(!value){
+
+renderCourses(courses);
+
+return;
+}
+
+renderCourses(
+courses.filter(x=>
+(x.name+" "+x.category+" "+x.description)
+.toLowerCase()
+.includes(value)
+)
+);
+
+};
+
+
+/* ================= COURSE ================= */
+
+let selectedCourse=null;
+
+let selectedLesson=null;
+
+window.openCourse=function(index){
+
+selectedCourse=courses[index];
+
+courseTitle.textContent=selectedCourse.name;
+
+courseDescription.textContent=
+selectedCourse.description;
+
+lessonList.innerHTML=
+selectedCourse.lessons.map((lesson,i)=>{
+
+const id=
+selectedCourse.name+"-"+i;
+
+const done=
+(userData.completedLessons||[])
+.includes(id);
+
+return `
+
+<div class="lesson">
+
+<div>
+<b>${done?"✓ ":""}Lesson ${i+1}</b>
+<br>
+<span>${lesson}</span>
+</div>
+
+<button class="secondary"
+onclick="openLesson(${i})">
+${done?"Review":"Start"}
+</button>
+
+</div>
+
+`;
+
+}).join("");
+
+updateCourseProgress();
+
+showPage("coursePage");
+
+};
+
+
+function updateCourseProgress(){
+
+if(!selectedCourse)return;
+
+let completed=0;
+
+selectedCourse.lessons.forEach((x,i)=>{
+
+const id=selectedCourse.name+"-"+i;
+
+if((userData.completedLessons||[])
+.includes(id))completed++;
+
+});
+
+const percent=
+Math.round(
+completed/selectedCourse.lessons.length*100
+);
+
+courseProgress.style.width=percent+"%";
+
+courseProgressText.textContent=
+percent+"% completed";
+
+}
+
+
+/* ================= LESSON ================= */
+
+window.openLesson=function(index){
+
+selectedLesson=index;
+
+const title=
+selectedCourse.lessons[index];
+
+lessonTitle.textContent=
+"Lesson "+(index+1)+": "+title;
+
+lessonContent.innerHTML=`
+
+<h2>${title}</h2>
+
+<p>
+Welcome to <b>${title}</b>.
+This lesson is designed for beginner-level learners.
+</p>
+
+<h3>What you will learn</h3>
+
+<ul>
+<li>Basic concepts of ${title}</li>
+<li>Important definitions</li>
+<li>Simple examples</li>
+<li>Exam-oriented points</li>
+</ul>
+
+<h3>Learn with AI</h3>
+
+<p>
+Use Learnova AI Tutor to ask questions,
+request examples, summaries or practice questions
+about this lesson.
+</p>
+
+<div class="panel">
+
+<b>Study Tip</b>
+
+<p>
+Don't just read. After completing the lesson,
+take the quiz and review the incorrect answers.
+</p>
+
+</div>
+
+`;
+
+showPage("lessonPage");
+
+};
+
+
+/* ================= COMPLETE LESSON ================= */
+
+window.completeLesson=async function(){
+
+if(!selectedCourse||selectedLesson===null)return;
+
+const id=
+selectedCourse.name+"-"+selectedLesson;
+
+if(!userData.completedLessons)
+userData.completedLessons=[];
+
+if(!userData.completedLessons.includes(id)){
+
+userData.completedLessons.push(id);
+
+userData.lessonsCompleted=
+userData.completedLessons.length;
+
+userData.progress=
+Math.min(
+100,
+Math.round(
+userData.lessonsCompleted/70*100
+)
+);
+
+await saveUser();
+
+}
+
+alert("Lesson completed successfully!");
+
+updateStats();
+
+};
+
+
+/* ================= SAVE ================= */
+
+async function saveUser(){
+
+await setDoc(
+doc(db,"users",currentUser.uid),
+userData,
+{merge:true}
+);
+
+}
+
+
+/* ================= QUIZ ================= */
+
+let quizIndex=0;
+
+let quizScore=0;
+
+let quizQuestions=[];
+
+const quizBank={
+
+"Indian Constitution":[
+{
+q:"Which document is the supreme law of India?",
+o:["Parliament Act","Constitution","IPC","Election Rules"],
+a:1
+},
+{
+q:"Fundamental Rights are contained in which part?",
+o:["Part I","Part II","Part III","Part IV"],
+a:2
+},
+{
+q:"Who is the constitutional head of India?",
+o:["Prime Minister","President","Chief Justice","Speaker"],
+a:1
+}
+],
+
+"Modern Indian History":[
+{
+q:"The Revolt of 1857 began at?",
+o:["Delhi","Meerut","Mumbai","Kolkata"],
+a:1
+},
+{
+q:"Who gave the slogan 'Do or Die'?",
+o:["Nehru","Gandhi","Tilak","Bose"],
+a:1
+}
+],
+
+"World History":[
+{
+q:"The French Revolution began in?",
+o:["1776","1789","1815","1914"],
+a:1
+}
+],
+
+"Computer Science":[
+{
+q:"What does CPU stand for?",
+o:["Central Processing Unit","Computer Personal Unit","Control Program Unit","Central Power Unit"],
+a:0
+}
+],
+
+"Web Development":[
+{
+q:"Which language structures a web page?",
+o:["HTML","CSS","Python","SQL"],
+a:0
+}
+],
+
+"Artificial Intelligence":[
+{
+q:"AI stands for?",
+o:["Automated Internet","Artificial Intelligence","Advanced Input","Applied Information"],
+a:1
+}
+],
+
+"Physics":[
+{
+q:"SI unit of force is?",
+o:["Joule","Newton","Watt","Pascal"],
+a:1
+}
+],
+
+"Chemistry":[
+{
+q:"Smallest unit of an element is?",
+o:["Cell","Atom","Molecule","Tissue"],
+a:1
+}
+],
+
+"Biology":[
+{
+q:"Basic unit of life is?",
+o:["Atom","Cell","Tissue","Organ"],
+a:1
+}
+],
+
+"Economics":[
+{
+q:"Law of demand generally says price rises, demand?",
+o:["Rises","Falls","Stays same","Doubles"],
+a:1
+}
+],
+
+"English":[
+{
+q:"Which is a noun?",
+o:["Run","Beautiful","Teacher","Quickly"],
+a:2
+}
+],
+
+"Kannada":[
+{
+q:"ಕನ್ನಡ ವರ್ಣಮಾಲೆಯಲ್ಲಿ ಸ್ವರಗಳು ಯಾವುವು?",
+o:["ಅ, ಆ","ಕ, ಖ","ಚ, ಜ","ಟ, ಡ"],
+a:0
+}
+],
+
+"Competitive Exams":[
+{
+q:"Capital of India is?",
+o:["Mumbai","New Delhi","Bengaluru","Kolkata"],
+a:1
+}
+]
+
+};
+
+
+window.startQuiz=function(){
+
+quizQuestions=
+quizBank[selectedCourse.name]||[
+{
+q:"What is the best way to learn this subject?",
+o:[
+"Only memorization",
+"Read, practice and revise",
+"Never practice",
+"Skip difficult topics"
+],
+a:1
+}
+];
+
+quizIndex=0;
+
+quizScore=0;
+
+quizTitle.textContent=
+selectedCourse.name+" Quiz";
+
+showPage("quizPage");
+
+renderQuestion();
+
+};
+
+
+function renderQuestion(){
+
+const q=quizQuestions[quizIndex];
+
+quizQuestion.innerHTML=
+`<h3>Question ${quizIndex+1} of ${quizQuestions.length}</h3>
+<p>${q.q}</p>`;
+
+quizOptions.innerHTML=
+q.o.map((x,i)=>`
+
+<button class="option"
+onclick="answerQuiz(${i},this)">
+${x}
+</button>
+
+`).join("");
+
+quizResult.textContent="";
+
+nextQuizBtn.classList.add("hidden");
+
+};
+
+
+window.answerQuiz=function(index,button){
+
+const q=quizQuestions[quizIndex];
+
+document.querySelectorAll(".option")
+.forEach(x=>x.disabled=true);
+
+if(index===q.a){
+
+button.classList.add("correct");
+
+quizScore++;
+
+quizResult.textContent="✓ Correct!";
+
+}else{
+
+button.classList.add("wrong");
+
+document.querySelectorAll(".option")[q.a]
+.classList.add("correct");
+
+quizResult.textContent=
+"✗ Incorrect. Correct answer: "+q.o[q.a];
+
+}
+
+nextQuizBtn.classList.remove("hidden");
+
+};
+
+
+window.nextQuestion=function(){
+
+quizIndex++;
+
+if(quizIndex<quizQuestions.length){
+
+renderQuestion();
+
+}else{
+
+finishQuiz();
+
+}
+
+};
+
+
+async function finishQuiz(){
+
+const score=
+Math.round(
+quizScore/quizQuestions.length*100
+);
+
+quizResult.innerHTML=
+`<h2>Quiz Complete 🎉</h2>
+<p>Your score: <b>${score}%</b></p>`;
+
+nextQuizBtn.classList.add("hidden");
+
+if(!userData.quizScores)
+userData.quizScores=[];
+
+userData.quizScores.push({
+course:selectedCourse.name,
+score:score,
+date:new Date().toISOString()
+});
+
+const scores=
+userData.quizScores.map(x=>x.score);
+
+userData.quizAverage=
+Math.round(
+scores.reduce((a,b)=>a+b,0)/scores.length
+);
+
+await saveUser();
+
+updateStats();
+
+}
+
+
+/* ================= AI ================= */
+
+function addMessage(text,type){
+
+const d=
+document.createElement("div");
+
+d.className="msg "+type;
+
+d.textContent=text;
+
+chat.appendChild(d);
+
+chat.scrollTop=chat.scrollHeight;
+
+return d;
+
+}
+
+
+window.ask=async function(id){
+
+const input=
+document.getElementById(id);
+
+const text=input.value.trim();
+
+if(!text)return;
+
+if(id==="heroQ")
+showPage("aiPage");
+
+addMessage(text,"user");
+
+input.value="";
+
+const wait=
+addMessage("Thinking...","bot");
+
+try{
+
+const response=
+await fetch(
+API_BASE+"/ask",
+{
+method:"POST",
+headers:{
+"Content-Type":"application/json"
+},
+body:JSON.stringify({
+question:
+text+
+"\n\nUser language preference: "+
+(userData.language||"English")+
+"\nUser level: "+
+(userData.level||"Beginner")
+})
+}
+);
+
+const json=
+await response.json().catch(()=>({}));
+
+wait.remove();
+
+if(!response.ok){
+
+addMessage(
+"AI request failed ("+
+response.status+
+"). Check your Cloudflare Worker /ask route.",
+"bot"
+);
+
+return;
+
+}
+
+const answer=
+json.answer||
+json.response||
+json.text||
+json.message;
+
+addMessage(
+answer||
+"Worker responded but no answer field was returned.",
+"bot"
+);
+
+}catch(error){
+
+wait.remove();
+
+addMessage(
+"Could not connect to Learnova AI. Check the Worker URL, /ask route and CORS.",
+"bot"
+);
+
+}
+
+};
+
+
+/* ================= PAGE NAVIGATION ================= */
+
+window.showPage=function(id){
+
+document.querySelectorAll(
+"#homePage,#coursePage,#lessonPage,#quizPage,#aiPage"
+)
+.forEach(x=>x.classList.add("hidden"));
+
+document.getElementById(id)
+.classList.remove("hidden");
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+};
+
+
 </script>
+
 </body>
 </html>
