@@ -1,102 +1,40 @@
 <!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#6c4cff">
-<title>Learnova V3 — AI Learning</title>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>LearNova V3 — AI Learning</title>
 <style>
-*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f7f8fc;color:#171827}
-header{position:sticky;top:0;background:#fff;border-bottom:1px solid #e5e7eb;z-index:5}
-nav{max-width:1150px;margin:auto;padding:14px 18px;display:flex;gap:15px;align-items:center}
-.logo{font-size:23px;font-weight:900;color:#6c4cff}.search{flex:1}
-.search input{width:100%;padding:13px 16px;border:1px solid #ddd;border-radius:13px;outline:0}
-.hero,main{max-width:1150px;margin:auto;padding:20px 18px}
-.heroBox{padding:32px;border-radius:24px;background:linear-gradient(135deg,#25165f,#6c4cff,#987bff);color:white}
-h1{font-size:clamp(32px,6vw,52px);margin:0}.hero p{font-size:17px;max-width:700px;color:#eee}
-.ask{display:flex;gap:8px;max-width:780px}.ask input{flex:1;padding:13px;border:0;border-radius:11px}
-button{cursor:pointer;border:0;border-radius:10px;padding:11px 15px;font-weight:700}.primary{background:#171126;color:#fff}
-.filters{display:flex;gap:8px;overflow:auto;margin:10px 0 20px}.filter{background:#fff;border:1px solid #ddd;white-space:nowrap}.active{background:#eee9ff!important;color:#6c4cff;border-color:#c9c0ff!important}
-.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}.card{background:#fff;border:1px solid #e5e7eb;border-radius:17px;padding:17px}
-.icon{font-size:27px;background:#eee9ff;width:52px;height:52px;display:grid;place-items:center;border-radius:14px}
-.card h3{margin:12px 0 5px}.card p{color:#6b7280;font-size:13px;min-height:42px}.meta{font-size:12px;color:#777;display:flex;justify-content:space-between}
-.open{width:100%;margin-top:13px;background:#f1effb;color:#6c4cff}
-.ai{margin-top:28px;background:#fff;border:1px solid #e5e7eb;border-radius:18px;overflow:hidden}
-.aihead{padding:16px;border-bottom:1px solid #eee;font-weight:800}.chat{padding:17px;min-height:160px;max-height:400px;overflow:auto}
-.msg{padding:11px 13px;border-radius:13px;max-width:85%;margin-bottom:9px;white-space:pre-wrap}.user{margin-left:auto;background:#6c4cff;color:white}.bot{background:#f0f1f5}
-.chatbar{display:flex;gap:8px;padding:12px;border-top:1px solid #eee}.chatbar input{flex:1;padding:11px;border:1px solid #ddd;border-radius:10px}
-footer{text-align:center;color:#888;padding:25px}
-@media(max-width:850px){.grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:520px){.grid{grid-template-columns:1fr}.ask{flex-direction:column}}
-</style>
-</head>
-<body>
-<header><nav><div class="logo">Learnova ✦</div><div class="search"><input id="search" placeholder="Search any subject or course..."></div><button onclick="ai.scrollIntoView({behavior:'smooth'})">AI Tutor</button></nav></header>
-
-<section class="hero"><div class="heroBox">
-<h1>Learn anything.<br>Ask your AI tutor.</h1>
-<p>Search subjects, open a learning topic, or ask Learnova AI to explain anything in simple language.</p>
-<div class="ask"><input id="heroQ" placeholder="Ask: Explain the Indian Constitution"><button class="primary" onclick="ask('heroQ')">Ask AI</button></div>
-</div></section>
-
-<main>
-<h2>Explore subjects</h2>
-<div class="filters">
-<button class="filter active" onclick="filter('All',this)">All</button>
-<button class="filter" onclick="filter('Technology',this)">Technology</button>
-<button class="filter" onclick="filter('History',this)">History</button>
-<button class="filter" onclick="filter('Science',this)">Science</button>
-<button class="filter" onclick="filter('Business',this)">Business</button>
-<button class="filter" onclick="filter('Languages',this)">Languages</button>
-<button class="filter" onclick="filter('Exam Prep',this)">Exam Prep</button>
-</div>
-<div id="courses" class="grid"></div>
-
-<section id="ai" class="ai">
-<div class="aihead">🟢 Learnova AI Tutor</div>
-<div id="chat" class="chat"><div class="msg bot">Hi! Ask me about any subject, chapter, concept or exam topic.</div></div>
-<div class="chatbar"><input id="q" placeholder="Ask your question..." onkeydown="if(event.key==='Enter')ask('q')"><button class="primary" onclick="ask('q')">Send</button></div>
-</section>
-</main>
-<footer>Learnova V3 • AI-powered learning platform</footer>
-
-<script>
-const API_BASE="https://learnova-ai.rpavankumar570.workers.dev";
-const data=[
-["Indian Constitution","History","🇮🇳","Constitution, Fundamental Rights, DPSP and Parliament."],
-["Modern Indian History","History","📜","Freedom movement, Gandhi era, British rule and independence."],
-["World History","History","🌍","Civilizations, empires, revolutions and world wars."],
-["Computer Science","Technology","💻","Programming, algorithms, databases and core CS."],
-["Web Development","Technology","🌐","HTML, CSS, JavaScript, APIs and web apps."],
-["Artificial Intelligence","Technology","🤖","AI, machine learning and neural networks."],
-["Physics","Science","⚛️","Motion, force, energy, electricity and formulas."],
-["Chemistry","Science","🧪","Atoms, reactions, bonding and chemistry basics."],
-["Biology","Science","🧬","Cells, genetics, human biology and ecology."],
-["Economics","Business","📈","Demand, supply, markets and national income."],
-["Entrepreneurship","Business","🚀","Business ideas, validation, marketing and finance."],
-["English","Languages","🔤","Grammar, vocabulary, writing and speaking."],
-["Kannada","Languages","ಕ","Grammar, literature, writing and communication."],
-["Competitive Exams","Exam Prep","🎯","GK, reasoning, current topics and exam preparation."]
-];
-let category="All";
-function render(list){
-courses.innerHTML=list.length?list.map(x=>`<article class="card"><div class="icon">${x[2]}</div><h3>${x[0]}</h3><p>${x[3]}</p><div class="meta"><span>${x[1]}</span><span>Learn</span></div><button class="open" onclick="start(${JSON.stringify(x[0])})">Learn this subject</button></article>`).join(""):'<p>No matching subject found.</p>';
-}
-function filter(c,b){category=c;document.querySelectorAll(".filter").forEach(x=>x.classList.remove("active"));b.classList.add("active");render(c==="All"?data:data.filter(x=>x[1]===c));}
-search.oninput=()=>{let s=search.value.toLowerCase().trim();render(data.filter(x=>(x[0]+" "+x[1]+" "+x[3]).toLowerCase().includes(s)));};
-function start(name){q.value="Teach me "+name+" from beginner level. Give me a simple learning plan and the first lesson.";ai.scrollIntoView({behavior:"smooth"});setTimeout(()=>ask("q"),400);}
-function add(t,c){let d=document.createElement("div");d.className="msg "+c;d.textContent=t;chat.appendChild(d);chat.scrollTop=chat.scrollHeight;return d;}
-async function ask(id){
-let input=document.getElementById(id),text=input.value.trim();if(!text)return;
-add(text,"user");input.value="";let wait=add("Thinking...","bot");
-try{
-let r=await fetch(API_BASE+"/ask",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({question:text})});
-let j=await r.json().catch(()=>({}));wait.remove();
-if(!r.ok) return add("AI request failed ("+r.status+"). Check the Cloudflare Worker /ask route.","bot");
-let answer=j.answer||j.response||j.text||j.message;
-add(answer||"Worker responded, but no answer field was returned. Expected {answer:'...'}","bot");
-}catch(e){wait.remove();add("Could not connect to Learnova AI. Check Worker URL, /ask route and CORS.","bot");}
-}
-render(data);
-</script>
-</body>
-</html>
+*{box-sizing:border-box}body{margin:0;font-family:Arial;background:#f5f6fb;color:#171722}header{height:72px;background:#fff;border-bottom:1px solid #ddd;display:flex;align-items:center;justify-content:space-between;padding:0 22px;position:sticky;top:0;z-index:5}.logo{font:700 27px Georgia}.logo span{color:#6757ee}.avatar{width:48px;height:48px;border-radius:50%;background:#6757ee;color:#fff;display:grid;place-items:center}.wrap{max-width:1000px;margin:auto;padding:25px 20px 100px}.welcome{font:38px Georgia;margin:15px 0 8px}.sub{color:#777;font:18px Georgia;margin-bottom:28px}.stats,.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.card{background:#fff;border:1px solid #ddd;border-radius:26px;padding:25px;margin-bottom:18px}.title{font:28px Georgia;margin:35px 0 18px}.st{font:18px Georgia;color:#777}.val{font-size:42px;margin-top:16px}.small,p{color:#777}.bar{height:10px;background:#eee;border-radius:20px;overflow:hidden}.bar i{display:block;height:100%;width:0;background:#6757ee}.btn{background:#6757ee;color:#fff;border:0;padding:13px 20px;border-radius:12px;margin-top:16px;cursor:pointer}.tabs{position:fixed;bottom:0;left:0;right:0;height:78px;background:#fff;border-top:1px solid #ddd;display:flex;justify-content:space-around;z-index:10}.tabs button{border:0;background:none;color:#777}.tabs .active{color:#6757ee}.page{display:none}.page.active{display:block}.auth{min-height:100vh;display:grid;place-items:center;padding:20px}.box{width:min(430px,100%);background:#fff;border-radius:25px;padding:30px;box-shadow:0 8px 30px #0001}.box input,.field{width:100%;padding:14px;margin:7px 0;border:1px solid #ccc;border-radius:12px}.box button{width:100%;padding:14px;margin-top:10px;border:0;border-radius:12px;background:#6757ee;color:#fff}.link{color:#6757ee;text-align:center;margin-top:18px;cursor:pointer}.err{color:#c62828;margin:8px 0}.hidden{display:none!important}.lesson{border:1px solid #ddd;border-radius:18px;padding:18px;margin:12px 0;background:#fafaff}.option{display:block;width:100%;text-align:left;background:#fff;border:1px solid #ccc;padding:13px;border-radius:10px;margin:8px 0}.option.selected{border-color:#6757ee;background:#f0edff}.resultbox{margin-top:18px}.ai-course{line-height:1.65}@media(max-width:700px){.stats{grid-template-columns:1fr}.welcome{font-size:31px}}
+</style></head><body>
+<div id="auth" class="auth"><div class="box"><div class="logo"><span>✦</span> LEARNOVA</div>
+<section id="login"><h1>Welcome back 👋</h1><p>Continue your learning journey.</p><input id="le" type="email" placeholder="Email"><input id="lp" type="password" placeholder="Password"><div id="lm" class="err"></div><button onclick="login()">Login</button><div class="link" onclick="signupForm()">Create account</div></section>
+<section id="signup" class="hidden"><h1>Create account</h1><input id="sn" placeholder="Your name"><input id="se" type="email" placeholder="Email"><input id="sp" type="password" placeholder="Password (6+ characters)"><div id="sm" class="err"></div><button onclick="signup()">Sign Up</button><div class="link" onclick="loginForm()">Already have an account? Login</div></section></div></div>
+<div id="app" class="hidden"><header><div class="logo"><span>✦</span> LEARNOVA</div><div id="av" class="avatar">L</div></header><main class="wrap">
+<section id="home" class="page active"><div class="welcome">Welcome back, <span id="name">Learner</span> 👋</div><div class="sub">Learn anything with LearNova AI.</div>
+<div class="stats"><div class="card"><div class="st">🔥 Current Streak</div><div id="streak" class="val">0</div><div class="small">days</div></div><div class="card"><div class="st">📚 Lessons Completed</div><div id="lessons" class="val">0</div><div class="small">completed</div></div><div class="card"><div class="st">📝 Quiz Average</div><div id="quiz" class="val">0%</div><div class="small">average</div></div></div>
+<div class="title">🎯 Learn Any Subject</div><div class="card"><h2>🔎 Search a subject</h2><p>Search almost any subject and LearNova AI will create a course.</p><input id="subjectSearch" class="field" placeholder="Example: Indian History, Physics, Python..."><button class="btn" onclick="searchSubject()">🔎 Search & Learn</button><div id="subjectResult" class="resultbox"></div></div></section>
+<section id="courses" class="page"><div class="title">📚 AI Courses</div><div class="card"><h2>🔎 Find Any Subject</h2><input id="subjectSearch2" class="field" placeholder="Search subject..."><button class="btn" onclick="searchSubjectFrom2()">Generate Course</button></div><div id="courseResult"></div></section>
+<section id="ai" class="page"><div class="title">🤖 Real AI Tutor</div><div class="card"><h2>LearNova AI Tutor</h2><p>Ask a study question. Your Gemini key stays on the server.</p><input id="q" class="field" placeholder="Ask anything..."><button class="btn" onclick="ask()">Ask Tutor</button><div id="answer" class="resultbox"></div></div></section>
+<section id="profile" class="page"><div class="title">👤 Profile</div><div class="card"><h2 id="pn">Learner</h2><p id="pe"></p><p>Lessons: <b id="pl">0</b></p><p>Quiz: <b id="pq">0%</b></p><p>Streak: <b id="ps">0 days</b></p><button class="btn" onclick="logout()">Logout</button></div></section>
+</main><nav class="tabs"><button class="active" onclick="page('home',this)">🏠<br>Home</button><button onclick="page('courses',this)">📚<br>Courses</button><button onclick="page('ai',this)">🧠<br>AI Tutor</button><button onclick="page('profile',this)">👤<br>Profile</button></nav></div>
+<script type="module">
+import{initializeApp}from'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';import{getAuth,onAuthStateChanged,signInWithEmailAndPassword,createUserWithEmailAndPassword,updateProfile,signOut}from'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';import{getFirestore,doc,setDoc,getDoc,updateDoc}from'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
+const config={apiKey:'AIzaSyC5Mn2Sxh_k3AG1WCGJyBNvEGuhGLgwE2M',authDomain:'learnova-5ea26.firebaseapp.com',projectId:'learnova-5ea26',storageBucket:'learnova-5ea26.firebasestorage.app',messagingSenderId:'1065475515760',appId:'1:1065475515760:web:0f756addc73eedea215bb5'};const app=initializeApp(config),auth=getAuth(app),db=getFirestore(app),$=id=>document.getElementById(id);
+const AI_WORKER_URL="PASTE_YOUR_CLOUDFLARE_WORKER_URL_HERE";
+window.loginForm=()=>{$('signup').classList.add('hidden');$('login').classList.remove('hidden')};window.signupForm=()=>{$('login').classList.add('hidden');$('signup').classList.remove('hidden')};
+window.login=async()=>{try{await signInWithEmailAndPassword(auth,$('le').value.trim(),$('lp').value)}catch(e){$('lm').textContent=err(e)}};window.signup=async()=>{try{const n=$('sn').value.trim();if(!n){$('sm').textContent='Please enter your name.';return}const c=await createUserWithEmailAndPassword(auth,$('se').value.trim(),$('sp').value);await updateProfile(c.user,{displayName:n});await make(c.user)}catch(e){$('sm').textContent=err(e)}};
+async function make(u){const r=doc(db,'users',u.uid),s=await getDoc(r);if(!s.exists())await setDoc(r,{email:u.email||'',name:u.displayName||'Learner',streak:1,lessonsCompleted:0,quizAverage:0,quizCount:0,totalQuizScore:0,lastActive:new Date().toISOString()})}
+async function load(u){await make(u);const r=doc(db,'users',u.uid),s=await getDoc(r),d=s.data()||{},n=d.name||u.displayName||'Learner';$('name').textContent=n;$('pn').textContent=n;$('pe').textContent=u.email||'';$('av').textContent=n[0]?.toUpperCase()||'L';set(d)}
+function set(d){let st=+d.streak||0,l=+d.lessonsCompleted||0,q=Math.round(+d.quizAverage||0);$('streak').textContent=st;$('lessons').textContent=l;$('quiz').textContent=q+'%';$('pl').textContent=l;$('pq').textContent=q+'%';$('ps').textContent=st+' days'}
+window.logout=()=>signOut(auth);window.page=(id,b)=>{document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));$(id).classList.add('active');document.querySelectorAll('.tabs button').forEach(x=>x.classList.remove('active'));if(b)b.classList.add('active');scrollTo(0,0)};
+async function callAI(mode,question){if(AI_WORKER_URL.includes("PASTE_YOUR"))throw new Error("Add your Cloudflare Worker URL in index.html");const r=await fetch(AI_WORKER_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({mode,question})});const d=await r.json();if(!r.ok)throw new Error(d.error||"AI request failed");return d.answer||""}
+function fmt(t){return t.replace(/```json|```/g,"").replace(/\*\*(.*?)\*\*/g,"<strong>$1</strong>").replace(/\n\n/g,"<br><br>").replace(/\n/g,"<br>")}
+function esc(t){return t.replace(/\\/g,"\\\\").replace(/'/g,"\\'")}
+window.ask=async()=>{let q=$('q').value.trim();if(!q)return $('answer').textContent="Enter a question first.";$('answer').textContent="🤖 LearNova AI is thinking...";try{$('answer').innerHTML=fmt(await callAI("tutor",q))}catch(e){$('answer').textContent="❌ "+e.message}};
+window.searchSubject=async()=>{let s=$('subjectSearch').value.trim();if(!s)return $('subjectResult').textContent="Enter a subject.";await generateCourse(s,'subjectResult')};
+window.searchSubjectFrom2=async()=>{let s=$('subjectSearch2').value.trim();if(!s)return $('courseResult').textContent="Enter a subject.";await generateCourse(s,'courseResult')};
+async function generateCourse(subject,target){let el=$(target);el.innerHTML="<p>🤖 Creating your AI course...</p>";try{let text=await callAI("course",subject);el.innerHTML=`<div class="lesson"><h2>📚 ${subject}</h2><div class="ai-course">${fmt(text)}</div><button class="btn" onclick="generateSubjectQuiz('${esc(subject)}')">📝 Take AI Quiz</button></div>`}catch(e){el.innerHTML="<p>❌ "+e.message+"</p>"}}
+window.generateSubjectQuiz=async subject=>{let el=$('subjectResult');el.innerHTML="<p>🤖 Generating quiz...</p>";try{let raw=await callAI("quiz",subject),clean=raw.replace(/```json/g,"").replace(/```/g,"").trim(),quiz=JSON.parse(clean);showAIQuiz(quiz.questions)}catch(e){el.innerHTML="<p>❌ Quiz generation failed: "+e.message+"</p>"}};
+function showAIQuiz(qs){let h='<div class="lesson"><h2>📝 AI Quiz</h2>';qs.forEach((q,i)=>{h+=`<div class="card"><h3>${i+1}. ${q.question}</h3>${q.options.map((o,j)=>`<button class="option" onclick="selectAIAnswer(${i},${j},this)">${o}</button>`).join('')}</div>`});h+='<button class="btn" onclick="submitAIQuiz()">Submit Quiz</button><div id="aiQuizScore"></div></div>';$('subjectResult').innerHTML=h;window.currentAIQuiz=qs;window.aiAnswers={}}
+window.selectAIAnswer=(i,a,b)=>{window.aiAnswers[i]=a;b.parentElement.querySelectorAll('.option').forEach(x=>x.classList.remove('selected'));b.classList.add('selected')};
+window.submitAIQuiz=async()=>{let qs=window.currentAIQuiz,score=0;qs.forEach((q,i)=>{if(window.aiAnswers[i]===q.answer)score++});let p=Math.round(score/qs.length*100);$('aiQuizScore').innerHTML=`<div class="lesson"><h2>🎉 Quiz Complete</h2><p>Score: <b>${score}/${qs.length}</b> (${p}%)</p></div>`;let u=auth.currentUser;if(u){let r=doc(db,'users',u.uid),s=await getDoc(r),d=s.data()||{},cnt=+d.quizCount||0,total=+d.totalQuizScore||0,n=cnt+1,nt=total+p;await updateDoc(r,{quizCount:n,totalQuizScore:nt,quizAverage:Math.round(nt/n)});set({...d,quizCount:n,totalQuizScore:nt,quizAverage:Math.round(nt/n)})}};
+function err(e){return({'auth/invalid-credential':'Invalid email or password.','auth/email-already-in-use':'Email already registered.','auth/weak-password':'Password must be at least 6 characters.','auth/invalid-email':'Invalid email.'}[e.code]||e.message)}
+onAuthStateChanged(auth,u=>{if(u){$('auth').classList.add('hidden');$('app').classList.remove('hidden');load(u)}else{$('auth').classList.remove('hidden');$('app').classList.add('hidden')}});
+</script></body></html>
